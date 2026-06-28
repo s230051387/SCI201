@@ -116,7 +116,7 @@
                 min-height: 100vh;
                 max-width: 1200px;
                 margin: 0 auto;
-                overflow-x: hidden;
+                overflow-x: clip;
             }
 
             /* ================================================================
@@ -248,15 +248,6 @@
                 align-items: center;
                 gap: 0.5rem;
                 color: var(--primary);
-            }
-
-            .chapter-nav {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                gap: 0.8rem;
-                margin-bottom: 0.5rem;
             }
 
             .nav-btn {
@@ -622,9 +613,6 @@
                 font-size: 2rem;
             }
 
-            /* ================================================================
-               MOBILE SIDEBAR TOGGLE
-               ================================================================ */
             .sidebar-toggle {
                 display: none;
                 background: var(--primary);
@@ -638,64 +626,7 @@
                 box-shadow: var(--shadow);
             }
 
-            @media (max-width: 900px) {
-                .toolbar-hamburger {
-                    display: none !important;
-                }
-                .sidebar {
-                    display: none !important;
-                }
-                .toolbar {
-                    width: 100%;
-                    margin-left: 0;
-                    margin-right: 0;
-                    padding: 0.5rem 1rem;
-                    left: 0;
-                    right: 0;
-                }
-                .concept-number {
-                    min-width: 32px;
-                    min-height: 32px;
-                    width: auto;
-                    height: auto;
-                    padding: 0.25rem 0.5rem;
-                    flex-shrink: 0;
-                }
-                html,
-                body {
-                    overflow-x: hidden;
-                    width: 100%;
-                }
-                body {
-                    flex-direction: column;
-                }
-
-                .sidebar {
-                    position: fixed;
-                    left: -100%;
-                    top: 0;
-                    height: 100vh;
-                    width: 280px;
-                    transition: left 0.3s ease;
-                    z-index: 15;
-                }
-
-                .sidebar.open {
-                    left: 0;
-                }
-
-                .toolbar-hamburger {
-                    display: flex !important;
-                    align-items: center;
-                    justify-content: center;
-                }
-
-                .main-wrapper {
-                    padding: 1rem;
-                    width: 100%;
-                }
-            }
-            /* Toolbar full width above sidebar */
+            /* Toolbar */
             .toolbar {
                 position: sticky;
                 top: 0;
@@ -715,18 +646,15 @@
                 margin-left: calc(-50vw + 600px);
                 margin-right: calc(-50vw + 600px);
             }
-
             [data-theme="dark"] .toolbar {
                 background: rgba(29, 32, 33, 0.9);
             }
-
             .toolbar-left,
             .toolbar-right {
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
             }
-
             .toolbar-center {
                 display: flex;
                 align-items: center;
@@ -739,7 +667,6 @@
                 border-radius: 2rem;
                 border: 1px solid var(--border);
             }
-
             .toolbar-btn {
                 background: var(--surface-alt);
                 border: 1px solid var(--border);
@@ -755,23 +682,53 @@
                 font-size: 1rem;
                 transition: all 0.2s ease;
             }
-
             .toolbar-btn:hover {
                 background: var(--primary);
                 color: var(--bg0_h);
-                border-color: var(--primary);
+                border-color: var(--aqua);
             }
-
             .toolbar-btn.disabled-btn {
                 opacity: 0.3;
                 cursor: not-allowed;
                 pointer-events: none;
             }
+
+            .scroll-top-btn {
+                position: fixed;
+                bottom: 2rem;
+                right: 2rem;
+                z-index: 100;
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                font-size: 1.2rem;
+                cursor: pointer;
+                box-shadow: var(--shadow);
+                display: none;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
+            .scroll-top-btn.visible {
+                display: flex;
+            }
+            .scroll-top-btn:hover {
+                filter: brightness(1.1);
+                transform: translateY(-2px);
+            }
+
+            /* MOBILE */
             @media (max-width: 900px) {
-                .toolbar-hamburger {
-                    display: none !important;
+                body {
+                    flex-direction: column;
                 }
                 .sidebar {
+                    display: none !important;
+                }
+                .toolbar-hamburger {
                     display: none !important;
                 }
                 .toolbar {
@@ -792,65 +749,16 @@
                 }
                 html,
                 body {
-                    overflow-x: hidden;
+                    overflow-x: clip;
                     width: 100%;
                 }
-                .toolbar {
-                    width: 100%;
-                    margin-left: 0;
-                    margin-right: 0;
-                    padding: 0.5rem 1rem;
-                    left: 0;
-                    right: 0;
-                }
-
-                .sidebar {
-                    top: 56px;
-                    height: calc(100vh - 56px);
-                }
-
-                .sidebar-toggle {
-                    display: flex !important;
-                    position: static !important;
-                    margin: 0;
-                }
-
-                html,
-                body {
-                    overflow-x: hidden;
+                .main-wrapper {
+                    padding: 1rem;
                     width: 100%;
                 }
                 .scroll-top-btn {
-                    position: fixed;
-                    bottom: 2rem;
-                    right: 2rem;
-                    z-index: 100;
-                    background: var(--primary);
-                    color: var(--bg0_h);
-                    border: none;
-                    width: 44px;
-                    height: 44px;
-                    border-radius: 50%;
-                    font-size: 1.2rem;
-                    cursor: pointer;
-                    box-shadow: var(--shadow);
-                    display: none;
-                    align-items: center;
-                    justify-content: center;
-                    transition: all 0.3s ease;
-                }
-                .scroll-top-btn.visible {
-                    display: flex;
-                }
-                .scroll-top-btn:hover {
-                    filter: brightness(1.1);
-                    transform: translateY(-2px);
-                }
-                @media (max-width: 900px) {
-                    .scroll-top-btn {
-                        bottom: 1.5rem;
-                        right: 1.5rem;
-                    }
+                    bottom: 1.5rem;
+                    right: 1.5rem;
                 }
             }
         </style>
@@ -1629,17 +1537,9 @@
                     const next = cur === "dark" ? "light" : "dark";
                     html.setAttribute("data-theme", next);
                     localStorage.setItem("garden_theme", next);
-                    const btn = document.getElementById("themeBtn");
-                    if (btn)
-                        btn.textContent =
-                            next === "dark" ? "🌙 Dark Mode" : "☀️ Light Mode";
                 };
                 const saved = localStorage.getItem("garden_theme") || "dark";
                 document.documentElement.setAttribute("data-theme", saved);
-                const btn = document.getElementById("themeBtn");
-                if (btn)
-                    btn.textContent =
-                        saved === "dark" ? "🌙 Dark Mode" : "☀️ Light Mode";
 
                 // DEPTH TABS
                 document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
