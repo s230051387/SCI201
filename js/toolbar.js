@@ -18,7 +18,7 @@
   toolbar.className = "toolbar";
   toolbar.innerHTML = `
     <div class="toolbar-left">
-      <button class="sidebar-toggle toolbar-hamburger" onclick="toggleSidebar()" aria-label="Toggle sidebar" style="display:none;">☰</button>
+      <button class="sidebar-toggle toolbar-hamburger" onclick="toggleSidebar()" aria-label="Toggle sidebar">☰</button>
       <a href="../index.html" class="toolbar-btn" title="Home" aria-label="Back to chapters">
         <i class="fa-solid fa-house"></i>
       </a>
