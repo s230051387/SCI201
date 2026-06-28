@@ -579,55 +579,6 @@
                 box-shadow: var(--shadow);
             }
 
-            @media (max-width: 900px) {
-    .toolbar-hamburger {
-        display: none !important;
-    }
-    .sidebar {
-        display: none !important;
-    }
-    .toolbar {
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        padding: 0.5rem 1rem;
-        left: 0;
-        right: 0;
-    }
-    .concept-number {
-        min-width: 32px;
-        min-height: 32px;
-        width: auto;
-        height: auto;
-        padding: 0.25rem 0.5rem;
-        flex-shrink: 0;
-    }
-    html, body {
-        overflow-x: hidden;
-        width: 100%;
-    }
-                .sidebar {
-                    position: fixed;
-                    left: -100%;
-                    top: 56px;
-                    height: calc(100vh - 56px);
-                    width: 280px;
-                    transition: left 0.3s ease;
-                    z-index: 15;
-                }
-                .sidebar.open {
-                    left: 0;
-                }
-                .toolbar-hamburger {
-                    display: flex !important;
-                    align-items: center;
-                    justify-content: center;
-                }
-                .main-wrapper {
-                    padding: 1rem;
-                    width: 100%;
-                }
-            }
 
             .toolbar {
                 position: sticky;
@@ -694,6 +645,51 @@
                 cursor: not-allowed;
                 pointer-events: none;
             }
+            /* MOBILE */
+            @media (max-width: 900px) {
+                body {
+                    flex-direction: column;
+                }
+                .sidebar {
+                    display: none !important;
+                }
+                .sidebar-toggle {
+                    display: flex !important;
+                    position: static !important;
+                    margin: 0;
+                }
+                .toolbar-hamburger {
+                    display: none !important;
+                }
+                .toolbar {
+                    width: 100%;
+                    margin-left: 0;
+                    margin-right: 0;
+                    padding: 0.5rem 1rem;
+                    left: 0;
+                    right: 0;
+                }
+                .concept-number {
+                    min-width: 32px;
+                    min-height: 32px;
+                    width: auto;
+                    height: auto;
+                    padding: 0.25rem 0.5rem;
+                    flex-shrink: 0;
+                }
+                html,
+                body {
+                    overflow-x: hidden;
+                    width: 100%;
+                }
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
+    .scroll-top-btn { position: fixed; bottom: 2rem; right: 2rem; z-index: 100; background: var(--primary); color: var(--bg0_h); border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; box-shadow: var(--shadow); display: none; align-items: center; justify-content: center; transition: all 0.3s ease; } .scroll-top-btn.visible { display: flex; } .scroll-top-btn:hover { filter: brightness(1.1); transform: translateY(-2px); } @media (max-width: 900px) { .scroll-top-btn { bottom: 1.5rem; right: 1.5rem; } }
+        </style>
+    .scroll-top-btn { position: fixed; bottom: 2rem; right: 2rem; z-index: 100; background: var(--primary); color: var(--bg0_h); border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; box-shadow: var(--shadow); display: none; align-items: center; justify-content: center; transition: all 0.3s ease; } .scroll-top-btn.visible { display: flex; } .scroll-top-btn:hover { filter: brightness(1.1); transform: translateY(-2px); } @media (max-width: 900px) { .scroll-top-btn { bottom: 1.5rem; right: 1.5rem; } }
         </style>
     </head>
     <body>
@@ -1574,6 +1570,7 @@
                 ],
             });
         </script>
+    <button class="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
         <script src="../js/toolbar.js"></script>
     </body>
 </html>

@@ -234,7 +234,7 @@ function initQuiz(config) {
         "Keep studying! Review the material and try the quiz again.";
     }
 
-    if (percentage >= 80 && chapterNum) {
+    if (chapterNum) {
       localStorage.setItem(`chapter_${chapterNum}_status`, "completed");
     }
 

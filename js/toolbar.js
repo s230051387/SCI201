@@ -78,3 +78,16 @@
     attributeFilter: ["data-theme"],
   });
 })();
+
+// Scroll to top button
+(function() {
+  const btn = document.querySelector('.scroll-top-btn');
+  if (!btn) return;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  });
+})();
