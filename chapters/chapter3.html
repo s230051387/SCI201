@@ -582,6 +582,55 @@
                 box-shadow: var(--shadow);
             }
 
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                .sidebar {
+                    position: fixed;
+                    left: -100%;
+                    top: 56px;
+                    height: calc(100vh - 56px);
+                    width: 280px;
+                    transition: left 0.3s ease;
+                    z-index: 15;
+                }
+                .sidebar.open {
+                    left: 0;
+                }
+                .toolbar-hamburger {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
 
             .toolbar {
                 position: sticky;
@@ -648,45 +697,1062 @@
                 cursor: not-allowed;
                 pointer-events: none;
             }
-            /* MOBILE */
-            @media (max-width: 900px) {
-                body {
-                    flex-direction: column;
+        </style>
+    </head>
+    <body>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">📑 SCI201</div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#objectives"
+                        ><span class="emoji">🎯</span> Learning Objectives</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept1"
+                        ><span class="emoji">1️⃣</span> Electric Current</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept2"
+                        ><span class="emoji">2️⃣</span> Current Density</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept3"
+                        ><span class="emoji">3️⃣</span> Ohm's Law</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept4"
+                        ><span class="emoji">4️⃣</span> Resistance &
+                        Resistivity</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept5"
+                        ><span class="emoji">5️⃣</span> Temperature Dependence</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept6"
+                        ><span class="emoji">6️⃣</span> Electrical Energy &
+                        Power</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept7"
+                        ><span class="emoji">7️⃣</span> Resistivity Table</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept8"
+                        ><span class="emoji">8️⃣</span> Power in Circuit
+                        Elements</a
+                    >
+                </li>
+                <hr class="sidebar-divider" />
+                <li>
+                    <a href="#formulas"
+                        ><span class="emoji">📐</span> Formulas Summary</a
+                    >
+                </li>
+                <li>
+                    <a href="#narrative"
+                        ><span class="emoji">🎓</span> Professor's Narrative</a
+                    >
+                </li>
+                <li>
+                    <a href="#ask-professor"
+                        ><span class="emoji">❓</span> Ask the Professor</a
+                    >
+                </li>
+                <li>
+                    <a href="#exam-vault"
+                        ><span class="emoji">🔐</span> Exam Vault</a
+                    >
+                </li>
+                <li>
+                    <a href="#quiz"><span class="emoji">📝</span> Self Quiz</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <h1>⚡ Current and Resistance</h1>
+                <p style="color: var(--bg0_h); opacity: 0.9">
+                    Electric current, Ohm's law, resistance, resistivity, and
+                    electrical power
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Current</span>
+                    <span class="tag">Resistance</span>
+                    <span class="tag">Ohm's Law</span>
+                    <span class="tag tag--accent"
+                        ><i class="fa-regular fa-clock"></i> 45 min</span
+                    >
+                </div>
+            </header>
+
+            <main>
+                <section id="objectives">
+                    <h2>🎯 Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>
+                            Define electric current and understand its
+                            direction.
+                        </li>
+                        <li>
+                            Understand current density and its relationship to
+                            drift velocity.
+                        </li>
+                        <li>
+                            Apply Ohm's law and understand the concept of
+                            resistance.
+                        </li>
+                        <li>
+                            Calculate resistance from resistivity and geometry.
+                        </li>
+                        <li>
+                            Understand how resistance varies with temperature.
+                        </li>
+                        <li>
+                            Calculate electric power and energy in circuits.
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- CONCEPT 1 -->
+                <div class="concept-card" id="concept1">
+                    <div class="concept-header">
+                        <span class="concept-number">1</span>
+                        <h2>Electric Current</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Electric current is the rate of flow of charge
+                            through a region of space. The SI unit is the ampere
+                            (A), where 1 A = 1 C/s. Current direction is defined
+                            as the direction positive charges would flow.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Electric current (I) is the rate at which charge
+                            flows through a surface. If ΔQ is the amount of
+                            charge that passes through area A in time Δt, then
+                            the average current is:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Average Current</span> I<sub
+                                >avg</sub
+                            >
+                            = ΔQ / Δt
+                        </div>
+                        <p>
+                            The direction of current is the direction in which
+                            positive charges flow when free to do so. In
+                            ordinary conductors, this is opposite to the
+                            direction of electron flow.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The ampere is one of the seven base SI units.
+                            Current is a macroscopic quantity that arises from
+                            the microscopic motion of charge carriers. In
+                            metals, the charge carriers are electrons, but the
+                            convention of positive current flow dates back to
+                            Benjamin Franklin and is still used today. In
+                            electrolyte solutions, both positive and negative
+                            ions can carry charge.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 2 -->
+                <div class="concept-card" id="concept2">
+                    <div class="concept-header">
+                        <span class="concept-number">2</span>
+                        <h2>Current Density</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Current density (J) is the current per unit area: J
+                            = I/A. For a conductor with charge carriers of
+                            density n, charge q, and drift velocity
+                            v<sub>d</sub>, J = n q v<sub>d</sub>.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Current density is a vector quantity that describes
+                            how current flows through a cross-sectional area. If
+                            the current density is uniform and A is
+                            perpendicular to the current direction:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Current Density</span> J = I / A
+                        </div>
+                        <p>
+                            The SI units of J are A/m². In terms of microscopic
+                            quantities:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Microscopic Form</span> J = n q
+                            v<sub>d</sub>
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Drift velocity is the average velocity of charge
+                            carriers in the presence of an electric field. It is
+                            typically very small (on the order of mm/s), yet
+                            currents can be large because there are an enormous
+                            number of charge carriers. For example, in a copper
+                            wire with a current of 1 A, the drift velocity of
+                            electrons is only about 0.1 mm/s.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 3 -->
+                <div class="concept-card" id="concept3">
+                    <div class="concept-header">
+                        <span class="concept-number">3</span>
+                        <h2>Ohm's Law</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Ohm's law states that the current density J in a
+                            conductor is proportional to the electric field E: J
+                            = σE, where σ is the conductivity. Materials that
+                            obey this are called ohmic.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            For many materials (especially metals), the ratio of
+                            current density to electric field is a constant σ
+                            (the conductivity):
+                        </p>
+                        <div class="formula">
+                            <span class="label">Ohm's Law (Field Form)</span> J
+                            = σE
+                        </div>
+                        <p>
+                            Equivalently, in circuit terms: V = IR. Materials
+                            that obey Ohm's law are said to be ohmic. Materials
+                            that do not are called non-ohmic. Ohm's law is an
+                            empirical relationship, not a fundamental law of
+                            nature.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The resistance R of a conductor determines the
+                            current for a given voltage. The microscopic origin
+                            of resistance is collisions between charge carriers
+                            and the atoms of the conductor. These collisions
+                            transfer energy from the charge carriers to the
+                            lattice, increasing the temperature of the
+                            conductor. This is why wires heat up when current
+                            flows through them.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 4 -->
+                <div class="concept-card" id="concept4">
+                    <div class="concept-header">
+                        <span class="concept-number">4</span>
+                        <h2>Resistance and Resistivity</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Resistance (R) is the ratio of voltage to current: R
+                            = V/I. Resistivity (ρ) is a material property
+                            related to resistance by R = ρL/A, where L is length
+                            and A is cross-sectional area. The SI unit of
+                            resistance is the ohm (Ω).
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Resistance is a measure of how difficult it is for
+                            current to flow through a conductor. It arises due
+                            to collisions between electrons and fixed atoms. The
+                            resistance of a uniform conductor of length L and
+                            cross-sectional area A is:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Resistance Formula</span> R = ρ
+                            L / A
+                        </div>
+                        <p>
+                            The SI unit of resistance is the ohm (Ω), where 1 Ω
+                            = 1 V/A. The SI unit of resistivity is Ω·m.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Resistance depends on both the material (through ρ)
+                            and the geometry (through L and A). This is why
+                            long, thin wires have more resistance than short,
+                            thick wires. A good conductor has low resistivity,
+                            while a good insulator has very high resistivity
+                            (often 10¹⁰ to 10¹⁶ Ω·m).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 5 -->
+                <div class="concept-card" id="concept5">
+                    <div class="concept-header">
+                        <span class="concept-number">5</span>
+                        <h2>Temperature Dependence of Resistance</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Resistance typically increases with temperature for
+                            metals. The change is approximately linear: R = R₀[1
+                            + α(T - T₀)], where α is the temperature coefficient
+                            of resistance.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Over a limited temperature range, the resistivity of
+                            a metal varies approximately linearly with
+                            temperature:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Temperature Dependence</span> ρ
+                            = ρ₀[1 + α(T - T₀)]
+                        </div>
+                        <p>Since resistance is proportional to resistivity:</p>
+                        <div class="formula">
+                            <span class="label">Resistance Change</span> R =
+                            R₀[1 + α(T - T₀)]
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The temperature coefficient α is positive for metals
+                            (resistance increases with temperature) because
+                            increased thermal vibrations cause more collisions.
+                            For semiconductors, α is negative (resistance
+                            decreases with temperature) because more charge
+                            carriers become available. At very low temperatures,
+                            some materials become superconductors with zero
+                            resistance.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 6 -->
+                <div class="concept-card" id="concept6">
+                    <div class="concept-header">
+                        <span class="concept-number">6</span>
+                        <h2>Electrical Energy and Power</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Electric power is the rate at which energy is
+                            transferred: P = IV. For a resistor: P = I²R = V²/R.
+                            The SI unit is the watt (W).
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>The power (rate of energy transfer) is:</p>
+                        <div class="formula">
+                            <span class="label">Electrical Power</span> P = IΔV
+                        </div>
+                        <p>
+                            For a resistor, using Ohm's law (ΔV = IR), the power
+                            dissipated as heat is:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Power in Resistor</span> P = I²R
+                            = (ΔV)² / R
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The energy dissipated in a resistor over time t is E
+                            = Pt = I²Rt. This is why resistors get hot. The
+                            power delivered by a battery to a circuit is P = εI,
+                            where ε is the emf. Part goes to the load, part is
+                            dissipated internally. This is the Joule heating
+                            effect.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 7 -->
+                <div class="concept-card" id="concept7">
+                    <div class="concept-header">
+                        <span class="concept-number">7</span>
+                        <h2>Resistivity Table and Material Properties</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Different materials have vastly different
+                            resistivities. Silver, copper, and gold are
+                            excellent conductors, while glass, rubber, and
+                            sulfur are good insulators.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Material</th>
+                                        <th>Resistivity (Ω·m)</th>
+                                        <th>Temp. Coefficient (°C)⁻¹</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Silver</td>
+                                        <td>1.59 × 10⁻⁸</td>
+                                        <td>3.8 × 10⁻³</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Copper</td>
+                                        <td>1.7 × 10⁻⁸</td>
+                                        <td>3.9 × 10⁻³</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gold</td>
+                                        <td>2.44 × 10⁻⁸</td>
+                                        <td>3.4 × 10⁻³</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aluminum</td>
+                                        <td>2.82 × 10⁻⁸</td>
+                                        <td>3.9 × 10⁻³</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tungsten</td>
+                                        <td>5.6 × 10⁻⁸</td>
+                                        <td>4.5 × 10⁻³</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Iron</td>
+                                        <td>10 × 10⁻⁸</td>
+                                        <td>5.0 × 10⁻³</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nichrome</td>
+                                        <td>1.00 × 10⁻⁶</td>
+                                        <td>0.4 × 10⁻³</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carbon</td>
+                                        <td>3.5 × 10⁻⁵</td>
+                                        <td>-0.5 × 10⁻³</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Glass</td>
+                                        <td>10¹⁰ to 10¹⁴</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Silicon</td>
+                                        <td>2.3 × 10⁻³</td>
+                                        <td>-75 × 10⁻³</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Nichrome (a nickel-chromium alloy) has high
+                            resistivity and a low temperature coefficient,
+                            making it ideal for heating elements. Semiconductors
+                            like silicon have very high temperature
+                            coefficients, useful in temperature sensors
+                            (thermistors).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 8 -->
+                <div class="concept-card" id="concept8">
+                    <div class="concept-header">
+                        <span class="concept-number">8</span>
+                        <h2>Power in Circuit Elements</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The power delivered to a resistor appears as
+                            internal energy (heat). For a battery, total power
+                            output is P = Iε, and part is dissipated internally.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            For a circuit with battery emf ε and internal
+                            resistance r connected to external resistor R, the
+                            current is I = ε/(R + r). The power delivered to the
+                            external load is:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Load Power</span> P<sub>R</sub>
+                            = I²R
+                        </div>
+                        <p>The total power delivered by the battery is:</p>
+                        <div class="formula">
+                            <span class="label">Total Power</span> P = Iε = I²R
+                            + I²r
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Maximum power is delivered to the load when R = r
+                            (maximum power transfer theorem). In practical
+                            circuits, we minimize internal resistance so most
+                            power goes to the load rather than being wasted as
+                            heat inside the battery.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Formulas Summary -->
+                <section id="formulas">
+                    <h2>📐 Equations</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Formula</th>
+                                        <th>Units</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Electric Current</td>
+                                        <td>I = ΔQ/Δt</td>
+                                        <td>A (C/s)</td>
+                                        <td>Rate of charge flow</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Current Density</td>
+                                        <td>J = I/A = nqv<sub>d</sub></td>
+                                        <td>A/m²</td>
+                                        <td>n = carrier density</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ohm's Law</td>
+                                        <td>V = IR or J = σE</td>
+                                        <td>V, A, Ω</td>
+                                        <td>σ = conductivity</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Resistance</td>
+                                        <td>R = V/I</td>
+                                        <td>Ω (V/A)</td>
+                                        <td>Property of object</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Resistivity</td>
+                                        <td>ρ = RA/L</td>
+                                        <td>Ω·m</td>
+                                        <td>Material property</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Temperature Dependence</td>
+                                        <td>R = R₀[1 + α(T - T₀)]</td>
+                                        <td>Ω</td>
+                                        <td>α = temp. coefficient</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Electrical Power</td>
+                                        <td>P = IV = I²R = V²/R</td>
+                                        <td>W (J/s)</td>
+                                        <td>Power dissipated</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Energy</td>
+                                        <td>E = Pt = I²Rt</td>
+                                        <td>J</td>
+                                        <td>Energy over time</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2>⚖️ Resistance vs Resistivity</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Resistance (R)</th>
+                                        <th>Resistivity (ρ)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Definition</td>
+                                        <td>Opposition to current flow</td>
+                                        <td>Material's inherent opposition</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dependence</td>
+                                        <td>Depends on geometry (L, A)</td>
+                                        <td>Independent of geometry</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Formula</td>
+                                        <td>R = ρL/A</td>
+                                        <td>ρ = RA/L</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Units</td>
+                                        <td>Ω</td>
+                                        <td>Ω·m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Material Property</td>
+                                        <td>No</td>
+                                        <td>Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Example</td>
+                                        <td>Wire has R = 5 Ω</td>
+                                        <td>Copper has ρ = 1.7 × 10⁻⁸</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Professor's Narrative -->
+                <section class="professor-card" id="narrative">
+                    <h2>🎓 Professor's Narrative</h2>
+                    <p>
+                        Current and resistance form the foundation of all
+                        electrical circuits. Remember that current is the flow
+                        of charge, and resistance is what opposes that flow. The
+                        relationship between voltage, current, and resistance is
+                        elegantly captured by Ohm's law: V = IR. However,
+                        remember that Ohm's law is not a fundamental law—it's an
+                        empirical observation that holds true for many materials
+                        but not all.
+                    </p>
+                    <p>
+                        Pay special attention to the distinction between
+                        resistance (a property of a specific object) and
+                        resistivity (a property of a material). A long, thin
+                        wire has more resistance than a short, thick wire made
+                        of the same material because resistance depends on
+                        geometry.
+                    </p>
+                    <p>
+                        The temperature dependence of resistance is crucial in
+                        real-world applications. Metals increase in resistance
+                        when heated, which is why light bulbs have a lower
+                        resistance when cold. Semiconductors decrease in
+                        resistance when heated, which makes them useful as
+                        temperature sensors.
+                    </p>
+                    <p>
+                        Finally, always remember that power is the rate of
+                        energy transfer. When you see a resistor in a circuit,
+                        it's converting electrical energy into heat. This Joule
+                        heating is both useful (in heaters, toasters) and
+                        wasteful (in power transmission lines).
+                    </p>
+                </section>
+
+                <!-- Ask the Professor -->
+                <section class="ask-section" id="ask-professor">
+                    <h2>❓ Ask the Professor</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why does current direction go from positive to
+                                negative if electrons flow the other way?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    This convention dates back to Benjamin
+                                    Franklin. We call the flow of positive
+                                    charges "conventional current" and the flow
+                                    of electrons "electron flow." In most
+                                    circuit analysis, we use conventional
+                                    current.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why do wires get hot when current flows through
+                                them? <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Electrons carrying current collide with the
+                                    atoms of the conductor, transferring kinetic
+                                    energy to the lattice. This is Joule
+                                    heating: P = I²R.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                What's the difference between a conductor,
+                                semiconductor, and insulator?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Conductors have many free charge carriers
+                                    and low resistivity. Semiconductors have
+                                    fewer carriers but their conductivity can be
+                                    controlled. Insulators have very few free
+                                    carriers and extremely high resistivity.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Exam Vault -->
+                <section class="vault-section" id="exam-vault">
+                    <h2>🔐 Exam Vault</h2>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Ohm's law: V = IR. Resistance: R = V/I (ohms Ω).
+                        Resistivity: ρ = RA/L (material property).
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Current density J is a vector, current I is a scalar.
+                        Use I = ∫ J · dA for non-uniform current density.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--secret"
+                            >🤫 Secret</span
+                        >
+                        Drift velocity is extremely small (~0.1 mm/s). The
+                        electric field propagates at nearly light speed, so
+                        lights turn on instantly.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Power in a resistor: P = IV = I²R = V²/R. All three
+                        forms are equivalent.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        For temperature coefficient formula R = R₀[1 + α(T -
+                        T₀)], use °C and correct reference temperature.
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="quiz-section" id="quiz">
+                    <h2>📝 Chapter 3: Current and Resistance Quiz</h2>
+                    <div id="quiz-container"></div>
+                </section>
+            </main>
+
+            <footer>SCI201 · Chapter 3: Current and Resistance</footer>
+        </div>
+
+        <script>
+            (function () {
+                window.toggleTheme = function () {
+                    const html = document.documentElement;
+                    const cur = html.getAttribute("data-theme");
+                    const next = cur === "dark" ? "light" : "dark";
+                    html.setAttribute("data-theme", next);
+                    localStorage.setItem("garden_theme", next);
+                };
+                const saved = localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", saved);
+
+                document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
+                    const card = tabGroup.closest(".concept-card");
+                    if (!card) return;
+                    const tabs = tabGroup.querySelectorAll(".depth-tab");
+                    const contents = card.querySelectorAll(".depth-content");
+                    tabs.forEach((tab) => {
+                        tab.addEventListener("click", function () {
+                            const layer = this.dataset.layer;
+                            tabs.forEach((t) => t.classList.remove("active"));
+                            this.classList.add("active");
+                            contents.forEach((c) => {
+                                c.classList.remove("active");
+                                if (c.dataset.layer === layer)
+                                    c.classList.add("active");
+                            });
+                        });
+                    });
+                });
+
+                document
+                    .querySelectorAll(".accordion-trigger")
+                    .forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            const body = this.nextElementSibling;
+                            const isOpen = body.classList.contains("open");
+                            const section = this.closest(".accordion");
+                            section
+                                .querySelectorAll(".accordion-body")
+                                .forEach((b) => b.classList.remove("open"));
+                            if (!isOpen) body.classList.add("open");
+                        });
+                    });
+
+                const currentStatus = localStorage.getItem("chapter_3_status");
+                if (!currentStatus || currentStatus === "not-started") {
+                    localStorage.setItem("chapter_3_status", "viewed");
                 }
-                .sidebar {
-                    display: none !important;
-                }
-                .sidebar-toggle {
-                    display: flex !important;
-                    position: static !important;
-                    margin: 0;
-                }
-                .toolbar-hamburger {
-                    display: none !important;
-                }
-                .toolbar {
-                    width: 100%;
-                    margin-left: 0;
-                    margin-right: 0;
-                    padding: 0.5rem 1rem;
-                    left: 0;
-                    right: 0;
-                }
-                .concept-number {
-                    min-width: 32px;
-                    min-height: 32px;
-                    width: auto;
-                    height: auto;
-                    padding: 0.25rem 0.5rem;
-                    flex-shrink: 0;
-                }
-                html,
-                body {
-                    overflow-x: hidden;
-                    width: 100%;
-                }
-                .main-wrapper {
-                    padding: 1rem;
-                    width: 100%;
-                }
-            }
+            })();
+        </script>
+
+        <script src="../js/quiz.js"></script>
+        <script>
+            initQuiz({
+                chapterNum: 3,
+                quizData: [
+                    {
+                        question: "1. Electric current is defined as:",
+                        options: [
+                            "The rate of flow of charge.",
+                            "The rate of flow of energy.",
+                            "The voltage per unit resistance.",
+                            "The resistance per unit voltage.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "Current is the rate at which charge flows through a surface.",
+                        hint: "Think about the definition of current.",
+                    },
+                    {
+                        question: "2. The SI unit of current is the:",
+                        options: ["Volt.", "Ohm.", "Ampere.", "Coulomb."],
+                        correct: 2,
+                        explanation: "1 A = 1 C/s.",
+                        hint: "1 A = 1 C/s.",
+                    },
+                    {
+                        question:
+                            "3. In a metal conductor, the charge carriers are:",
+                        options: [
+                            "Protons.",
+                            "Neutrons.",
+                            "Electrons.",
+                            "Ions.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "In metals, free electrons are the charge carriers.",
+                        hint: "What particles are free to move in a metal?",
+                    },
+                    {
+                        question: "4. Ohm's law states that:",
+                        options: [
+                            "V = IR.",
+                            "V = I/R.",
+                            "V = R/I.",
+                            "I = V/R.",
+                        ],
+                        correct: 0,
+                        explanation: "Voltage equals current times resistance.",
+                        hint: "Voltage, current, and resistance are related by this simple equation.",
+                    },
+                    {
+                        question:
+                            "5. The resistance of a conductor is directly proportional to its:",
+                        options: [
+                            "Cross-sectional area.",
+                            "Length.",
+                            "Temperature.",
+                            "Current.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "From R = ρL/A, resistance increases with length.",
+                        hint: "Look at the formula R = ρL/A.",
+                    },
+                    {
+                        question:
+                            "6. The resistance of a conductor is inversely proportional to its:",
+                        options: [
+                            "Length.",
+                            "Cross-sectional area.",
+                            "Resistivity.",
+                            "Voltage.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "From R = ρL/A, resistance decreases with larger area.",
+                        hint: "Look at the formula R = ρL/A.",
+                    },
+                    {
+                        question:
+                            "7. What happens to the resistance of a metal wire when its temperature increases?",
+                        options: [
+                            "It decreases.",
+                            "It stays the same.",
+                            "It increases.",
+                            "It becomes zero.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "Metals have a positive temperature coefficient.",
+                        hint: "Metals generally have a positive temperature coefficient.",
+                    },
+                    {
+                        question:
+                            "8. The power dissipated in a resistor can be calculated using:",
+                        options: [
+                            "P = IR.",
+                            "P = I²R.",
+                            "P = V/I.",
+                            "P = R/I.",
+                        ],
+                        correct: 1,
+                        explanation: "Power is I²R, also equal to IV or V²/R.",
+                        hint: "Power is voltage times current.",
+                    },
+                    {
+                        question:
+                            "9. Which material has the lowest resistivity?",
+                        options: ["Copper.", "Silver.", "Gold.", "Aluminum."],
+                        correct: 1,
+                        explanation:
+                            "Silver has the lowest resistivity at 1.59 × 10⁻⁸ Ω·m.",
+                        hint: "Check the resistivity table.",
+                    },
+                    {
+                        question:
+                            "10. The drift velocity of charge carriers in a conductor is typically:",
+                        options: [
+                            "Very large (near the speed of light).",
+                            "Very small (about 0.1 mm/s).",
+                            "Zero.",
+                            "Equal to the speed of the electric field.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Drift velocity is surprisingly small, around 0.1 mm/s.",
+                        hint: "Think about how fast electrons actually move in a wire.",
+                    },
+                ],
+            });
+        </script>
+        <script src="../js/toolbar.js"></script>
+    </body>
+</html>

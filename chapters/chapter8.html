@@ -579,6 +579,55 @@
                 box-shadow: var(--shadow);
             }
 
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                .sidebar {
+                    position: fixed;
+                    left: -100%;
+                    top: 56px;
+                    height: calc(100vh - 56px);
+                    width: 280px;
+                    transition: left 0.3s ease;
+                    z-index: 15;
+                }
+                .sidebar.open {
+                    left: 0;
+                }
+                .toolbar-hamburger {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
 
             .toolbar {
                 position: sticky;
@@ -645,45 +694,999 @@
                 cursor: not-allowed;
                 pointer-events: none;
             }
-            /* MOBILE */
-            @media (max-width: 900px) {
-                body {
-                    flex-direction: column;
+        </style>
+    </head>
+    <body>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">📑 SCI201</div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#objectives"
+                        ><span class="emoji">🎯</span> Learning Objectives</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept1"
+                        ><span class="emoji">1️⃣</span> Irreversibility & the
+                        Second Law</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept2"
+                        ><span class="emoji">2️⃣</span> Heat Engines</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept3"
+                        ><span class="emoji">3️⃣</span> Thermal Efficiency</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept4"
+                        ><span class="emoji">4️⃣</span> The Kelvin-Planck
+                        Statement</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept5"
+                        ><span class="emoji">5️⃣</span> The Clausius Statement</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept6"
+                        ><span class="emoji">6️⃣</span> Reversible & Irreversible
+                        Processes</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept7"
+                        ><span class="emoji">7️⃣</span> The Carnot Cycle & Carnot
+                        Engine</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept8"
+                        ><span class="emoji">8️⃣</span> Carnot's Theorem</a
+                    >
+                </li>
+                <hr class="sidebar-divider" />
+                <li>
+                    <a href="#formulas"
+                        ><span class="emoji">📐</span> Equations</a
+                    >
+                </li>
+                <li>
+                    <a href="#narrative"
+                        ><span class="emoji">🎓</span> Professor's Narrative</a
+                    >
+                </li>
+                <li>
+                    <a href="#ask-professor"
+                        ><span class="emoji">❓</span> Ask the Professor</a
+                    >
+                </li>
+                <li>
+                    <a href="#exam-vault"
+                        ><span class="emoji">🔐</span> Exam Vault</a
+                    >
+                </li>
+                <li>
+                    <a href="#quiz"><span class="emoji">📝</span> Self Quiz</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <h1>🔄 The Second Law of Thermodynamics</h1>
+                <p style="color: var(--bg0_h); opacity: 0.9">
+                    Heat engines, efficiency, Carnot cycle, and entropy
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Second Law</span>
+                    <span class="tag">Heat Engines</span>
+                    <span class="tag">Carnot</span>
+                    <span class="tag tag--accent"
+                        ><i class="fa-regular fa-clock"></i> 45 min</span
+                    >
+                </div>
+            </header>
+
+            <main>
+                <section id="objectives">
+                    <h2>🎯 Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand the concept of irreversibility.</li>
+                        <li>Explain heat engines and their operation.</li>
+                        <li>Calculate the efficiency of a heat engine.</li>
+                        <li>
+                            State the Kelvin-Planck and Clausius statements of
+                            the Second Law.
+                        </li>
+                        <li>
+                            Understand reversible and irreversible processes.
+                        </li>
+                        <li>
+                            Describe the Carnot cycle and Carnot efficiency.
+                        </li>
+                    </ul>
+                </section>
+
+                <div class="concept-card" id="concept1">
+                    <div class="concept-header">
+                        <span class="concept-number">1</span>
+                        <h2>Irreversibility and the Second Law</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The Second Law of Thermodynamics asserts that
+                            processes occur in a certain direction and that
+                            energy has quality as well as quantity. All natural
+                            processes are irreversible—they occur spontaneously
+                            in one direction only.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            The First Law states that energy is conserved but
+                            places no restriction on the direction of energy
+                            flow. The Second Law addresses this: processes occur
+                            in a certain direction and cannot be reversed. An
+                            irreversible process is one that occurs naturally in
+                            one direction only. For example, heat flows
+                            spontaneously from hot to cold, never from cold to
+                            hot. All natural processes are irreversible to some
+                            degree.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The Second Law has profound implications. It
+                            explains why we cannot build a perfect heat engine
+                            that converts all heat into work. It explains why
+                            time has a direction (the arrow of time). The Second
+                            Law is intimately connected to the concept of
+                            entropy—a measure of disorder. In any natural
+                            process, the total entropy of the universe
+                            increases. This is why we can't "unburn" fuel or
+                            "unbreak" an egg.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept2">
+                    <div class="concept-header">
+                        <span class="concept-number">2</span>
+                        <h2>Heat Engines</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            A heat engine takes in energy by heat
+                            (Q<sub>h</sub>) from a hot reservoir, does work
+                            (W<sub>eng</sub>), and expels some energy as heat
+                            (Q<sub>c</sub>) to a cold reservoir. W<sub>eng</sub>
+                            = |Q<sub>h</sub>| - |Q<sub>c</sub>|.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>A heat engine operates in a cyclic process:</p>
+                        <p>
+                            1. Absorbs energy Q<sub>h</sub> from a
+                            high-temperature reservoir.
+                        </p>
+                        <p>2. Does work W<sub>eng</sub> on its surroundings.</p>
+                        <p>
+                            3. Expels energy Q<sub>c</sub> to a low-temperature
+                            reservoir.
+                        </p>
+                        <p>
+                            Since it's a cyclic process, the change in internal
+                            energy is zero (ΔU = 0), so:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Net Work</span> W<sub>eng</sub>
+                            = |Q<sub>h</sub>| - |Q<sub>c</sub>|
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Heat engines are everywhere—from car engines to
+                            power plants to the human body. The Second Law tells
+                            us that no engine can be 100% efficient—some heat
+                            must always be exhausted to a cold reservoir. The
+                            cold reservoir is typically the environment
+                            (atmosphere, river, etc.).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept3">
+                    <div class="concept-header">
+                        <span class="concept-number">3</span>
+                        <h2>Thermal Efficiency</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Thermal efficiency (e) is the ratio of net work done
+                            to energy input: e = W<sub>eng</sub>/|Q<sub>h</sub>|
+                            = 1 - |Q<sub>c</sub>|/|Q<sub>h</sub>|. Efficiency is
+                            always less than 100%.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>Thermal efficiency is defined as:</p>
+                        <div class="formula">
+                            <span class="label">Efficiency</span> e = W<sub
+                                >eng</sub
+                            >
+                            / |Q<sub>h</sub>|
+                        </div>
+                        <p>
+                            Since W<sub>eng</sub> = |Q<sub>h</sub>| -
+                            |Q<sub>c</sub>|, this can be written as:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Efficiency</span> e = 1 -
+                            |Q<sub>c</sub>| / |Q<sub>h</sub>|
+                        </div>
+                        <p>
+                            Efficiency is a measure of how much of the input
+                            energy is converted into useful work. In practice,
+                            all heat engines have efficiencies less than 100%.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            To achieve 100% efficiency, Q<sub>c</sub> would have
+                            to be zero, which is impossible according to the
+                            Second Law. The efficiency of a heat engine is
+                            limited by the temperatures of the reservoirs. Even
+                            an ideal Carnot engine has efficiency e = 1 -
+                            T<sub>c</sub>/T<sub>h</sub>, which is less than 100%
+                            as long as T<sub>c</sub> > 0 and T<sub>h</sub> is
+                            finite.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept4">
+                    <div class="concept-header">
+                        <span class="concept-number">4</span>
+                        <h2>The Kelvin-Planck Statement</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The Kelvin-Planck statement: It is impossible to
+                            construct a heat engine that, operating in a cycle,
+                            produces no effect other than the input of energy by
+                            heat from a reservoir and the performance of an
+                            equal amount of work.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            The Kelvin-Planck statement says that no heat engine
+                            can be 100% efficient. Some energy Q<sub>c</sub>
+                            must always be expelled to the environment. It is
+                            impossible to convert all heat into work without any
+                            other effect. This means:
+                        </p>
+                        <p>• W<sub>eng</sub> can never equal |Q<sub>h</sub>|</p>
+                        <p>• Q<sub>c</sub> cannot be zero</p>
+                        <p>• Efficiency e can never equal 100%</p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            This statement has profound practical implications.
+                            Any engine that produces work must also exhaust some
+                            heat. This is why power plants need cooling
+                            towers—they must reject waste heat to the
+                            environment. The Kelvin-Planck statement is
+                            equivalent to the Clausius statement—if one were
+                            false, the other would also be false.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept5">
+                    <div class="concept-header">
+                        <span class="concept-number">5</span>
+                        <h2>The Clausius Statement</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The Clausius statement: It is impossible to
+                            construct a cyclical machine whose sole effect is to
+                            transfer energy continuously by heat from one object
+                            to another at a higher temperature without the input
+                            of energy by work.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            The Clausius statement says that heat cannot flow
+                            spontaneously from a cold object to a hot object. To
+                            make heat flow from cold to hot, you must do work
+                            (as in a refrigerator or heat pump). This means:
+                        </p>
+                        <p>
+                            • Energy does not spontaneously transfer by heat
+                            from a cold object to a hot object.
+                        </p>
+                        <p>
+                            • A perfect refrigerator (one that cools without
+                            requiring work) is impossible.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The Clausius statement is equivalent to the
+                            Kelvin-Planck statement. If you could build a
+                            perfect refrigerator (heat flowing from cold to hot
+                            without work), you could use it with a heat engine
+                            to violate the Kelvin-Planck statement. The Second
+                            Law prevents both.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept6">
+                    <div class="concept-header">
+                        <span class="concept-number">6</span>
+                        <h2>Reversible and Irreversible Processes</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            A reversible process is one where the system can be
+                            returned to its initial state along the same path.
+                            An irreversible process cannot be reversed. All
+                            natural processes are irreversible.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            <strong>Reversible Process:</strong> A process in
+                            which every point along the path is an equilibrium
+                            state, and the system can be returned to its initial
+                            state along the same path. Reversible processes are
+                            an idealization; they require the process to occur
+                            infinitely slowly (quasi-static) with no dissipative
+                            effects.
+                        </p>
+                        <p>
+                            <strong>Irreversible Process:</strong> A process
+                            that cannot be reversed. All natural processes are
+                            irreversible. Examples include heat flow from hot to
+                            cold, free expansion of a gas into a vacuum, and
+                            friction and turbulence.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Reversible processes are important because they
+                            represent the maximum possible efficiency. The
+                            Carnot engine is an ideal reversible engine. In
+                            reality, all processes have some irreversibility due
+                            to friction, turbulence, and other dissipative
+                            effects. The more quickly a process occurs, the more
+                            irreversible it tends to be.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept7">
+                    <div class="concept-header">
+                        <span class="concept-number">7</span>
+                        <h2>The Carnot Cycle and Carnot Engine</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The Carnot engine is a theoretical engine operating
+                            between two reservoirs in a cycle of two isothermal
+                            and two adiabatic processes. It is the most
+                            efficient engine possible: e<sub>C</sub> = 1 -
+                            T<sub>c</sub>/T<sub>h</sub>.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>The Carnot cycle consists of four steps:</p>
+                        <p>
+                            <strong>A → B (Isothermal Expansion):</strong> Gas
+                            in contact with hot reservoir, absorbs heat Q<sub
+                                >h</sub
+                            >
+                            at temperature T<sub>h</sub>.
+                        </p>
+                        <p>
+                            <strong>B → C (Adiabatic Expansion):</strong> No
+                            heat exchange, gas cools from T<sub>h</sub> to
+                            T<sub>c</sub>.
+                        </p>
+                        <p>
+                            <strong>C → D (Isothermal Compression):</strong> Gas
+                            in contact with cold reservoir, expels heat Q<sub
+                                >c</sub
+                            >
+                            at temperature T<sub>c</sub>.
+                        </p>
+                        <p>
+                            <strong>D → A (Adiabatic Compression):</strong> No
+                            heat exchange, gas warms from T<sub>c</sub> to
+                            T<sub>h</sub>.
+                        </p>
+                        <p>
+                            For a Carnot engine, Q<sub>c</sub>/Q<sub>h</sub> =
+                            T<sub>c</sub>/T<sub>h</sub>, so:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Carnot Efficiency</span> e<sub
+                                >C</sub
+                            >
+                            = 1 - T<sub>c</sub>/T<sub>h</sub>
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The Carnot efficiency is the maximum possible
+                            efficiency for any engine operating between two
+                            given temperatures. To achieve higher efficiency,
+                            increase T<sub>h</sub> or decrease T<sub>c</sub>. In
+                            practice, T<sub>c</sub> is often near room
+                            temperature (about 300 K), so the only way to
+                            improve efficiency is to increase T<sub>h</sub>.
+                            This is why power plants use superheated steam at
+                            high temperatures.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept8">
+                    <div class="concept-header">
+                        <span class="concept-number">8</span>
+                        <h2>Carnot's Theorem</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Carnot's theorem: No real heat engine operating
+                            between two reservoirs can be more efficient than a
+                            Carnot engine operating between the same two
+                            reservoirs. All real engines are less efficient
+                            because they are irreversible.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>Carnot's theorem has two parts:</p>
+                        <p>
+                            1. All Carnot engines operating between the same two
+                            temperatures have the same efficiency, regardless of
+                            the working substance.
+                        </p>
+                        <p>
+                            2. No real (irreversible) engine operating between
+                            the same two temperatures can be more efficient than
+                            a Carnot engine.
+                        </p>
+                        <p>
+                            The efficiency of a real engine is reduced by
+                            friction, energy losses through conduction, and
+                            other irreversible processes.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Carnot's theorem provides an upper bound on the
+                            efficiency of any heat engine. It tells us that the
+                            efficiency of an engine is limited by the
+                            temperatures of the reservoirs. The theorem also
+                            provides a way to define an absolute temperature
+                            scale—the Carnot efficiency is independent of the
+                            working substance, so it can be used to define
+                            temperature.
+                        </p>
+                    </div>
+                </div>
+
+                <section id="formulas">
+                    <h2>📐 Equations</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Formula</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Heat Engine Work</td>
+                                        <td>
+                                            W<sub>eng</sub> = |Q<sub>h</sub>| -
+                                            |Q<sub>c</sub>|
+                                        </td>
+                                        <td>J</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thermal Efficiency</td>
+                                        <td>
+                                            e = W<sub>eng</sub>/|Q<sub>h</sub>|
+                                            = 1 -
+                                            |Q<sub>c</sub>|/|Q<sub>h</sub>|
+                                        </td>
+                                        <td>(unitless)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carnot Efficiency</td>
+                                        <td>
+                                            e<sub>C</sub> = 1 -
+                                            T<sub>c</sub>/T<sub>h</sub>
+                                        </td>
+                                        <td>(unitless)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2>⚖️ Kelvin-Planck vs Clausius Statements</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Statement</th>
+                                        <th>Kelvin-Planck</th>
+                                        <th>Clausius</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Focus</td>
+                                        <td>Heat engines</td>
+                                        <td>Refrigerators/heat pumps</td>
+                                    </tr>
+                                    <tr>
+                                        <td>States</td>
+                                        <td>No engine can be 100% efficient</td>
+                                        <td>
+                                            Heat cannot flow spontaneously from
+                                            cold to hot
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Impossibility</td>
+                                        <td>Perfect heat engine</td>
+                                        <td>Perfect refrigerator</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Equivalent?</td>
+                                        <td>Yes</td>
+                                        <td>Yes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="professor-card" id="narrative">
+                    <h2>🎓 Professor's Narrative</h2>
+                    <p>
+                        The Second Law of Thermodynamics is perhaps the most
+                        profound law in physics. It tells us that not all energy
+                        is created equal—energy has quality as well as quantity.
+                        Heat at high temperature is more useful (has more
+                        "quality") than heat at low temperature.
+                    </p>
+                    <p>
+                        Heat engines are devices that convert heat into work.
+                        They are essential to modern civilization—from car
+                        engines to power plants. But the Second Law tells us
+                        that no engine can be perfect. Some heat must always be
+                        rejected to a cold reservoir.
+                    </p>
+                    <p>
+                        The Carnot engine is an idealization—a perfectly
+                        reversible engine—that sets the maximum possible
+                        efficiency. Real engines are less efficient due to
+                        friction, heat losses, and other irreversibilities. The
+                        Carnot efficiency e = 1 - T<sub>c</sub>/T<sub>h</sub> is
+                        a fundamental limit that depends only on the
+                        temperatures of the reservoirs.
+                    </p>
+                    <p>
+                        The Second Law also tells us that processes occur in a
+                        certain direction. Heat flows from hot to cold, not the
+                        other way around. This directionality is what gives time
+                        its arrow—the universe is always moving toward greater
+                        disorder (entropy).
+                    </p>
+                </section>
+
+                <section class="ask-section" id="ask-professor">
+                    <h2>❓ Ask the Professor</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why can't we build a 100% efficient engine?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    According to the Second Law, some heat must
+                                    always be rejected to a cold reservoir. If
+                                    we had a 100% efficient engine, we would be
+                                    converting all heat into work with no other
+                                    effect, which violates the Kelvin-Planck
+                                    statement. This would be like a perpetual
+                                    motion machine of the second kind.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                What's the difference between a heat engine and
+                                a refrigerator?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    A heat engine converts heat into work (it
+                                    takes energy from hot and delivers work). A
+                                    refrigerator uses work to move heat from
+                                    cold to hot (it takes work to pump heat from
+                                    a cold space to a hot environment). Both are
+                                    governed by the Second Law.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why is the Carnot engine the most efficient?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    The Carnot engine is a reversible engine—it
+                                    operates through a cycle of equilibrium
+                                    states with no friction or other dissipative
+                                    losses. Any irreversibility (friction,
+                                    turbulence, heat loss) reduces efficiency.
+                                    Since the Carnot engine has no
+                                    irreversibilities, it achieves the maximum
+                                    possible efficiency.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="vault-section" id="exam-vault">
+                    <h2>🔐 Exam Vault</h2>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Heat engine efficiency: e =
+                        W<sub>eng</sub>/|Q<sub>h</sub>| = 1 -
+                        |Q<sub>c</sub>|/|Q<sub>h</sub>|. Efficiency is always
+                        less than 100%.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        A Carnot engine is an IDEAL engine. Real engines have
+                        lower efficiency because of friction, heat losses, and
+                        irreversibilities.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--secret"
+                            >🤫 Secret</span
+                        >
+                        The Carnot efficiency e<sub>C</sub> = 1 -
+                        T<sub>c</sub>/T<sub>h</sub> depends only on the
+                        temperatures of the reservoirs. To improve efficiency,
+                        increase T<sub>h</sub> or decrease T<sub>c</sub>.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Kelvin-Planck statement: No heat engine can be 100%
+                        efficient. Some heat must be rejected.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Clausius statement: Heat cannot flow spontaneously from
+                        cold to hot. Work is required to make it happen.
+                    </div>
+                </section>
+
+                <section class="quiz-section" id="quiz">
+                    <h2>📝 Chapter 8: The Second Law of Thermodynamics Quiz</h2>
+                    <div id="quiz-container"></div>
+                </section>
+            </main>
+
+            <footer>
+                SCI201 · Chapter 8: The Second Law of Thermodynamics
+            </footer>
+        </div>
+
+        <script>
+            (function () {
+                window.toggleTheme = function () {
+                    const html = document.documentElement;
+                    const cur = html.getAttribute("data-theme");
+                    const next = cur === "dark" ? "light" : "dark";
+                    html.setAttribute("data-theme", next);
+                    localStorage.setItem("garden_theme", next);
+                };
+                const saved = localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", saved);
+
+                document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
+                    const card = tabGroup.closest(".concept-card");
+                    if (!card) return;
+                    const tabs = tabGroup.querySelectorAll(".depth-tab");
+                    const contents = card.querySelectorAll(".depth-content");
+                    tabs.forEach((tab) => {
+                        tab.addEventListener("click", function () {
+                            const layer = this.dataset.layer;
+                            tabs.forEach((t) => t.classList.remove("active"));
+                            this.classList.add("active");
+                            contents.forEach((c) => {
+                                c.classList.remove("active");
+                                if (c.dataset.layer === layer)
+                                    c.classList.add("active");
+                            });
+                        });
+                    });
+                });
+
+                document
+                    .querySelectorAll(".accordion-trigger")
+                    .forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            const body = this.nextElementSibling;
+                            const isOpen = body.classList.contains("open");
+                            const section = this.closest(".accordion");
+                            section
+                                .querySelectorAll(".accordion-body")
+                                .forEach((b) => b.classList.remove("open"));
+                            if (!isOpen) body.classList.add("open");
+                        });
+                    });
+
+                const currentStatus = localStorage.getItem("chapter_8_status");
+                if (!currentStatus || currentStatus === "not-started") {
+                    localStorage.setItem("chapter_8_status", "viewed");
                 }
-                .sidebar {
-                    display: none !important;
-                }
-                .sidebar-toggle {
-                    display: flex !important;
-                    position: static !important;
-                    margin: 0;
-                }
-                .toolbar-hamburger {
-                    display: none !important;
-                }
-                .toolbar {
-                    width: 100%;
-                    margin-left: 0;
-                    margin-right: 0;
-                    padding: 0.5rem 1rem;
-                    left: 0;
-                    right: 0;
-                }
-                .concept-number {
-                    min-width: 32px;
-                    min-height: 32px;
-                    width: auto;
-                    height: auto;
-                    padding: 0.25rem 0.5rem;
-                    flex-shrink: 0;
-                }
-                html,
-                body {
-                    overflow-x: hidden;
-                    width: 100%;
-                }
-                .main-wrapper {
-                    padding: 1rem;
-                    width: 100%;
-                }
-            }
+            })();
+        </script>
+
+        <script src="../js/quiz.js"></script>
+        <script>
+            initQuiz({
+                chapterNum: 8,
+                quizData: [
+                    {
+                        question:
+                            "1. The Second Law of Thermodynamics states that:",
+                        options: [
+                            "Energy is conserved.",
+                            "Processes occur in a certain direction.",
+                            "Entropy is always constant.",
+                            "Heat cannot be converted into work.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "The Second Law addresses the direction of processes.",
+                        hint: "Think about the direction of heat flow.",
+                    },
+                    {
+                        question:
+                            "2. A heat engine takes in 1000 J of heat and does 300 J of work. What is its efficiency?",
+                        options: ["30%.", "70%.", "100%.", "0%."],
+                        correct: 0,
+                        explanation: "e = W/Q_h = 300/1000 = 0.30 = 30%.",
+                        hint: "Efficiency is work output divided by heat input.",
+                    },
+                    {
+                        question: "3. The Kelvin-Planck statement says that:",
+                        options: [
+                            "Heat can flow from cold to hot.",
+                            "No heat engine can be 100% efficient.",
+                            "Energy can be created.",
+                            "Entropy always decreases.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "It's about the impossibility of a perfect heat engine.",
+                        hint: "It's about the impossibility of a perfect heat engine.",
+                    },
+                    {
+                        question: "4. The Clausius statement says that:",
+                        options: [
+                            "Heat can flow from cold to hot.",
+                            "Heat cannot flow spontaneously from cold to hot.",
+                            "Work can be converted into heat.",
+                            "Entropy is always zero.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Heat requires work to flow from cold to hot.",
+                        hint: "Think about refrigerators.",
+                    },
+                    {
+                        question:
+                            "5. A Carnot engine operating between reservoirs at 400 K and 300 K has what efficiency?",
+                        options: ["25%.", "75%.", "100%.", "50%."],
+                        correct: 0,
+                        explanation: "e = 1 - 300/400 = 1 - 0.75 = 0.25 = 25%.",
+                        hint: "Use e = 1 - T_c/T_h.",
+                    },
+                    {
+                        question: "6. All natural processes are:",
+                        options: [
+                            "Reversible.",
+                            "Irreversible.",
+                            "Isothermal.",
+                            "Adiabatic.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Natural processes cannot be reversed without leaving a trace.",
+                        hint: "Think about whether you can reverse any natural process.",
+                    },
+                    {
+                        question: "7. The Carnot cycle consists of:",
+                        options: [
+                            "Two isothermal and two adiabatic processes.",
+                            "Four isothermal processes.",
+                            "Four adiabatic processes.",
+                            "Two isochoric and two isobaric processes.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "The Carnot cycle has two isothermal and two adiabatic steps.",
+                        hint: "The cycle is named after Sadi Carnot.",
+                    },
+                    {
+                        question:
+                            "8. The efficiency of a Carnot engine is given by:",
+                        options: [
+                            "e = 1 - T_h/T_c.",
+                            "e = 1 - T_c/T_h.",
+                            "e = T_h/T_c.",
+                            "e = T_c/T_h.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Carnot efficiency depends on the ratio of cold to hot temperatures.",
+                        hint: "Use the correct ratio.",
+                    },
+                    {
+                        question: "9. A reversible process is one that:",
+                        options: [
+                            "Occurs quickly.",
+                            "Can be reversed without any trace.",
+                            "Involves friction.",
+                            "Generates heat.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "A reversible process can return to its initial state along the same path.",
+                        hint: "Think about equilibrium states.",
+                    },
+                    {
+                        question: "10. For a heat engine to operate, it must:",
+                        options: [
+                            "Have a cold reservoir only.",
+                            "Have a hot reservoir only.",
+                            "Have both a hot and a cold reservoir.",
+                            "Operate in a vacuum.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "Heat must flow from hot to cold to produce work.",
+                        hint: "Heat must flow from hot to cold to do work.",
+                    },
+                ],
+            });
+        </script>
+        <script src="../js/toolbar.js"></script>
+    </body>
+</html>

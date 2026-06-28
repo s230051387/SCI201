@@ -582,6 +582,55 @@
                 box-shadow: var(--shadow);
             }
 
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                .sidebar {
+                    position: fixed;
+                    left: -100%;
+                    top: 56px;
+                    height: calc(100vh - 56px);
+                    width: 280px;
+                    transition: left 0.3s ease;
+                    z-index: 15;
+                }
+                .sidebar.open {
+                    left: 0;
+                }
+                .toolbar-hamburger {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
 
             .toolbar {
                 position: sticky;
@@ -648,45 +697,944 @@
                 cursor: not-allowed;
                 pointer-events: none;
             }
-            /* MOBILE */
-            @media (max-width: 900px) {
-                body {
-                    flex-direction: column;
+        </style>
+    </head>
+    <body>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">📑 SCI201</div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#objectives"
+                        ><span class="emoji">🎯</span> Learning Objectives</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept1"
+                        ><span class="emoji">1️⃣</span> EMF & Internal
+                        Resistance</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept2"
+                        ><span class="emoji">2️⃣</span> Circuits with Internal
+                        Resistance</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept3"
+                        ><span class="emoji">3️⃣</span> Resistors in Series</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept4"
+                        ><span class="emoji">4️⃣</span> Resistors in Parallel</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept5"
+                        ><span class="emoji">5️⃣</span> Kirchhoff's Rules</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept6"
+                        ><span class="emoji">6️⃣</span> Applying Kirchhoff's
+                        Rules</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept7"
+                        ><span class="emoji">7️⃣</span> Capacitance</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept8"
+                        ><span class="emoji">8️⃣</span> Combinations of
+                        Capacitors</a
+                    >
+                </li>
+                <hr class="sidebar-divider" />
+                <li>
+                    <a href="#formulas"
+                        ><span class="emoji">📐</span> Formulas Summary</a
+                    >
+                </li>
+                <li>
+                    <a href="#narrative"
+                        ><span class="emoji">🎓</span> Professor's Narrative</a
+                    >
+                </li>
+                <li>
+                    <a href="#ask-professor"
+                        ><span class="emoji">❓</span> Ask the Professor</a
+                    >
+                </li>
+                <li>
+                    <a href="#exam-vault"
+                        ><span class="emoji">🔐</span> Exam Vault</a
+                    >
+                </li>
+                <li>
+                    <a href="#quiz"><span class="emoji">📝</span> Self Quiz</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <h1>⚡ Direct Current Circuits</h1>
+                <p style="color: var(--bg0_h); opacity: 0.9">
+                    EMF, internal resistance, resistors in series and parallel,
+                    Kirchhoff's rules, and capacitance
+                </p>
+                <div class="tag-list">
+                    <span class="tag">DC Circuits</span>
+                    <span class="tag">Kirchhoff</span>
+                    <span class="tag">Capacitance</span>
+                    <span class="tag tag--accent"
+                        ><i class="fa-regular fa-clock"></i> 45 min</span
+                    >
+                </div>
+            </header>
+
+            <main>
+                <section id="objectives">
+                    <h2>🎯 Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>
+                            Understand electromotive force (emf) and internal
+                            resistance.
+                        </li>
+                        <li>
+                            Analyze circuits with resistors in series and
+                            parallel.
+                        </li>
+                        <li>
+                            Calculate equivalent resistance for series and
+                            parallel combinations.
+                        </li>
+                        <li>
+                            Apply Kirchhoff's rules to analyze complex circuits.
+                        </li>
+                        <li>
+                            Understand the definition and applications of
+                            capacitance.
+                        </li>
+                    </ul>
+                </section>
+
+                <div class="concept-card" id="concept1">
+                    <div class="concept-header">
+                        <span class="concept-number">1</span>
+                        <h2>
+                            Electromotive Force (emf) and Internal Resistance
+                        </h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The emf (ε) of a battery is the maximum potential
+                            difference it can provide. All real batteries have
+                            internal resistance (r), which reduces the terminal
+                            voltage when current flows: V<sub>terminal</sub> = ε
+                            - Ir.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            A source of emf produces an electric field that
+                            causes charges to move around a circuit. The emf ε
+                            is the work done per unit charge. All real sources
+                            have internal resistance r, which dissipates energy
+                            as heat when current flows. The terminal voltage is:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Terminal Voltage</span> V<sub
+                                >ab</sub
+                            >
+                            = ε - Ir
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            A perfect battery would have zero internal
+                            resistance, but such batteries don't exist.
+                            Nickel-cadmium and lead-acid batteries have very low
+                            internal resistance. The terminal voltage equals the
+                            emf only when no current flows (open circuit). The
+                            total power output is P = Iε, delivered partly to
+                            the external load (I²R) and partly dissipated
+                            internally (I²r).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept2">
+                    <div class="concept-header">
+                        <span class="concept-number">2</span>
+                        <h2>Circuits with Internal Resistance</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            For a battery with emf ε and internal resistance r
+                            connected to a load resistor R, the current is I =
+                            ε/(R + r). The terminal voltage is V = ε - Ir = IR.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Applying Kirchhoff's loop rule to a simple circuit
+                            with internal resistance:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Loop Equation</span> ε - Ir - IR
+                            = 0
+                        </div>
+                        <p>Solving for current:</p>
+                        <div class="formula">
+                            <span class="label">Circuit Current</span> I = ε /
+                            (R + r)
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            If the load resistance is very large (open circuit),
+                            current is small and terminal voltage is close to
+                            emf. If the load resistance is small (short
+                            circuit), current is large and terminal voltage
+                            drops significantly. The battery supplies constant
+                            emf, but current and terminal voltage depend on the
+                            load.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept3">
+                    <div class="concept-header">
+                        <span class="concept-number">3</span>
+                        <h2>Resistors in Series</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            For resistors in series, the same current flows
+                            through each. Equivalent resistance: R<sub>eq</sub>
+                            = R₁ + R₂ + R₃ + .... Total voltage is the sum of
+                            voltage drops.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            When resistors are connected end-to-end, current is
+                            the same through all: I = I₁ = I₂ = I₃ = ...
+                        </p>
+                        <p>
+                            Total voltage is the sum of individual voltage
+                            drops:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Total Voltage</span> ΔV = V₁ +
+                            V₂ + V₃ + ... = I(R₁ + R₂ + R₃ + ...)
+                        </div>
+                        <div class="formula">
+                            <span class="label">Equivalent Resistance</span>
+                            R<sub>eq</sub> = R₁ + R₂ + R₃ + ...
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            In a series circuit, if one device fails (open
+                            circuit), all devices stop working. This is why
+                            household circuits are not wired in series. Series
+                            circuits are used where you want the same current
+                            through all components, such as in some string
+                            lights.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept4">
+                    <div class="concept-header">
+                        <span class="concept-number">4</span>
+                        <h2>Resistors in Parallel</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            For resistors in parallel, same voltage across each.
+                            1/R<sub>eq</sub> = 1/R₁ + 1/R₂ + 1/R₃ + .... R<sub
+                                >eq</sub
+                            >
+                            is always less than the smallest individual
+                            resistance.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Voltage across each resistor is the same: ΔV = V₁ =
+                            V₂ = V₃ = ...
+                        </p>
+                        <p>Total current is the sum of branch currents:</p>
+                        <div class="formula">
+                            <span class="label">Total Current</span> I = I₁ + I₂
+                            + I₃ + ... = V(1/R₁ + 1/R₂ + 1/R₃ + ...)
+                        </div>
+                        <div class="formula">
+                            <span class="label">Equivalent Resistance</span>
+                            1/R<sub>eq</sub> = 1/R₁ + 1/R₂ + 1/R₃ + ...
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            In a parallel circuit, each device operates
+                            independently. If one fails, others remain on. This
+                            is why household circuits are wired in parallel—all
+                            devices operate at the same voltage (120 V in the
+                            US). Current divides among branches, with more
+                            current through paths of lower resistance.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept5">
+                    <div class="concept-header">
+                        <span class="concept-number">5</span>
+                        <h2>Kirchhoff's Rules</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            <strong>Junction Rule:</strong> ΣI<sub>in</sub> =
+                            ΣI<sub>out</sub> (conservation of charge).
+                            <strong>Loop Rule:</strong> ΣΔV = 0 around any
+                            closed loop (conservation of energy).
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            <strong>Junction Rule (First Rule):</strong> At any
+                            junction, the sum of currents entering equals the
+                            sum leaving. This follows from conservation of
+                            charge.
+                        </p>
+                        <p>
+                            <strong>Loop Rule (Second Rule):</strong> When any
+                            closed circuit loop is traversed, the algebraic sum
+                            of potential changes must equal zero. This follows
+                            from conservation of energy.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Loop rule conventions: Resistor in current direction
+                            → -IR (drop). Resistor opposite current → +IR. Emf
+                            from - to + → +ε. Emf from + to - → -ε. Kirchhoff's
+                            rules are essential for circuits with multiple loops
+                            and batteries where simple series/parallel
+                            reductions aren't possible.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept6">
+                    <div class="concept-header">
+                        <span class="concept-number">6</span>
+                        <h2>Applying Kirchhoff's Rules</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            1) Label all currents. 2) Apply junction rule for
+                            independent current equations. 3) Apply loop rule
+                            for voltage equations. 4) Solve the system.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            For complex multi-loop circuits, assign a direction
+                            to each current (guess; math will correct you if
+                            wrong). Apply junction rule to get N-1 independent
+                            equations. Apply loop rule to match number of
+                            unknowns. Solve the system of linear equations.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            If calculation gives a negative current, the actual
+                            flow is opposite to your assumption—magnitude is
+                            still correct. Kirchhoff's rules always work but
+                            require careful sign bookkeeping. Practice is
+                            essential for proficiency.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept7">
+                    <div class="concept-header">
+                        <span class="concept-number">7</span>
+                        <h2>Capacitance</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Capacitance (C) is the ability to store charge: C =
+                            Q/ΔV. SI unit: farad (F). 1 F = 1 C/V. Practical
+                            units: μF, nF, pF.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            A capacitor stores energy in an electric field
+                            between two conductors separated by an insulator.
+                            Capacitance is defined as:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Capacitance</span> C = Q / ΔV
+                        </div>
+                        <p>For a parallel-plate capacitor in vacuum:</p>
+                        <div class="formula">
+                            <span class="label"
+                                >Parallel-Plate Capacitance</span
+                            >
+                            C = ε₀ A / d
+                        </div>
+                        <p>where ε₀ = 8.85 × 10⁻¹² C²/(N·m²).</p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The farad is enormous. Most capacitors range from
+                            microfarad (10⁻⁶ F) to picofarad (10⁻¹² F).
+                            Capacitors store energy: U = ½ CV². Applications
+                            include filtering, timing circuits, and energy
+                            storage.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept8">
+                    <div class="concept-header">
+                        <span class="concept-number">8</span>
+                        <h2>Combinations of Capacitors</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Parallel: C<sub>eq</sub> = C₁ + C₂ + C₃ + ....
+                            Series: 1/C<sub>eq</sub> = 1/C₁ + 1/C₂ + 1/C₃ + ....
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            <strong>Parallel:</strong> Same voltage across each.
+                            Total charge sums: C<sub>eq</sub> = C₁ + C₂ + C₃ +
+                            ...
+                        </p>
+                        <p>
+                            <strong>Series:</strong> Same charge on each. Total
+                            voltage sums: 1/C<sub>eq</sub> = 1/C₁ + 1/C₂ + 1/C₃
+                            + ...
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Capacitors in parallel act like a single capacitor
+                            with larger plate area (larger C). Capacitors in
+                            series act like a single capacitor with larger plate
+                            separation (smaller C). These rules are the reverse
+                            of resistors: resistors add in series; capacitors
+                            add in parallel.
+                        </p>
+                    </div>
+                </div>
+
+                <section id="formulas">
+                    <h2>📐 Equations</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Formula</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Terminal Voltage</td>
+                                        <td>V = ε - Ir</td>
+                                        <td>V</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Circuit Current</td>
+                                        <td>I = ε/(R + r)</td>
+                                        <td>A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Resistors in Series</td>
+                                        <td>
+                                            R<sub>eq</sub> = R₁ + R₂ + R₃ + ...
+                                        </td>
+                                        <td>Ω</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Resistors in Parallel</td>
+                                        <td>
+                                            1/R<sub>eq</sub> = 1/R₁ + 1/R₂ +
+                                            1/R₃ + ...
+                                        </td>
+                                        <td>Ω</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kirchhoff's Junction Rule</td>
+                                        <td>
+                                            ΣI<sub>in</sub> = ΣI<sub>out</sub>
+                                        </td>
+                                        <td>A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kirchhoff's Loop Rule</td>
+                                        <td>ΣΔV = 0</td>
+                                        <td>V</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Capacitance</td>
+                                        <td>C = Q/ΔV</td>
+                                        <td>F</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Capacitors in Parallel</td>
+                                        <td>
+                                            C<sub>eq</sub> = C₁ + C₂ + C₃ + ...
+                                        </td>
+                                        <td>F</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Capacitors in Series</td>
+                                        <td>
+                                            1/C<sub>eq</sub> = 1/C₁ + 1/C₂ +
+                                            1/C₃ + ...
+                                        </td>
+                                        <td>F</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="professor-card" id="narrative">
+                    <h2>🎓 Professor's Narrative</h2>
+                    <p>
+                        Direct current circuits are the foundation of all
+                        electrical engineering. The most important concept to
+                        master is the relationship between voltage, current, and
+                        resistance (Ohm's law). Once you understand this, you
+                        can analyze any circuit.
+                    </p>
+                    <p>
+                        Remember that emf is the source of energy in a circuit,
+                        but internal resistance means you can't get all that
+                        energy out. The terminal voltage of a battery drops when
+                        it's delivering current because some energy is wasted as
+                        heat inside the battery.
+                    </p>
+                    <p>
+                        For combinations of resistors, learn to recognize series
+                        and parallel configurations. In series, current is the
+                        same through all components, and voltage divides. In
+                        parallel, voltage is the same across all components, and
+                        current divides.
+                    </p>
+                    <p>
+                        Kirchhoff's rules are your general-purpose tools for
+                        analyzing any circuit. The junction rule is conservation
+                        of charge, and the loop rule is conservation of energy.
+                        Finally, capacitors store energy in electric
+                        fields—their combination rules are the opposite of
+                        resistors.
+                    </p>
+                </section>
+
+                <section class="ask-section" id="ask-professor">
+                    <h2>❓ Ask the Professor</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why does the terminal voltage of a battery drop
+                                when you draw more current?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    The internal resistance causes a voltage
+                                    drop Ir inside the battery. When you draw
+                                    more current (smaller load), the internal
+                                    voltage drop increases, so terminal voltage
+                                    decreases.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                What's the difference between series and
+                                parallel connections?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    In series, devices share the same current
+                                    and voltage divides. If one fails, all stop.
+                                    In parallel, devices share the same voltage
+                                    and current divides. Each operates
+                                    independently. Household circuits are
+                                    parallel.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why is equivalent resistance in parallel less
+                                than the smallest individual resistance?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Adding a parallel resistor provides an
+                                    additional path for current, reducing
+                                    overall resistance. Like adding a parallel
+                                    pipe makes water flow easier.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="vault-section" id="exam-vault">
+                    <h2>🔐 Exam Vault</h2>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        For a battery: I = ε/(R + r) and V<sub>terminal</sub> =
+                        ε - Ir = IR.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Internal resistance is inside the battery and cannot be
+                        eliminated—it's not the same as wire resistance.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--secret"
+                            >🤫 Secret</span
+                        >
+                        Maximum power to load when R = r (impedance matching),
+                        important in audio and RF circuits.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Resistors series: R<sub>eq</sub> = sum. Resistors
+                        parallel: 1/R<sub>eq</sub> = sum of reciprocals.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Capacitor rules are reversed: Parallel adds, series adds
+                        reciprocals. Don't confuse with resistors!
+                    </div>
+                </section>
+
+                <section class="quiz-section" id="quiz">
+                    <h2>📝 Chapter 4: Direct Current Circuits Quiz</h2>
+                    <div id="quiz-container"></div>
+                </section>
+            </main>
+
+            <footer>SCI201 · Chapter 4: Direct Current Circuits</footer>
+        </div>
+
+        <script>
+            (function () {
+                window.toggleTheme = function () {
+                    const html = document.documentElement;
+                    const cur = html.getAttribute("data-theme");
+                    const next = cur === "dark" ? "light" : "dark";
+                    html.setAttribute("data-theme", next);
+                    localStorage.setItem("garden_theme", next);
+                };
+                const saved = localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", saved);
+
+                document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
+                    const card = tabGroup.closest(".concept-card");
+                    if (!card) return;
+                    const tabs = tabGroup.querySelectorAll(".depth-tab");
+                    const contents = card.querySelectorAll(".depth-content");
+                    tabs.forEach((tab) => {
+                        tab.addEventListener("click", function () {
+                            const layer = this.dataset.layer;
+                            tabs.forEach((t) => t.classList.remove("active"));
+                            this.classList.add("active");
+                            contents.forEach((c) => {
+                                c.classList.remove("active");
+                                if (c.dataset.layer === layer)
+                                    c.classList.add("active");
+                            });
+                        });
+                    });
+                });
+
+                document
+                    .querySelectorAll(".accordion-trigger")
+                    .forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            const body = this.nextElementSibling;
+                            const isOpen = body.classList.contains("open");
+                            const section = this.closest(".accordion");
+                            section
+                                .querySelectorAll(".accordion-body")
+                                .forEach((b) => b.classList.remove("open"));
+                            if (!isOpen) body.classList.add("open");
+                        });
+                    });
+
+                const currentStatus = localStorage.getItem("chapter_4_status");
+                if (!currentStatus || currentStatus === "not-started") {
+                    localStorage.setItem("chapter_4_status", "viewed");
                 }
-                .sidebar {
-                    display: none !important;
-                }
-                .sidebar-toggle {
-                    display: flex !important;
-                    position: static !important;
-                    margin: 0;
-                }
-                .toolbar-hamburger {
-                    display: none !important;
-                }
-                .toolbar {
-                    width: 100%;
-                    margin-left: 0;
-                    margin-right: 0;
-                    padding: 0.5rem 1rem;
-                    left: 0;
-                    right: 0;
-                }
-                .concept-number {
-                    min-width: 32px;
-                    min-height: 32px;
-                    width: auto;
-                    height: auto;
-                    padding: 0.25rem 0.5rem;
-                    flex-shrink: 0;
-                }
-                html,
-                body {
-                    overflow-x: hidden;
-                    width: 100%;
-                }
-                .main-wrapper {
-                    padding: 1rem;
-                    width: 100%;
-                }
-            }
+            })();
+        </script>
+
+        <script src="../js/quiz.js"></script>
+        <script>
+            initQuiz({
+                chapterNum: 4,
+                quizData: [
+                    {
+                        question: "1. The emf of a battery is defined as:",
+                        options: [
+                            "The maximum current it can deliver.",
+                            "The maximum potential difference it can provide.",
+                            "The internal resistance of the battery.",
+                            "The power it can deliver.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Emf is the open-circuit voltage of the battery.",
+                        hint: "Emf is the open-circuit voltage of the battery.",
+                    },
+                    {
+                        question:
+                            "2. The terminal voltage of a battery is given by:",
+                        options: [
+                            "V = ε.",
+                            "V = ε + Ir.",
+                            "V = ε - Ir.",
+                            "V = Ir.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "Internal resistance causes a voltage drop inside the battery.",
+                        hint: "Internal resistance causes a voltage drop.",
+                    },
+                    {
+                        question:
+                            "3. When resistors are connected in series, the equivalent resistance is:",
+                        options: [
+                            "Less than the smallest resistance.",
+                            "Between the smallest and largest resistance.",
+                            "Greater than the largest resistance.",
+                            "Equal to the average of the resistances.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "Resistors add in series: R_eq = R₁ + R₂ + ...",
+                        hint: "Resistors add in series.",
+                    },
+                    {
+                        question:
+                            "4. When resistors are connected in parallel, the equivalent resistance is:",
+                        options: [
+                            "Less than the smallest resistance.",
+                            "Between the smallest and largest resistance.",
+                            "Greater than the largest resistance.",
+                            "Equal to the sum of the resistances.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "Parallel resistors always give smaller equivalent resistance.",
+                        hint: "Resistors add reciprocally in parallel.",
+                    },
+                    {
+                        question:
+                            "5. The voltage across each resistor in a parallel combination is:",
+                        options: [
+                            "Different for each resistor.",
+                            "The same for all resistors.",
+                            "Zero.",
+                            "Proportional to the resistance.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "All resistors in parallel connect to the same two nodes.",
+                        hint: "All resistors in parallel connect to the same two nodes.",
+                    },
+                    {
+                        question:
+                            "6. The current through each resistor in a series combination is:",
+                        options: [
+                            "Different for each resistor.",
+                            "The same for all resistors.",
+                            "Zero.",
+                            "Proportional to the resistance.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Current has only one path in a series circuit.",
+                        hint: "Current has only one path in a series circuit.",
+                    },
+                    {
+                        question: "7. Kirchhoff's junction rule is based on:",
+                        options: [
+                            "Conservation of energy.",
+                            "Conservation of charge.",
+                            "Conservation of momentum.",
+                            "Conservation of mass.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "What flows in must flow out—charge is conserved.",
+                        hint: "What flows in must flow out.",
+                    },
+                    {
+                        question: "8. Kirchhoff's loop rule is based on:",
+                        options: [
+                            "Conservation of energy.",
+                            "Conservation of charge.",
+                            "Conservation of momentum.",
+                            "Conservation of mass.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "The electric force is conservative; energy is conserved around a loop.",
+                        hint: "The electric force is conservative.",
+                    },
+                    {
+                        question:
+                            "9. The capacitance of a parallel-plate capacitor depends on:",
+                        options: [
+                            "The charge on the plates.",
+                            "The voltage across the plates.",
+                            "The area of the plates and the distance between them.",
+                            "The material of the plates.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "From C = ε₀A/d, capacitance depends on geometry.",
+                        hint: "Look at the formula C = ε₀A/d.",
+                    },
+                    {
+                        question:
+                            "10. For capacitors in series, the equivalent capacitance is:",
+                        options: [
+                            "The sum of the capacitances.",
+                            "The reciprocal of the sum of reciprocals.",
+                            "The product of the capacitances.",
+                            "The average of the capacitances.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "1/C_eq = 1/C₁ + 1/C₂ + ..., opposite of resistors.",
+                        hint: "This is the opposite of resistors in series.",
+                    },
+                ],
+            });
+        </script>
+        <script src="../js/toolbar.js"></script>
+    </body>
+</html>

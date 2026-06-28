@@ -582,6 +582,55 @@
                 box-shadow: var(--shadow);
             }
 
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                .sidebar {
+                    position: fixed;
+                    left: -100%;
+                    top: 56px;
+                    height: calc(100vh - 56px);
+                    width: 280px;
+                    transition: left 0.3s ease;
+                    z-index: 15;
+                }
+                .sidebar.open {
+                    left: 0;
+                }
+                .toolbar-hamburger {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
 
             .toolbar {
                 position: sticky;
@@ -648,45 +697,1069 @@
                 cursor: not-allowed;
                 pointer-events: none;
             }
-            /* MOBILE */
-            @media (max-width: 900px) {
-                body {
-                    flex-direction: column;
+        </style>
+    </head>
+    <body>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">📑 SCI201</div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#objectives"
+                        ><span class="emoji">🎯</span> Learning Objectives</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept1"
+                        ><span class="emoji">1️⃣</span> Heat, Internal Energy &
+                        Temperature</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept2"
+                        ><span class="emoji">2️⃣</span> Heat Capacity & Specific
+                        Heat</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept3"
+                        ><span class="emoji">3️⃣</span> Calorimetry</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept4"
+                        ><span class="emoji">4️⃣</span> Latent Heat</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept5"
+                        ><span class="emoji">5️⃣</span> Phase Changes & Energy
+                        Graphs</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept6"
+                        ><span class="emoji">6️⃣</span> Supercooling &
+                        Superheating</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept7"
+                        ><span class="emoji">7️⃣</span> The First Law of
+                        Thermodynamics</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept8"
+                        ><span class="emoji">8️⃣</span> Mechanisms of Heat
+                        Transfer</a
+                    >
+                </li>
+                <hr class="sidebar-divider" />
+                <li>
+                    <a href="#formulas"
+                        ><span class="emoji">📐</span> Equations</a
+                    >
+                </li>
+                <li>
+                    <a href="#narrative"
+                        ><span class="emoji">🎓</span> Professor's Narrative</a
+                    >
+                </li>
+                <li>
+                    <a href="#ask-professor"
+                        ><span class="emoji">❓</span> Ask the Professor</a
+                    >
+                </li>
+                <li>
+                    <a href="#exam-vault"
+                        ><span class="emoji">🔐</span> Exam Vault</a
+                    >
+                </li>
+                <li>
+                    <a href="#quiz"><span class="emoji">📝</span> Self Quiz</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <h1>🔥 Heat and Internal Energy</h1>
+                <p style="color: var(--bg0_h); opacity: 0.9">
+                    Heat capacity, specific heat, calorimetry, latent heat, and
+                    the First Law of Thermodynamics
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Heat</span>
+                    <span class="tag">Thermodynamics</span>
+                    <span class="tag">Phase Change</span>
+                    <span class="tag tag--accent"
+                        ><i class="fa-regular fa-clock"></i> 45 min</span
+                    >
+                </div>
+            </header>
+
+            <main>
+                <section id="objectives">
+                    <h2>🎯 Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>
+                            Define heat and understand its relationship to
+                            temperature.
+                        </li>
+                        <li>
+                            Distinguish between heat capacity and specific heat.
+                        </li>
+                        <li>Apply the principle of calorimetry.</li>
+                        <li>Understand latent heat and phase changes.</li>
+                        <li>Explain the First Law of Thermodynamics.</li>
+                        <li>
+                            Describe the mechanisms of heat transfer:
+                            conduction, convection, and radiation.
+                        </li>
+                    </ul>
+                </section>
+
+                <div class="concept-card" id="concept1">
+                    <div class="concept-header">
+                        <span class="concept-number">1</span>
+                        <h2>Heat, Internal Energy, and Temperature</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Heat (Q) is the transfer of energy across a system
+                            boundary due to a temperature difference. Internal
+                            energy (U) is the total energy of a system's
+                            microscopic components. Temperature measures average
+                            kinetic energy of particles.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Heat is the transfer of energy from a hotter object
+                            to a colder object due to a temperature difference.
+                            It is measured in joules (J) or calories (cal).
+                            Internal energy is the sum of all energies
+                            associated with microscopic components
+                            (translational, rotational, vibrational motion, and
+                            intermolecular potential energy). Temperature is a
+                            measure of the average kinetic energy of the
+                            particles in a system.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            It's important to distinguish between heat, internal
+                            energy, and temperature. Temperature is a measure of
+                            the average kinetic energy of the particles.
+                            Internal energy is the total energy of all the
+                            particles. Heat is the transfer of energy due to a
+                            temperature difference. A large object at a low
+                            temperature can have more internal energy than a
+                            small object at a high temperature. For example, a
+                            bathtub full of warm water has more internal energy
+                            than a cup of boiling water, even though the cup has
+                            a higher temperature.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept2">
+                    <div class="concept-header">
+                        <span class="concept-number">2</span>
+                        <h2>Heat Capacity and Specific Heat</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Heat capacity (C): energy to raise temperature of an
+                            object by 1°C: Q = CΔT. Specific heat (c): heat
+                            capacity per unit mass: Q = mcΔT. SI unit:
+                            J/(kg·°C).
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            <strong>Heat Capacity (C):</strong> The amount of
+                            energy required to change the temperature of a given
+                            sample by 1°C:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Heat Capacity</span> Q = CΔT
+                        </div>
+                        <p>C has units of J/K.</p>
+                        <p>
+                            <strong>Specific Heat (c):</strong> The amount of
+                            energy required to change the temperature of 1 kg of
+                            a substance by 1°C:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Specific Heat</span> Q = mcΔT
+                        </div>
+                        <p>
+                            c has units of J/(kg·°C). Specific heat is a
+                            material property. Water has a very high specific
+                            heat (4186 J/kg·°C), which is why it takes a long
+                            time to heat or cool.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The high specific heat of water is why coastal areas
+                            have milder climates than inland areas—the ocean can
+                            absorb or release large amounts of heat with small
+                            temperature changes. Specific heat varies with
+                            temperature, but it's often treated as constant for
+                            small temperature ranges. The specific heat of a
+                            substance is related to its molecular structure and
+                            the degrees of freedom available for energy storage.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept3">
+                    <div class="concept-header">
+                        <span class="concept-number">3</span>
+                        <h2>Calorimetry</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Calorimetry is the technique of measuring specific
+                            heat by placing a heated sample in water and
+                            measuring the final equilibrium temperature. The
+                            principle is conservation of energy: heat lost by
+                            hot object = heat gained by cold object.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            In calorimetry, a sample of known mass is heated to
+                            a known temperature, then placed in a calorimeter
+                            containing water of known mass and temperature. The
+                            system is isolated, so energy is conserved:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Calorimetry Principle</span>
+                            Q<sub>hot</sub> = -Q<sub>cold</sub>
+                        </div>
+                        <p>Since Q = mcΔT, this becomes:</p>
+                        <div class="formula">
+                            <span class="label">Calorimetry Equation</span>
+                            m₁c₁(T<sub>f</sub> - T<sub>i₁</sub>) = -m₂c₂(T<sub
+                                >f</sub
+                            >
+                            - T<sub>i₂</sub>)
+                        </div>
+                        <p>
+                            This equation can be solved for the unknown specific
+                            heat.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Calorimetry assumes perfect heat transfer—no heat is
+                            lost to the surroundings. In practice, calorimeters
+                            are insulated to minimize heat loss. The water
+                            equivalent of the calorimeter (including its
+                            container) may need to be considered if its mass is
+                            significant compared to the water. Calorimetry is
+                            used not only to measure specific heat but also to
+                            measure latent heats and heats of reaction in
+                            chemistry.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept4">
+                    <div class="concept-header">
+                        <span class="concept-number">4</span>
+                        <h2>Latent Heat</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Latent heat (L) is the energy absorbed or released
+                            during a phase change at constant temperature. The
+                            heat of fusion applies to melting/freezing, and the
+                            heat of vaporization applies to
+                            boiling/condensation. The formula is Q = L·Δm.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            During a phase change (such as melting or boiling),
+                            energy is absorbed or released without a change in
+                            temperature. This energy is used to break or form
+                            intermolecular bonds.
+                        </p>
+                        <p>
+                            <strong>Heat of Fusion (L<sub>f</sub>):</strong>
+                            Energy required to change from solid to liquid
+                            (melting).
+                        </p>
+                        <p>
+                            <strong
+                                >Heat of Vaporization (L<sub>v</sub>):</strong
+                            >
+                            Energy required to change from liquid to gas
+                            (boiling).
+                        </p>
+                        <p>The energy required for a phase change is:</p>
+                        <div class="formula">
+                            <span class="label">Latent Heat Formula</span> Q =
+                            L·Δm
+                        </div>
+                        <p>where Δm is the mass that changes phase.</p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Water has a heat of fusion of 3.33 × 10⁵ J/kg and a
+                            heat of vaporization of 2.26 × 10⁶ J/kg. The large
+                            heat of vaporization is why evaporating sweat cools
+                            us effectively—it takes a lot of energy to turn
+                            liquid water into vapor. The energy required to
+                            change from solid to liquid (melting) is much less
+                            than that required to change from liquid to gas
+                            (boiling), because boiling involves completely
+                            separating molecules from each other.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept5">
+                    <div class="concept-header">
+                        <span class="concept-number">5</span>
+                        <h2>Phase Changes and Energy Graphs</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            As energy is added to a substance, its temperature
+                            rises, then stays constant during a phase change,
+                            then rises again. The slope of the
+                            temperature-energy graph during heating is 1/(mc),
+                            and the horizontal segments correspond to phase
+                            changes.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            A typical heating curve for water from ice at -30°C
+                            to steam at 120°C shows five distinct segments:
+                        </p>
+                        <p>
+                            <strong>A (Warming Ice):</strong> Temperature rises
+                            from -30°C to 0°C. Q =
+                            m<sub>ice</sub>c<sub>ice</sub>ΔT
+                        </p>
+                        <p>
+                            <strong>B (Melting):</strong> Temperature stays at
+                            0°C while ice melts. Q = L<sub>f</sub>m<sub
+                                >ice</sub
+                            >
+                        </p>
+                        <p>
+                            <strong>C (Warming Water):</strong> Temperature
+                            rises from 0°C to 100°C. Q =
+                            m<sub>water</sub>c<sub>water</sub>ΔT
+                        </p>
+                        <p>
+                            <strong>D (Boiling):</strong> Temperature stays at
+                            100°C while water boils. Q = L<sub>v</sub>m<sub
+                                >water</sub
+                            >
+                        </p>
+                        <p>
+                            <strong>E (Warming Steam):</strong> Temperature
+                            rises from 100°C to 120°C. Q =
+                            m<sub>steam</sub>c<sub>steam</sub>ΔT
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The horizontal segments in the heating curve
+                            represent phase changes, where energy goes into
+                            changing the state of matter rather than increasing
+                            temperature. The slopes of the sloped segments are
+                            determined by the specific heat: a steeper slope
+                            means lower specific heat. The total energy required
+                            to convert 1 kg of ice at -30°C to steam at 120°C is
+                            about 3.1 × 10⁶ J, most of which is required for
+                            boiling (vaporization).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept6">
+                    <div class="concept-header">
+                        <span class="concept-number">6</span>
+                        <h2>Supercooling and Superheating</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Supercooling is cooling a liquid below its freezing
+                            point without it becoming solid. Superheating is
+                            heating a liquid above its boiling point without it
+                            boiling. Both are metastable states that can be
+                            disrupted by nucleation sites.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            <strong>Supercooling:</strong> A liquid can be
+                            cooled below its freezing point without solidifying
+                            if there are no nucleation sites for crystal
+                            formation. Disturbing the liquid causes it to freeze
+                            rapidly, releasing the latent heat of fusion.
+                        </p>
+                        <p>
+                            <strong>Superheating:</strong> A liquid can be
+                            heated above its boiling point without boiling if
+                            there are no nucleation sites (like scratches in the
+                            container or dissolved gases). Disturbing the liquid
+                            can cause explosive boiling, which is why you should
+                            be careful when microwaving water in a smooth
+                            container.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Supercooling and superheating demonstrate that phase
+                            changes require nucleation sites to start. A
+                            completely pure liquid can be cooled or heated far
+                            beyond its normal transition temperature. The energy
+                            released during rapid freezing (after supercooling)
+                            can bring the temperature back up to the normal
+                            freezing point. This is why water that has been
+                            supercooled can freeze almost instantly when
+                            disturbed.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept7">
+                    <div class="concept-header">
+                        <span class="concept-number">7</span>
+                        <h2>The First Law of Thermodynamics</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The First Law of Thermodynamics is a statement of
+                            conservation of energy: ΔU = Q + W. The internal
+                            energy of a system increases when heat is added
+                            and/or work is done on the system.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            The First Law of Thermodynamics states that the
+                            change in internal energy of a system is equal to
+                            the sum of the heat added to the system and the work
+                            done on the system:
+                        </p>
+                        <div class="formula">
+                            <span class="label"
+                                >First Law of Thermodynamics</span
+                            >
+                            ΔU = Q + W
+                        </div>
+                        <p>
+                            where ΔU is the change in internal energy, Q is the
+                            heat added to the system (positive if added,
+                            negative if removed), and W is the work done on the
+                            system (positive if done on system, negative if done
+                            by system).
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The First Law is a generalization of the principle
+                            of conservation of energy to include heat and work.
+                            It recognizes that internal energy can be changed by
+                            two mechanisms: heat transfer and work. The sign
+                            convention varies among textbooks—some use ΔU = Q -
+                            W with W as work done by the system. The key is to
+                            be consistent with the sign convention. Work done by
+                            a gas in a piston is W = -PΔV (when ΔV is positive,
+                            the gas does work on the surroundings).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept8">
+                    <div class="concept-header">
+                        <span class="concept-number">8</span>
+                        <h2>Mechanisms of Heat Transfer</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Heat can be transferred by three mechanisms:
+                            conduction (through direct contact), convection
+                            (through fluid motion), and radiation (through
+                            electromagnetic waves). Conduction is slow,
+                            convection is faster, and radiation is the fastest.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            <strong>Conduction:</strong> Heat transfer through a
+                            material by direct contact. Atoms and electrons
+                            transfer energy by collisions. Metals are good
+                            conductors because of their free electrons. Poor
+                            conductors (insulators) include paper, wood, and
+                            gases.
+                        </p>
+                        <p>
+                            <strong>Convection:</strong> Heat transfer through
+                            the bulk motion of a fluid (liquid or gas). Natural
+                            convection occurs due to density differences (hotter
+                            fluid rises). Forced convection uses a fan or pump.
+                        </p>
+                        <p>
+                            <strong>Radiation:</strong> Heat transfer through
+                            electromagnetic waves (infrared radiation).
+                            Radiation does not require a medium and can occur
+                            through a vacuum. All objects emit thermal
+                            radiation, with the rate proportional to T⁴
+                            (Stefan-Boltzmann law).
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The three mechanisms often act simultaneously in
+                            real systems. For example, a hot radiator heats a
+                            room primarily by convection and radiation, but also
+                            by conduction through its surface. The rate of heat
+                            conduction through a material is given by Fourier's
+                            law: P = kA(ΔT)/L, where k is thermal conductivity.
+                            The rate of radiation is given by the
+                            Stefan-Boltzmann law: P = εσAT⁴, where ε is
+                            emissivity.
+                        </p>
+                    </div>
+                </div>
+
+                <section id="formulas">
+                    <h2>📐 Equations</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Formula</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Heat Capacity</td>
+                                        <td>Q = CΔT</td>
+                                        <td>J</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Specific Heat</td>
+                                        <td>Q = mcΔT</td>
+                                        <td>J</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Latent Heat (Fusion/Vaporization)
+                                        </td>
+                                        <td>Q = L·Δm</td>
+                                        <td>J</td>
+                                    </tr>
+                                    <tr>
+                                        <td>First Law of Thermodynamics</td>
+                                        <td>ΔU = Q + W</td>
+                                        <td>J</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Work Done on Gas</td>
+                                        <td>W = -PΔV</td>
+                                        <td>J</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2>🔥 Heat Transfer Mechanisms</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Conduction</th>
+                                        <th>Convection</th>
+                                        <th>Radiation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Medium Required</td>
+                                        <td>Yes (solid)</td>
+                                        <td>Yes (fluid)</td>
+                                        <td>No (vacuum possible)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mechanism</td>
+                                        <td>Direct contact</td>
+                                        <td>Fluid motion</td>
+                                        <td>Electromagnetic waves</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Speed</td>
+                                        <td>Slow</td>
+                                        <td>Faster</td>
+                                        <td>Fastest</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Examples</td>
+                                        <td>Metal rod heating</td>
+                                        <td>Boiling water</td>
+                                        <td>Sun's heat</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="professor-card" id="narrative">
+                    <h2>🎓 Professor's Narrative</h2>
+                    <p>
+                        Heat and internal energy are fundamental concepts in
+                        thermodynamics. Remember that heat is not a
+                        substance—it's energy in transit. When you add heat to a
+                        system, you're transferring energy to it, which can
+                        increase its internal energy or cause it to do work.
+                    </p>
+                    <p>
+                        The distinction between temperature, heat, and internal
+                        energy is crucial. Temperature is a measure of the
+                        average kinetic energy per particle. Internal energy is
+                        the total energy of all particles in the system. Heat is
+                        the energy transferred due to a temperature difference.
+                    </p>
+                    <p>
+                        Specific heat is a material property that tells you how
+                        much energy is required to change the temperature of a
+                        given mass. Water's high specific heat is why it's used
+                        as a coolant in engines and why coastal climates are
+                        mild.
+                    </p>
+                    <p>
+                        Phase changes are fascinating because they involve
+                        energy transfer without temperature change. Latent heat
+                        is the energy required to overcome intermolecular
+                        forces. The large latent heat of vaporization of water
+                        is why sweating is such an effective cooling mechanism.
+                    </p>
+                    <p>
+                        The First Law of Thermodynamics is the foundation of all
+                        energy analysis in thermal systems. It tells us that
+                        energy is conserved in all processes, whether through
+                        heat transfer or work.
+                    </p>
+                </section>
+
+                <section class="ask-section" id="ask-professor">
+                    <h2>❓ Ask the Professor</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                What's the difference between heat and
+                                temperature?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Temperature is a measure of the average
+                                    kinetic energy of the particles in a system.
+                                    Heat is the transfer of energy due to a
+                                    temperature difference. A small amount of
+                                    boiling water has a high temperature but
+                                    less total heat energy than a large amount
+                                    of warm water. Heat is energy in transit;
+                                    temperature is a property of a system.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why does sweating cool you off?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    When sweat evaporates (changes from liquid
+                                    to vapor), it absorbs latent heat of
+                                    vaporization from your skin. This removes
+                                    energy from your body, lowering your
+                                    temperature. The cooling effect depends on
+                                    the humidity—in humid conditions, the air is
+                                    already saturated with water vapor, so
+                                    evaporation is slower and cooling is less
+                                    effective.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why can a liquid be superheated above its
+                                boiling point?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Boiling requires nucleation sites—places
+                                    where bubbles can form (like scratches on a
+                                    container or dissolved gases). If a liquid
+                                    is very pure and the container is smooth,
+                                    there are no nucleation sites, so the liquid
+                                    can be heated above its boiling point
+                                    without boiling. Disturbing the liquid
+                                    provides nucleation sites, causing explosive
+                                    boiling.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="vault-section" id="exam-vault">
+                    <h2>🔐 Exam Vault</h2>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Specific heat: Q = mcΔT. Heat capacity: Q = CΔT.
+                        Calorimetry: heat lost = heat gained.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        During a phase change, temperature does NOT change. All
+                        energy goes into changing the phase (latent heat). The
+                        formula is Q = L·m, not Q = mcΔT.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--secret"
+                            >🤫 Secret</span
+                        >
+                        The latent heat of vaporization is much larger than the
+                        latent heat of fusion for most substances. It takes more
+                        energy to turn a liquid into a gas (breaking all
+                        intermolecular bonds) than to turn a solid into a liquid
+                        (only partially breaking bonds).
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        First Law: ΔU = Q + W. Work done on a gas: W = -PΔV (for
+                        a gas expanding, W is negative).
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Conduction, convection, and radiation are the three
+                        mechanisms of heat transfer. Radiation does NOT require
+                        a medium and can occur through a vacuum.
+                    </div>
+                </section>
+
+                <section class="quiz-section" id="quiz">
+                    <h2>📝 Chapter 7: Heat and Internal Energy Quiz</h2>
+                    <div id="quiz-container"></div>
+                </section>
+            </main>
+
+            <footer>SCI201 · Chapter 7: Heat and Internal Energy</footer>
+        </div>
+
+        <script>
+            (function () {
+                window.toggleTheme = function () {
+                    const html = document.documentElement;
+                    const cur = html.getAttribute("data-theme");
+                    const next = cur === "dark" ? "light" : "dark";
+                    html.setAttribute("data-theme", next);
+                    localStorage.setItem("garden_theme", next);
+                };
+                const saved = localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", saved);
+
+                document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
+                    const card = tabGroup.closest(".concept-card");
+                    if (!card) return;
+                    const tabs = tabGroup.querySelectorAll(".depth-tab");
+                    const contents = card.querySelectorAll(".depth-content");
+                    tabs.forEach((tab) => {
+                        tab.addEventListener("click", function () {
+                            const layer = this.dataset.layer;
+                            tabs.forEach((t) => t.classList.remove("active"));
+                            this.classList.add("active");
+                            contents.forEach((c) => {
+                                c.classList.remove("active");
+                                if (c.dataset.layer === layer)
+                                    c.classList.add("active");
+                            });
+                        });
+                    });
+                });
+
+                document
+                    .querySelectorAll(".accordion-trigger")
+                    .forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            const body = this.nextElementSibling;
+                            const isOpen = body.classList.contains("open");
+                            const section = this.closest(".accordion");
+                            section
+                                .querySelectorAll(".accordion-body")
+                                .forEach((b) => b.classList.remove("open"));
+                            if (!isOpen) body.classList.add("open");
+                        });
+                    });
+
+                const currentStatus = localStorage.getItem("chapter_7_status");
+                if (!currentStatus || currentStatus === "not-started") {
+                    localStorage.setItem("chapter_7_status", "viewed");
                 }
-                .sidebar {
-                    display: none !important;
-                }
-                .sidebar-toggle {
-                    display: flex !important;
-                    position: static !important;
-                    margin: 0;
-                }
-                .toolbar-hamburger {
-                    display: none !important;
-                }
-                .toolbar {
-                    width: 100%;
-                    margin-left: 0;
-                    margin-right: 0;
-                    padding: 0.5rem 1rem;
-                    left: 0;
-                    right: 0;
-                }
-                .concept-number {
-                    min-width: 32px;
-                    min-height: 32px;
-                    width: auto;
-                    height: auto;
-                    padding: 0.25rem 0.5rem;
-                    flex-shrink: 0;
-                }
-                html,
-                body {
-                    overflow-x: hidden;
-                    width: 100%;
-                }
-                .main-wrapper {
-                    padding: 1rem;
-                    width: 100%;
-                }
-            }
+            })();
+        </script>
+
+        <script src="../js/quiz.js"></script>
+        <script>
+            initQuiz({
+                chapterNum: 7,
+                quizData: [
+                    {
+                        question: "1. Heat is defined as:",
+                        options: [
+                            "The total energy of a system.",
+                            "The temperature of a system.",
+                            "The transfer of energy due to a temperature difference.",
+                            "The work done by a system.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "Heat is energy in transit due to a temperature difference.",
+                        hint: "Think about the definition of heat.",
+                    },
+                    {
+                        question: "2. Specific heat is defined as:",
+                        options: [
+                            "The energy required to change the temperature of an object by 1°C.",
+                            "The energy required to change the temperature of 1 kg of a substance by 1°C.",
+                            "The energy required to change the phase of a substance.",
+                            "The energy required to raise the temperature of water by 1°C.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Specific heat is heat capacity per unit mass: c = C/m.",
+                        hint: "It's heat capacity per unit mass.",
+                    },
+                    {
+                        question: "3. During a phase change, the temperature:",
+                        options: [
+                            "Increases.",
+                            "Decreases.",
+                            "Remains constant.",
+                            "Fluctuates.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "All energy goes into changing the phase, not raising temperature.",
+                        hint: "All energy goes into changing the phase.",
+                    },
+                    {
+                        question:
+                            "4. The heat of fusion is the energy required to:",
+                        options: [
+                            "Melt a solid.",
+                            "Boil a liquid.",
+                            "Condense a gas.",
+                            "Freeze a liquid.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "Fusion means melting—changing from solid to liquid.",
+                        hint: "Fusion means melting.",
+                    },
+                    {
+                        question:
+                            "5. The First Law of Thermodynamics is a statement of:",
+                        options: [
+                            "Conservation of charge.",
+                            "Conservation of energy.",
+                            "Conservation of mass.",
+                            "Conservation of momentum.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "ΔU = Q + W expresses conservation of energy.",
+                        hint: "It relates heat, work, and internal energy.",
+                    },
+                    {
+                        question: "6. Conduction is heat transfer through:",
+                        options: [
+                            "Electromagnetic waves.",
+                            "Fluid motion.",
+                            "Direct contact.",
+                            "Vacuum.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "Conduction occurs through direct contact, typically in solids.",
+                        hint: "It occurs in solids.",
+                    },
+                    {
+                        question: "7. Convection is heat transfer through:",
+                        options: [
+                            "Direct contact.",
+                            "Fluid motion.",
+                            "Electromagnetic waves.",
+                            "Vacuum.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Convection requires bulk motion of a fluid.",
+                        hint: "It requires a fluid.",
+                    },
+                    {
+                        question: "8. Radiation can occur through:",
+                        options: [
+                            "Vacuum.",
+                            "Solids only.",
+                            "Liquids only.",
+                            "Gases only.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "Radiation doesn't need a medium—it travels through vacuum.",
+                        hint: "It's the only mechanism that doesn't need a medium.",
+                    },
+                    {
+                        question:
+                            "9. Water has a high specific heat, which means:",
+                        options: [
+                            "It heats up quickly.",
+                            "It cools down quickly.",
+                            "It requires a lot of energy to change temperature.",
+                            "It evaporates easily.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "High specific heat means more energy is needed for temperature change.",
+                        hint: "Think about why water is used as a coolant.",
+                    },
+                    {
+                        question:
+                            "10. The latent heat of vaporization is typically:",
+                        options: [
+                            "Less than the latent heat of fusion.",
+                            "Greater than the latent heat of fusion.",
+                            "Equal to the latent heat of fusion.",
+                            "Zero.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Vaporization requires completely separating molecules, needing more energy.",
+                        hint: "Think about the energy required to completely separate molecules.",
+                    },
+                ],
+            });
+        </script>
+        <script src="../js/toolbar.js"></script>
+    </body>
+</html>

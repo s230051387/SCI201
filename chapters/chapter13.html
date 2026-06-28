@@ -582,6 +582,55 @@
                 box-shadow: var(--shadow);
             }
 
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                .sidebar {
+                    position: fixed;
+                    left: -100%;
+                    top: 56px;
+                    height: calc(100vh - 56px);
+                    width: 280px;
+                    transition: left 0.3s ease;
+                    z-index: 15;
+                }
+                .sidebar.open {
+                    left: 0;
+                }
+                .toolbar-hamburger {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
 
             .toolbar {
                 position: sticky;
@@ -648,45 +697,632 @@
                 cursor: not-allowed;
                 pointer-events: none;
             }
-            /* MOBILE */
-            @media (max-width: 900px) {
-                body {
-                    flex-direction: column;
+        </style>
+    </head>
+    <body>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">📑 SCI201</div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#objectives"
+                        ><span class="emoji">🎯</span> Learning Objectives</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept1"
+                        ><span class="emoji">1️⃣</span> Total Internal
+                        Reflection</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept2"
+                        ><span class="emoji">2️⃣</span> The Critical Angle</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept3"
+                        ><span class="emoji">3️⃣</span> Optical Fibers</a
+                    >
+                </li>
+                <hr class="sidebar-divider" />
+                <li>
+                    <a href="#formulas"
+                        ><span class="emoji">📐</span> Equations</a
+                    >
+                </li>
+                <li>
+                    <a href="#narrative"
+                        ><span class="emoji">🎓</span> Professor's Narrative</a
+                    >
+                </li>
+                <li>
+                    <a href="#ask-professor"
+                        ><span class="emoji">❓</span> Ask the Professor</a
+                    >
+                </li>
+                <li>
+                    <a href="#exam-vault"
+                        ><span class="emoji">🔐</span> Exam Vault</a
+                    >
+                </li>
+                <li>
+                    <a href="#quiz"><span class="emoji">📝</span> Self Quiz</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <h1>
+                    💡 The Nature of Light, Reflection and Refraction (Part 2)
+                </h1>
+                <p style="color: var(--bg0_h); opacity: 0.9">
+                    Refraction, Snell's law, total internal reflection, and
+                    optical fibers
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Refraction</span>
+                    <span class="tag">Snell's Law</span>
+                    <span class="tag">Optical Fibers</span>
+                    <span class="tag tag--accent"
+                        ><i class="fa-regular fa-clock"></i> 45 min</span
+                    >
+                </div>
+            </header>
+
+            <main>
+                <section id="objectives">
+                    <h2>🎯 Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>
+                            Understand the concept of total internal reflection.
+                        </li>
+                        <li>Calculate the critical angle.</li>
+                        <li>
+                            Explain applications of total internal reflection
+                            (optical fibers).
+                        </li>
+                    </ul>
+                </section>
+
+                <div class="concept-card" id="concept1">
+                    <div class="concept-header">
+                        <span class="concept-number">1</span>
+                        <h2>Total Internal Reflection</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Total internal reflection occurs when light
+                            traveling in a medium with higher index of
+                            refraction strikes the boundary with a lower index
+                            medium at an angle greater than the critical angle.
+                            All the light is reflected; none is transmitted.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            When light travels from a medium with higher index
+                            n₁ to a medium with lower index n₂ (n₁ > n₂), it
+                            bends away from the normal. As the angle of
+                            incidence θ₁ increases, the angle of refraction θ₂
+                            approaches 90°. The critical angle is the angle of
+                            incidence for which the refracted ray is at 90° to
+                            the normal. For angles greater than the critical
+                            angle, total internal reflection occurs.
+                        </p>
+                        <p>
+                            The critical angle is: sin θ<sub>c</sub> = n₂/n₁ or
+                            θ<sub>c</sub> = sin⁻¹(n₂/n₁).
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Total internal reflection occurs only when light
+                            travels from a higher index to a lower index medium.
+                            The reflected light is 100%—there is no
+                            transmission. This is the principle behind optical
+                            fibers, where light is guided through a fiber by
+                            repeated total internal reflection. It's also why
+                            diamonds sparkle—light that enters the diamond
+                            undergoes total internal reflection many times
+                            before it exits.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept2">
+                    <div class="concept-header">
+                        <span class="concept-number">2</span>
+                        <h2>The Critical Angle</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The critical angle is the angle of incidence at
+                            which the refracted ray is at 90° to the normal. sin
+                            θ<sub>c</sub> = n₂/n₁. For angles greater than
+                            θ<sub>c</sub>, total internal reflection occurs.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            At the critical angle, the angle of refraction is
+                            90°:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Critical Angle</span> n₁ sin
+                            θ<sub>c</sub> = n₂ sin 90° = n₂
+                        </div>
+                        <div class="formula">
+                            <span class="label">Critical Angle Formula</span>
+                            sin θ<sub>c</sub> = n₂/n₁
+                        </div>
+                        <p>
+                            Example: For an air-water interface (n<sub
+                                >water</sub
+                            >
+                            = 1.33, n<sub>air</sub> = 1.00): sin θ<sub>c</sub> =
+                            1.00/1.33 = 0.752, θ<sub>c</sub> = 48.8°.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The critical angle depends on the indices of
+                            refraction of the two media. For a higher index
+                            difference, the critical angle is smaller. For
+                            example, diamond (n = 2.42) has a critical angle of
+                            about 24.4° with air, which is why diamonds are so
+                            brilliant—light that enters the diamond is trapped
+                            by total internal reflection and can't easily
+                            escape.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept3">
+                    <div class="concept-header">
+                        <span class="concept-number">3</span>
+                        <h2>Optical Fibers</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Optical fibers use total internal reflection to
+                            guide light along their length. Light enters the
+                            fiber, strikes the sides at angles greater than the
+                            critical angle, and is reflected internally. The
+                            fiber can be bent around corners.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            An optical fiber consists of a core of higher index
+                            glass surrounded by a cladding of lower index glass.
+                            Light entering the core at a suitable angle
+                            undergoes total internal reflection at the
+                            core-cladding boundary and is guided along the
+                            fiber. The fiber can be bent because the total
+                            internal reflection continues as long as the angle
+                            of incidence exceeds the critical angle.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Optical fibers are used extensively in
+                            telecommunications because they can carry much more
+                            information than copper wires. They are also used in
+                            medical imaging (endoscopy). The 2009 Nobel Prize in
+                            Physics was awarded to Charles K. Kao for his
+                            discovery of how to transmit light signals over long
+                            distances through thin glass fibers. The fibers are
+                            made of very pure glass to minimize absorption
+                            losses.
+                        </p>
+                    </div>
+                </div>
+
+                <section id="formulas">
+                    <h2>📐 Equations</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Formula</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Critical Angle</td>
+                                        <td>sin θ<sub>c</sub> = n₂/n₁</td>
+                                        <td>(unitless)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Critical Angle (Inverse)</td>
+                                        <td>θ<sub>c</sub> = sin⁻¹(n₂/n₁)</td>
+                                        <td>degrees/radians</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2>⚖️ Total Internal Reflection vs Regular Reflection</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Regular Reflection</th>
+                                        <th>Total Internal Reflection</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Condition</td>
+                                        <td>Any angle of incidence</td>
+                                        <td>θ₁ > θ<sub>c</sub> and n₁ > n₂</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reflected Intensity</td>
+                                        <td>Partial (some transmitted)</td>
+                                        <td>100% (all reflected)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transmitted Light</td>
+                                        <td>Yes (some passes through)</td>
+                                        <td>No (none passes through)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Medium Requirement</td>
+                                        <td>Any interface</td>
+                                        <td>Higher to lower index only</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="professor-card" id="narrative">
+                    <h2>🎓 Professor's Narrative</h2>
+                    <p>
+                        Total internal reflection is a fascinating phenomenon
+                        that occurs when light tries to go from a higher index
+                        to a lower index medium. It's the reason why diamonds
+                        sparkle and why optical fibers can guide light around
+                        corners.
+                    </p>
+                    <p>
+                        The critical angle is the key concept—it's the angle at
+                        which the refracted ray skims along the surface. If the
+                        angle of incidence is greater than the critical angle,
+                        the light is completely reflected. No light is
+                        transmitted.
+                    </p>
+                    <p>
+                        Optical fibers are one of the most important
+                        applications of total internal reflection. They are the
+                        backbone of modern telecommunications, carrying vast
+                        amounts of information over long distances. The fibers
+                        are made of very pure glass to minimize absorption, and
+                        the light is guided by total internal reflection.
+                    </p>
+                </section>
+
+                <section class="ask-section" id="ask-professor">
+                    <h2>❓ Ask the Professor</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why does total internal reflection only occur
+                                when light goes from a higher index to a lower
+                                index? <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Total internal reflection requires the
+                                    refracted ray to be at 90° or more. This can
+                                    only happen when the ray is bent away from
+                                    the normal, which occurs when light goes
+                                    from a higher index to a lower index (n₁ >
+                                    n₂). If light goes from lower to higher (n₁
+                                    < n₂), it bends toward the normal and can
+                                    never reach 90°.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                How do optical fibers work?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    An optical fiber consists of a core with a
+                                    higher index of refraction surrounded by a
+                                    cladding with a lower index. Light entering
+                                    the core at a small enough angle undergoes
+                                    total internal reflection at the
+                                    core-cladding boundary. This reflection
+                                    continues as the light travels along the
+                                    fiber, even when the fiber is bent.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="vault-section" id="exam-vault">
+                    <h2>🔐 Exam Vault</h2>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Total internal reflection occurs when n₁ > n₂ and θ₁ >
+                        θ<sub>c</sub>. Critical angle: sin θ<sub>c</sub> =
+                        n₂/n₁.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Total internal reflection does NOT occur when going from
+                        lower to higher index. In that case, light bends toward
+                        the normal, and there is no critical angle.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--secret"
+                            >🤫 Secret</span
+                        >
+                        Total internal reflection is 100% reflection—there is no
+                        transmitted light. This is why diamonds appear to
+                        sparkle—light is trapped and reflected internally before
+                        it escapes.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Optical fibers use total internal reflection to guide
+                        light. They are the basis of modern telecommunications.
+                    </div>
+                </section>
+
+                <section class="quiz-section" id="quiz">
+                    <h2>
+                        📝 Chapter 13: The Nature of Light, Reflection and
+                        Refraction (Part 2) Quiz
+                    </h2>
+                    <div id="quiz-container"></div>
+                </section>
+            </main>
+
+            <footer>
+                SCI201 · Chapter 13: The Nature of Light, Reflection and
+                Refraction (Part 2)
+            </footer>
+        </div>
+
+        <script>
+            (function () {
+                window.toggleTheme = function () {
+                    const html = document.documentElement;
+                    const cur = html.getAttribute("data-theme");
+                    const next = cur === "dark" ? "light" : "dark";
+                    html.setAttribute("data-theme", next);
+                    localStorage.setItem("garden_theme", next);
+                };
+                const saved = localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", saved);
+
+                document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
+                    const card = tabGroup.closest(".concept-card");
+                    if (!card) return;
+                    const tabs = tabGroup.querySelectorAll(".depth-tab");
+                    const contents = card.querySelectorAll(".depth-content");
+                    tabs.forEach((tab) => {
+                        tab.addEventListener("click", function () {
+                            const layer = this.dataset.layer;
+                            tabs.forEach((t) => t.classList.remove("active"));
+                            this.classList.add("active");
+                            contents.forEach((c) => {
+                                c.classList.remove("active");
+                                if (c.dataset.layer === layer)
+                                    c.classList.add("active");
+                            });
+                        });
+                    });
+                });
+
+                document
+                    .querySelectorAll(".accordion-trigger")
+                    .forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            const body = this.nextElementSibling;
+                            const isOpen = body.classList.contains("open");
+                            const section = this.closest(".accordion");
+                            section
+                                .querySelectorAll(".accordion-body")
+                                .forEach((b) => b.classList.remove("open"));
+                            if (!isOpen) body.classList.add("open");
+                        });
+                    });
+
+                const currentStatus = localStorage.getItem("chapter_13_status");
+                if (!currentStatus || currentStatus === "not-started") {
+                    localStorage.setItem("chapter_13_status", "viewed");
                 }
-                .sidebar {
-                    display: none !important;
-                }
-                .sidebar-toggle {
-                    display: flex !important;
-                    position: static !important;
-                    margin: 0;
-                }
-                .toolbar-hamburger {
-                    display: none !important;
-                }
-                .toolbar {
-                    width: 100%;
-                    margin-left: 0;
-                    margin-right: 0;
-                    padding: 0.5rem 1rem;
-                    left: 0;
-                    right: 0;
-                }
-                .concept-number {
-                    min-width: 32px;
-                    min-height: 32px;
-                    width: auto;
-                    height: auto;
-                    padding: 0.25rem 0.5rem;
-                    flex-shrink: 0;
-                }
-                html,
-                body {
-                    overflow-x: hidden;
-                    width: 100%;
-                }
-                .main-wrapper {
-                    padding: 1rem;
-                    width: 100%;
-                }
-            }
+            })();
+        </script>
+
+        <script src="../js/quiz.js"></script>
+        <script>
+            initQuiz({
+                chapterNum: 13,
+                quizData: [
+                    {
+                        question: "1. Total internal reflection occurs when:",
+                        options: [
+                            "Light goes from lower index to higher index.",
+                            "Light goes from higher index to lower index.",
+                            "Light travels in a vacuum.",
+                            "Light travels in a solid.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Total internal reflection requires n₁ > n₂.",
+                        hint: "Think about the direction of bending.",
+                    },
+                    {
+                        question:
+                            "2. The critical angle is the angle of incidence when:",
+                        options: [
+                            "The refracted ray is at 0° to the normal.",
+                            "The refracted ray is at 90° to the normal.",
+                            "The reflected ray is at 90° to the normal.",
+                            "The incident ray is at 90° to the surface.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "At the critical angle, the refracted ray skims the surface.",
+                        hint: "It's when the refracted ray skims the surface.",
+                    },
+                    {
+                        question: "3. The critical angle is given by:",
+                        options: [
+                            "sin θ_c = n₁/n₂.",
+                            "sin θ_c = n₂/n₁.",
+                            "cos θ_c = n₂/n₁.",
+                            "tan θ_c = n₂/n₁.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "From Snell's law with θ₂ = 90°: n₁ sin θ_c = n₂.",
+                        hint: "Snell's law with θ₂ = 90°.",
+                    },
+                    {
+                        question:
+                            "4. Optical fibers use total internal reflection to:",
+                        options: [
+                            "Amplify light.",
+                            "Guide light along their length.",
+                            "Change the color of light.",
+                            "Measure light intensity.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Fibers guide light by repeated total internal reflection.",
+                        hint: "They guide light even around curves.",
+                    },
+                    {
+                        question:
+                            "5. The critical angle for diamond (n = 2.42) with air is approximately:",
+                        options: ["24.4°.", "48.8°.", "90°.", "60°."],
+                        correct: 0,
+                        explanation:
+                            "Higher index means smaller critical angle.",
+                        hint: "Higher index means smaller critical angle.",
+                    },
+                    {
+                        question:
+                            "6. Total internal reflection is _____ reflection.",
+                        options: ["Partial.", "100%.", "Variable.", "Zero."],
+                        correct: 1,
+                        explanation:
+                            "All the light is reflected, none is transmitted.",
+                        hint: "All the light is reflected.",
+                    },
+                    {
+                        question: "7. The cladding of an optical fiber has:",
+                        options: [
+                            "Higher index than the core.",
+                            "Lower index than the core.",
+                            "The same index as the core.",
+                            "No index.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "The cladding must have lower index for total internal reflection.",
+                        hint: "The cladding enables total internal reflection.",
+                    },
+                    {
+                        question:
+                            "8. When total internal reflection occurs, there is:",
+                        options: [
+                            "No transmitted light.",
+                            "Some transmitted light.",
+                            "Mostly transmitted light.",
+                            "Equal reflection and transmission.",
+                        ],
+                        correct: 0,
+                        explanation: "100% of the light is reflected.",
+                        hint: "All the light is reflected.",
+                    },
+                    {
+                        question:
+                            "9. A fish looking up at the surface of water sees:",
+                        options: [
+                            "The entire sky.",
+                            "A circular window of the sky.",
+                            "Only water.",
+                            "No light.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Due to total internal reflection at the water-air interface.",
+                        hint: "This is due to total internal reflection at the water-air interface.",
+                    },
+                    {
+                        question: "10. The critical angle is larger when:",
+                        options: [
+                            "n₁ is much larger than n₂.",
+                            "n₁ is close to n₂.",
+                            "n₁ is much smaller than n₂.",
+                            "n₁ = n₂.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "When indices are close, sin θ_c = n₂/n₁ is close to 1, so θ_c is near 90°.",
+                        hint: "Think about the difference in indices.",
+                    },
+                ],
+            });
+        </script>
+        <script src="../js/toolbar.js"></script>
+    </body>
+</html>

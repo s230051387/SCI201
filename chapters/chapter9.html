@@ -581,6 +581,55 @@
                 box-shadow: var(--shadow);
             }
 
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                .sidebar {
+                    position: fixed;
+                    left: -100%;
+                    top: 56px;
+                    height: calc(100vh - 56px);
+                    width: 280px;
+                    transition: left 0.3s ease;
+                    z-index: 15;
+                }
+                .sidebar.open {
+                    left: 0;
+                }
+                .toolbar-hamburger {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
 
             .toolbar {
                 position: sticky;
@@ -647,45 +696,999 @@
                 cursor: not-allowed;
                 pointer-events: none;
             }
-            /* MOBILE */
-            @media (max-width: 900px) {
-                body {
-                    flex-direction: column;
+        </style>
+    </head>
+    <body>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">📑 SCI201</div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#objectives"
+                        ><span class="emoji">🎯</span> Learning Objectives</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept1"
+                        ><span class="emoji">1️⃣</span> Simple Harmonic Motion
+                        (SHM)</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept2"
+                        ><span class="emoji">2️⃣</span> The Spring-Mass System</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept3"
+                        ><span class="emoji">3️⃣</span> Displacement, Velocity &
+                        Acceleration</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept4"
+                        ><span class="emoji">4️⃣</span> Energy in SHM</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept5"
+                        ><span class="emoji">5️⃣</span> SHM and Circular
+                        Motion</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept6"
+                        ><span class="emoji">6️⃣</span> The Simple Pendulum</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept7"
+                        ><span class="emoji">7️⃣</span> Period & Frequency of a
+                        Pendulum</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept8"
+                        ><span class="emoji">8️⃣</span> Applications of SHM</a
+                    >
+                </li>
+                <hr class="sidebar-divider" />
+                <li>
+                    <a href="#formulas"
+                        ><span class="emoji">📐</span> Equations</a
+                    >
+                </li>
+                <li>
+                    <a href="#narrative"
+                        ><span class="emoji">🎓</span> Professor's Narrative</a
+                    >
+                </li>
+                <li>
+                    <a href="#ask-professor"
+                        ><span class="emoji">❓</span> Ask the Professor</a
+                    >
+                </li>
+                <li>
+                    <a href="#exam-vault"
+                        ><span class="emoji">🔐</span> Exam Vault</a
+                    >
+                </li>
+                <li>
+                    <a href="#quiz"><span class="emoji">📝</span> Self Quiz</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <h1>🔄 Oscillatory Motion and Simple Pendulum</h1>
+                <p style="color: var(--bg0_h); opacity: 0.9">
+                    Simple harmonic motion, spring-mass systems, pendulums, and
+                    energy in SHM
+                </p>
+                <div class="tag-list">
+                    <span class="tag">SHM</span>
+                    <span class="tag">Pendulum</span>
+                    <span class="tag">Hooke's Law</span>
+                    <span class="tag tag--accent"
+                        ><i class="fa-regular fa-clock"></i> 45 min</span
+                    >
+                </div>
+            </header>
+
+            <main>
+                <section id="objectives">
+                    <h2>🎯 Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>
+                            Understand simple harmonic motion (SHM) and its
+                            characteristics.
+                        </li>
+                        <li>
+                            Define amplitude, period, frequency, and angular
+                            frequency.
+                        </li>
+                        <li>Apply Hooke's law to spring-mass systems.</li>
+                        <li>
+                            Derive equations for displacement, velocity, and
+                            acceleration in SHM.
+                        </li>
+                        <li>Understand the energy of an SHM oscillator.</li>
+                        <li>Apply SHM concepts to the simple pendulum.</li>
+                    </ul>
+                </section>
+
+                <div class="concept-card" id="concept1">
+                    <div class="concept-header">
+                        <span class="concept-number">1</span>
+                        <h2>Simple Harmonic Motion (SHM)</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Simple harmonic motion (SHM) occurs when the
+                            restoring force is proportional to the displacement
+                            from equilibrium and directed toward equilibrium: F
+                            = -kx. The displacement follows a sinusoidal
+                            function of time.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            SHM is the motion of an object where the force
+                            acting on it is proportional to its displacement
+                            from equilibrium and always directed toward the
+                            equilibrium position. The motion is sinusoidal:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Displacement</span> x(t) = A
+                            cos(ωt + φ)
+                        </div>
+                        <p>
+                            where x(t) is the displacement at time t, A is the
+                            amplitude (maximum displacement), ω is the angular
+                            frequency (rad/s), and φ is the phase constant
+                            (determines initial conditions).
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            SHM is the simplest form of oscillatory motion and
+                            serves as a model for many physical systems,
+                            including pendulums, springs, and even molecular
+                            vibrations. The key characteristic is the linear
+                            restoring force (F = -kx), which leads to sinusoidal
+                            motion. The motion is periodic—it repeats itself
+                            after each period T = 2π/ω. The frequency f = 1/T is
+                            the number of oscillations per second.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept2">
+                    <div class="concept-header">
+                        <span class="concept-number">2</span>
+                        <h2>The Spring-Mass System</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            For a mass attached to a spring, Hooke's law gives
+                            the restoring force: F<sub>s</sub> = -kx. Angular
+                            frequency: ω = √(k/m), period: T = 2π√(m/k),
+                            frequency: f = 1/(2π)√(k/m).
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            A mass m attached to a spring of force constant k on
+                            a frictionless surface exhibits SHM. Hooke's law
+                            gives:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Hooke's Law</span> F<sub>s</sub>
+                            = -kx
+                        </div>
+                        <p>Newton's second law gives: -kx = ma = m(d²x/dt²)</p>
+                        <p>
+                            This differential equation has the solution x(t) = A
+                            cos(ωt + φ), where:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Angular Frequency</span> ω =
+                            √(k/m)
+                        </div>
+                        <div class="formula">
+                            <span class="label">Period</span> T = 2π/ω =
+                            2π√(m/k)
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The period and frequency depend only on the mass and
+                            the spring constant, not on the amplitude. This is
+                            called isochronism—the period is independent of the
+                            amplitude. This property makes SHM oscillators
+                            useful for timekeeping. A stiffer spring (larger k)
+                            gives a higher frequency. A larger mass gives a
+                            lower frequency.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept3">
+                    <div class="concept-header">
+                        <span class="concept-number">3</span>
+                        <h2>Displacement, Velocity, and Acceleration in SHM</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The displacement, velocity, and acceleration in SHM
+                            are sinusoidal. Velocity leads displacement by 90°
+                            (π/2), and acceleration is 180° (π) out of phase
+                            with displacement.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>The equations for SHM are:</p>
+                        <div class="formula">
+                            <span class="label">Displacement</span> x(t) = A
+                            cos(ωt + φ)
+                        </div>
+                        <div class="formula">
+                            <span class="label">Velocity</span> v(t) = -ωA
+                            sin(ωt + φ)
+                        </div>
+                        <div class="formula">
+                            <span class="label">Acceleration</span> a(t) = -ω²A
+                            cos(ωt + φ) = -ω²x(t)
+                        </div>
+                        <p>
+                            The maximum values are: v<sub>max</sub> = ωA, a<sub
+                                >max</sub
+                            >
+                            = ω²A = (k/m)A.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            When displacement is maximum (x = A), velocity is
+                            zero and acceleration is maximum (negative). When
+                            displacement is zero (at equilibrium), velocity is
+                            maximum and acceleration is zero. Velocity leads
+                            displacement by 90°. Acceleration is always opposite
+                            to displacement (a = -ω²x).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept4">
+                    <div class="concept-header">
+                        <span class="concept-number">4</span>
+                        <h2>Energy in SHM</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Total mechanical energy in SHM is constant: E = K +
+                            U = ½kA². Kinetic energy is maximum at equilibrium,
+                            potential energy is maximum at the turning points.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>For a spring-mass system:</p>
+                        <div class="formula">
+                            <span class="label">Kinetic Energy</span> K = ½mv² =
+                            ½kA² sin²(ωt + φ)
+                        </div>
+                        <div class="formula">
+                            <span class="label">Potential Energy</span> U = ½kx²
+                            = ½kA² cos²(ωt + φ)
+                        </div>
+                        <div class="formula">
+                            <span class="label">Total Energy</span> E = K + U =
+                            ½kA² = ½mω²A²
+                        </div>
+                        <p>At any position x: v = ±ω√(A² - x²).</p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Energy conservation is a powerful tool for solving
+                            SHM problems. The total energy is constant, with
+                            kinetic energy converted to potential energy and
+                            back. At the turning points (x = ±A), all energy is
+                            potential (U = ½kA², K = 0). At equilibrium (x = 0),
+                            all energy is kinetic (K = ½kA², U = 0).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept5">
+                    <div class="concept-header">
+                        <span class="concept-number">5</span>
+                        <h2>SHM and Circular Motion</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            SHM is the projection of uniform circular motion
+                            onto a diameter. The angular speed of the circular
+                            motion is the same as the angular frequency of the
+                            SHM.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            If a particle moves in a circle of radius A with
+                            constant angular speed ω, the projection of its
+                            position onto the x-axis is:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Projection</span> x(t) = A
+                            cos(ωt + φ)
+                        </div>
+                        <p>
+                            This is exactly the same as the displacement in SHM.
+                            The projection of velocity is v(t) = -ωA sin(ωt +
+                            φ), and the projection of acceleration is a(t) =
+                            -ω²A cos(ωt + φ).
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            This analogy allows us to visualize SHM as the
+                            shadow of circular motion. The amplitude of the SHM
+                            is the radius of the circle. The angular frequency
+                            of the SHM is the angular speed of the circular
+                            motion. The phase constant is the initial angle of
+                            the particle on the circle.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept6">
+                    <div class="concept-header">
+                        <span class="concept-number">6</span>
+                        <h2>The Simple Pendulum</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            A simple pendulum is a mass suspended by a light
+                            string. For small angles (θ < 10°), it exhibits SHM
+                            with ω = √(g/L) and T = 2π√(L/g). Period is
+                            independent of mass.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            A simple pendulum consists of a bob of mass m
+                            attached to a string of length L. The restoring
+                            force is the tangential component of gravity:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Restoring Force</span> F<sub
+                                >t</sub
+                            >
+                            = -mg sin θ
+                        </div>
+                        <p>
+                            For small angles, sin θ ≈ θ, so F<sub>t</sub> =
+                            -mgθ. Using θ = x/L, the equation of motion becomes:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Equation of Motion</span>
+                            d²θ/dt² = -(g/L)θ
+                        </div>
+                        <p>
+                            This is the SHM equation with ω = √(g/L) and T =
+                            2π√(L/g).
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The period depends only on the length and g, not on
+                            the mass or amplitude (for small angles). This
+                            property makes pendulums useful for
+                            timekeeping—grandfather clocks use pendulums. The
+                            pendulum also provides a method for measuring g by
+                            measuring the period and length.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept7">
+                    <div class="concept-header">
+                        <span class="concept-number">7</span>
+                        <h2>Period and Frequency of a Pendulum</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Period: T = 2π√(L/g). Frequency: f = 1/(2π)√(g/L).
+                            These depend only on length and g, not on mass or
+                            amplitude (for small angles).
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>For a simple pendulum:</p>
+                        <div class="formula">
+                            <span class="label">Period</span> T = 2π√(L/g)
+                        </div>
+                        <div class="formula">
+                            <span class="label">Frequency</span> f = 1/T =
+                            1/(2π)√(g/L)
+                        </div>
+                        <div class="formula">
+                            <span class="label">Angular Frequency</span> ω = 2πf
+                            = √(g/L)
+                        </div>
+                        <p>
+                            Longer pendulums have longer periods. Stronger
+                            gravity gives shorter periods.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The independence of period from amplitude is called
+                            isochronism. It's what makes pendulums useful as
+                            timekeepers. For larger angles, the period depends
+                            on amplitude, which is why pendulum clocks use small
+                            amplitudes. The formula T = 2π√(L/g) is valid for
+                            angles less than about 10°.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept8">
+                    <div class="concept-header">
+                        <span class="concept-number">8</span>
+                        <h2>Applications of SHM</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            SHM is a model for many physical systems: springs,
+                            pendulums, molecular vibrations, and electrical
+                            oscillators (LC circuits). It provides a foundation
+                            for understanding waves.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>Examples of SHM in nature and technology:</p>
+                        <p>
+                            <strong>Mechanical:</strong> Springs, pendulums,
+                            balance wheels in watches
+                        </p>
+                        <p>
+                            <strong>Atomic:</strong> Molecular vibrations
+                            (infrared spectroscopy)
+                        </p>
+                        <p>
+                            <strong>Electrical:</strong> LC circuits (radio
+                            transmitters and receivers)
+                        </p>
+                        <p>
+                            <strong>Acoustical:</strong> Musical instruments
+                            (vibrating strings and air columns)
+                        </p>
+                        <p>
+                            <strong>Seismic:</strong> Earthquake waves
+                            (oscillations of the ground)
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            SHM is the foundation for understanding wave motion.
+                            A wave is essentially a coupled system of
+                            oscillators, with energy transferred from one
+                            oscillator to the next. The mathematics of SHM
+                            (sinusoidal functions, complex exponentials) is used
+                            extensively in physics, engineering, and signal
+                            processing.
+                        </p>
+                    </div>
+                </div>
+
+                <section id="formulas">
+                    <h2>📐 Equations</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Formula</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Hooke's Law</td>
+                                        <td>F = -kx</td>
+                                        <td>N</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Angular Frequency (Spring)</td>
+                                        <td>ω = √(k/m)</td>
+                                        <td>rad/s</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Period (Spring)</td>
+                                        <td>T = 2π√(m/k)</td>
+                                        <td>s</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Frequency (Spring)</td>
+                                        <td>f = 1/(2π)√(k/m)</td>
+                                        <td>Hz</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Displacement in SHM</td>
+                                        <td>x(t) = A cos(ωt + φ)</td>
+                                        <td>m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Velocity in SHM</td>
+                                        <td>v = -ωA sin(ωt + φ)</td>
+                                        <td>m/s</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Acceleration in SHM</td>
+                                        <td>a = -ω²A cos(ωt + φ) = -ω²x</td>
+                                        <td>m/s²</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maximum Velocity</td>
+                                        <td>v<sub>max</sub> = ωA</td>
+                                        <td>m/s</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maximum Acceleration</td>
+                                        <td>a<sub>max</sub> = ω²A</td>
+                                        <td>m/s²</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Energy in SHM</td>
+                                        <td>E = ½kA²</td>
+                                        <td>J</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Velocity at Position x</td>
+                                        <td>v = ±ω√(A² - x²)</td>
+                                        <td>m/s</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Angular Frequency (Pendulum)</td>
+                                        <td>ω = √(g/L)</td>
+                                        <td>rad/s</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Period (Pendulum)</td>
+                                        <td>T = 2π√(L/g)</td>
+                                        <td>s</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="professor-card" id="narrative">
+                    <h2>🎓 Professor's Narrative</h2>
+                    <p>
+                        Oscillatory motion is everywhere in nature—from the
+                        swinging of a pendulum to the vibrations of atoms in a
+                        molecule. Simple harmonic motion is the simplest form of
+                        oscillatory motion, and it provides the foundation for
+                        understanding more complex oscillatory systems.
+                    </p>
+                    <p>
+                        The key to SHM is the linear restoring force: F = -kx.
+                        This force leads to sinusoidal motion with a period that
+                        is independent of the amplitude. This property, called
+                        isochronism, is why pendulums and springs are used as
+                        timekeepers.
+                    </p>
+                    <p>
+                        Energy conservation is a powerful tool for analyzing
+                        SHM. The total energy is constant, with kinetic energy
+                        converting to potential energy and back. At any point in
+                        the motion, the sum of kinetic and potential energies
+                        equals ½kA².
+                    </p>
+                    <p>
+                        The simple pendulum is a classic example of SHM for
+                        small angles. Its period depends only on the length of
+                        the string and the acceleration due to gravity, not on
+                        the mass of the bob. This makes pendulums useful for
+                        measuring g and for keeping time.
+                    </p>
+                    <p>
+                        Finally, remember that SHM is the basis for
+                        understanding waves. A wave is a disturbance that
+                        propagates through a medium, with each point in the
+                        medium undergoing SHM. The mathematics of SHM is
+                        essential for understanding everything from sound waves
+                        to light waves.
+                    </p>
+                </section>
+
+                <section class="ask-section" id="ask-professor">
+                    <h2>❓ Ask the Professor</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why is the period of a spring-mass system
+                                independent of amplitude?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    The restoring force F = -kx is linear—it
+                                    increases linearly with displacement. This
+                                    leads to a differential equation (d²x/dt² =
+                                    -(k/m)x) whose solution is sinusoidal with
+                                    angular frequency ω = √(k/m), which is
+                                    independent of amplitude. The amplitude only
+                                    affects the starting point.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why does a pendulum's period not depend on its
+                                mass? <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    The restoring force is the tangential
+                                    component of gravity: F<sub>t</sub> = -mg
+                                    sin θ. The acceleration is a<sub>t</sub> =
+                                    F<sub>t</sub>/m = -g sin θ. Notice that the
+                                    mass cancels out—the acceleration depends
+                                    only on g and θ. Therefore, the period is
+                                    independent of mass.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                What happens if a pendulum swings at a large
+                                angle? <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    The approximation sin θ ≈ θ is no longer
+                                    valid. The period becomes dependent on
+                                    amplitude—larger amplitudes have longer
+                                    periods. This is why pendulum clocks use
+                                    small amplitudes (typically less than 5°).
+                                    For larger angles, the period is given by an
+                                    elliptic integral.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="vault-section" id="exam-vault">
+                    <h2>🔐 Exam Vault</h2>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Spring-mass system: ω = √(k/m), T = 2π√(m/k). Period
+                        independent of amplitude.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        The amplitude A is the maximum displacement. The total
+                        energy is E = ½kA², not ½kA or kA².
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--secret"
+                            >🤫 Secret</span
+                        >
+                        The simple pendulum: ω = √(g/L), T = 2π√(L/g). Period
+                        independent of mass and amplitude (for small angles).
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Velocity in SHM: v = ±ω√(A² - x²). Maximum velocity at
+                        equilibrium: v<sub>max</sub> = ωA.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        The acceleration in SHM is always opposite to
+                        displacement: a = -ω²x. Maximum at turning points (x =
+                        ±A), zero at equilibrium (x = 0).
+                    </div>
+                </section>
+
+                <section class="quiz-section" id="quiz">
+                    <h2>
+                        📝 Chapter 9: Oscillatory Motion and Simple Pendulum
+                        Quiz
+                    </h2>
+                    <div id="quiz-container"></div>
+                </section>
+            </main>
+
+            <footer>
+                SCI201 · Chapter 9: Oscillatory Motion and Simple Pendulum
+            </footer>
+        </div>
+
+        <script>
+            (function () {
+                window.toggleTheme = function () {
+                    const html = document.documentElement;
+                    const cur = html.getAttribute("data-theme");
+                    const next = cur === "dark" ? "light" : "dark";
+                    html.setAttribute("data-theme", next);
+                    localStorage.setItem("garden_theme", next);
+                };
+                const saved = localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", saved);
+
+                document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
+                    const card = tabGroup.closest(".concept-card");
+                    if (!card) return;
+                    const tabs = tabGroup.querySelectorAll(".depth-tab");
+                    const contents = card.querySelectorAll(".depth-content");
+                    tabs.forEach((tab) => {
+                        tab.addEventListener("click", function () {
+                            const layer = this.dataset.layer;
+                            tabs.forEach((t) => t.classList.remove("active"));
+                            this.classList.add("active");
+                            contents.forEach((c) => {
+                                c.classList.remove("active");
+                                if (c.dataset.layer === layer)
+                                    c.classList.add("active");
+                            });
+                        });
+                    });
+                });
+
+                document
+                    .querySelectorAll(".accordion-trigger")
+                    .forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            const body = this.nextElementSibling;
+                            const isOpen = body.classList.contains("open");
+                            const section = this.closest(".accordion");
+                            section
+                                .querySelectorAll(".accordion-body")
+                                .forEach((b) => b.classList.remove("open"));
+                            if (!isOpen) body.classList.add("open");
+                        });
+                    });
+
+                const currentStatus = localStorage.getItem("chapter_9_status");
+                if (!currentStatus || currentStatus === "not-started") {
+                    localStorage.setItem("chapter_9_status", "viewed");
                 }
-                .sidebar {
-                    display: none !important;
-                }
-                .sidebar-toggle {
-                    display: flex !important;
-                    position: static !important;
-                    margin: 0;
-                }
-                .toolbar-hamburger {
-                    display: none !important;
-                }
-                .toolbar {
-                    width: 100%;
-                    margin-left: 0;
-                    margin-right: 0;
-                    padding: 0.5rem 1rem;
-                    left: 0;
-                    right: 0;
-                }
-                .concept-number {
-                    min-width: 32px;
-                    min-height: 32px;
-                    width: auto;
-                    height: auto;
-                    padding: 0.25rem 0.5rem;
-                    flex-shrink: 0;
-                }
-                html,
-                body {
-                    overflow-x: hidden;
-                    width: 100%;
-                }
-                .main-wrapper {
-                    padding: 1rem;
-                    width: 100%;
-                }
-            }
+            })();
+        </script>
+
+        <script src="../js/quiz.js"></script>
+        <script>
+            initQuiz({
+                chapterNum: 9,
+                quizData: [
+                    {
+                        question:
+                            "1. Simple harmonic motion occurs when the restoring force is:",
+                        options: [
+                            "Constant.",
+                            "Proportional to velocity.",
+                            "Proportional to displacement and directed toward equilibrium.",
+                            "Proportional to displacement squared.",
+                        ],
+                        correct: 2,
+                        explanation: "Hooke's law: F = -kx.",
+                        hint: "Hooke's law: F = -kx.",
+                    },
+                    {
+                        question:
+                            "2. The period of a spring-mass system is given by:",
+                        options: [
+                            "T = 2π√(k/m).",
+                            "T = 2π√(m/k).",
+                            "T = √(k/m).",
+                            "T = 2πm/k.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "T = 2π√(m/k), period depends on mass and spring constant.",
+                        hint: "Check the formula for period.",
+                    },
+                    {
+                        question: "3. The amplitude of SHM is:",
+                        options: [
+                            "The maximum velocity.",
+                            "The maximum displacement.",
+                            "The maximum acceleration.",
+                            "The frequency.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Amplitude A is the maximum displacement from equilibrium.",
+                        hint: "Amplitude is the maximum displacement from equilibrium.",
+                    },
+                    {
+                        question:
+                            "4. At the equilibrium position in SHM, the velocity is:",
+                        options: ["Zero.", "Maximum.", "Minimum.", "Constant."],
+                        correct: 1,
+                        explanation:
+                            "The mass passes through equilibrium with maximum speed.",
+                        hint: "The mass passes through equilibrium with maximum speed.",
+                    },
+                    {
+                        question:
+                            "5. The total energy of a spring-mass oscillator in SHM is:",
+                        options: ["½kA².", "½kA.", "kA².", "½mv²."],
+                        correct: 0,
+                        explanation: "Total energy is constant at E = ½kA².",
+                        hint: "Energy is constant and depends on amplitude.",
+                    },
+                    {
+                        question: "6. The simple pendulum has SHM for:",
+                        options: [
+                            "All angles.",
+                            "Small angles (less than 10°).",
+                            "Large angles only.",
+                            "No angles.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "The approximation sin θ ≈ θ is needed, valid for small angles.",
+                        hint: "The approximation sin θ ≈ θ is needed.",
+                    },
+                    {
+                        question:
+                            "7. The period of a simple pendulum depends on:",
+                        options: [
+                            "Mass only.",
+                            "Length only.",
+                            "Both mass and length.",
+                            "Neither mass nor length.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "T = 2π√(L/g), depends only on length and gravity.",
+                        hint: "T = 2π√(L/g).",
+                    },
+                    {
+                        question: "8. SHM can be modeled as the projection of:",
+                        options: [
+                            "Uniform linear motion.",
+                            "Uniform circular motion.",
+                            "Uniform acceleration.",
+                            "Random motion.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "SHM is the projection of uniform circular motion onto a diameter.",
+                        hint: "Think about the circular motion analogy.",
+                    },
+                    {
+                        question:
+                            "9. The angular frequency of a simple pendulum is:",
+                        options: [
+                            "ω = √(g/L).",
+                            "ω = √(L/g).",
+                            "ω = g/L.",
+                            "ω = L/g.",
+                        ],
+                        correct: 0,
+                        explanation: "ω = √(g/L) for a simple pendulum.",
+                        hint: "Check the formula for angular frequency.",
+                    },
+                    {
+                        question: "10. The maximum acceleration in SHM is:",
+                        options: [
+                            "a_max = ωA.",
+                            "a_max = ω²A.",
+                            "a_max = ω/A.",
+                            "a_max = A/ω.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "a_max = ω²A, occurs at the turning points.",
+                        hint: "Acceleration is maximum at the turning points.",
+                    },
+                ],
+            });
+        </script>
+        <script src="../js/toolbar.js"></script>
+    </body>
+</html>
