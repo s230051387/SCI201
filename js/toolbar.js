@@ -36,14 +36,10 @@
     </div>
   `;
 
-  // Insert at body level, BEFORE the sidebar
   const body = document.body;
   body.insertBefore(toolbar, body.firstChild);
-
-  // Make body a column layout so toolbar sits on top
   body.style.flexDirection = "column";
 
-  // Wrap sidebar + main-wrapper in a row container
   const sidebar = document.getElementById("sidebar");
   const mainWrapper = document.querySelector(".main-wrapper");
 
@@ -53,8 +49,6 @@
     rowContainer.style.display = "flex";
     rowContainer.style.flex = "1";
     rowContainer.style.minHeight = "0";
-
-    // Move sidebar and main-wrapper into the row
     body.appendChild(rowContainer);
     rowContainer.appendChild(sidebar);
     rowContainer.appendChild(mainWrapper);
@@ -80,27 +74,14 @@
 })();
 
 // Scroll to top button
-(function() {
-  const btn = document.querySelector('.scroll-top-btn');
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.querySelector(".scroll-top-btn");
   if (!btn) return;
-  window.addEventListener('scroll', function() {
+  window.addEventListener("scroll", function () {
     if (window.scrollY > 300) {
-      btn.classList.add('visible');
+      btn.classList.add("visible");
     } else {
-      btn.classList.remove('visible');
+      btn.classList.remove("visible");
     }
   });
-})();
-
-// Scroll to top button
-(function() {
-  const btn = document.querySelector('.scroll-top-btn');
-  if (!btn) return;
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 300) {
-      btn.classList.add('visible');
-    } else {
-      btn.classList.remove('visible');
-    }
-  });
-})();
+});
