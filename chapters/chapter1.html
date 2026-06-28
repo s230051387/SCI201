@@ -119,9 +119,6 @@
                 overflow-x: hidden;
             }
 
-            /* ================================================================
-                SIDEBAR
-                ================================================================ */
             .sidebar {
                 width: var(--sidebar-width);
                 flex-shrink: 0;
@@ -150,7 +147,6 @@
                 padding-bottom: 0.75rem;
                 border-bottom: 1px solid var(--border);
             }
-
             .sidebar-nav {
                 list-style: none;
                 padding: 0;
@@ -159,7 +155,6 @@
                 flex-direction: column;
                 gap: 2px;
             }
-
             .sidebar-nav li a {
                 display: block;
                 padding: 0.5rem 0.75rem;
@@ -171,43 +166,33 @@
                 transition: all 0.15s ease;
                 border-left: 3px solid transparent;
             }
-
             .sidebar-nav li a:hover {
                 background: var(--surface-alt);
                 color: var(--text);
                 border-left-color: var(--border);
             }
-
             .sidebar-nav li a.active {
                 background: var(--primary-light);
                 color: var(--primary);
                 font-weight: 600;
                 border-left-color: var(--primary);
             }
-
             .sidebar-nav li a .emoji {
                 margin-right: 6px;
                 font-size: 0.9rem;
             }
-
             .sidebar-divider {
                 border: none;
                 border-top: 1px solid var(--border);
                 margin: 0.75rem 0;
             }
 
-            /* ================================================================
-                MAIN CONTENT WRAPPER
-                ================================================================ */
             .main-wrapper {
                 flex: 1;
                 min-width: 0;
                 padding: 1.5rem 2rem;
             }
 
-            /* ================================================================
-                    HEADER & SECTIONS
-                    ================================================================ */
             header,
             section,
             footer,
@@ -235,12 +220,10 @@
                 color: var(--fg0);
                 scroll-margin-top: 1rem;
             }
-
             h1 {
                 font-size: 2.2rem;
                 margin: 0.5rem 0 0.3rem;
             }
-
             h2 {
                 font-size: 1.5rem;
                 margin: 1.2rem 0 1rem;
@@ -248,15 +231,6 @@
                 align-items: center;
                 gap: 0.5rem;
                 color: var(--primary);
-            }
-
-            .chapter-nav {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                gap: 0.8rem;
-                margin-bottom: 0.5rem;
             }
 
             .nav-btn {
@@ -275,13 +249,11 @@
                 transition: 0.2s;
                 font-family: inherit;
             }
-
             .nav-btn:hover {
                 filter: brightness(1.1);
                 text-decoration: none;
                 color: var(--bg0_h);
             }
-
             .nav-btn:disabled {
                 opacity: 0.5;
                 cursor: not-allowed;
@@ -293,7 +265,6 @@
                 gap: 0.5rem;
                 margin-top: 1rem;
             }
-
             .tag {
                 background: rgba(255, 255, 255, 0.15);
                 color: var(--bg0_h);
@@ -303,7 +274,6 @@
                 font-weight: 500;
                 border: 1px solid rgba(255, 255, 255, 0.1);
             }
-
             .tag--accent {
                 background: rgba(255, 255, 255, 0.25);
                 border-color: rgba(255, 255, 255, 0.2);
@@ -313,7 +283,6 @@
                 list-style: none;
                 padding-left: 0;
             }
-
             .objectives-list li {
                 padding: 0.4rem 0;
                 display: flex;
@@ -321,7 +290,6 @@
                 gap: 0.5rem;
                 color: var(--text);
             }
-
             .objectives-list li::before {
                 content: "●";
                 color: var(--primary);
@@ -333,14 +301,12 @@
                 padding: 1.5rem;
                 scroll-margin-top: 1rem;
             }
-
             .concept-header {
                 display: flex;
                 align-items: center;
                 gap: 0.75rem;
                 margin-bottom: 1rem;
             }
-
             .concept-number {
                 background: linear-gradient(135deg, var(--blue), var(--purple));
                 color: var(--bg0_h);
@@ -362,7 +328,6 @@
                 border-radius: 10px;
                 border: 1px solid var(--border);
             }
-
             .depth-tab {
                 background: transparent;
                 border: none;
@@ -375,22 +340,18 @@
                 font-size: 0.9rem;
                 font-family: inherit;
             }
-
             .depth-tab.active {
                 background: var(--primary);
                 color: var(--bg0_h);
             }
-
             .depth-content {
                 display: none;
                 animation: fade 0.2s ease;
                 color: var(--text);
             }
-
             .depth-content.active {
                 display: block;
             }
-
             @keyframes fade {
                 from {
                     opacity: 0.3;
@@ -410,7 +371,6 @@
                 border-left: 4px solid var(--primary);
                 color: var(--fg0);
             }
-
             .label {
                 display: block;
                 font-size: 0.7rem;
@@ -429,7 +389,6 @@
                 margin: 1.2rem 0;
                 color: var(--bg0_h);
             }
-
             [data-theme="light"] .note-box {
                 color: var(--fg0);
                 background: var(--bg2);
@@ -439,7 +398,6 @@
                 overflow-x: auto;
                 margin: 1rem 0;
             }
-
             .comparison-table {
                 width: 100%;
                 border-collapse: collapse;
@@ -448,7 +406,6 @@
                 overflow: hidden;
                 border: 1px solid var(--border);
             }
-
             .comparison-table th {
                 background: var(--surface-alt);
                 padding: 0.7rem;
@@ -456,7 +413,6 @@
                 color: var(--fg0);
                 border-bottom: 2px solid var(--border);
             }
-
             .comparison-table td {
                 padding: 0.6rem;
                 border-bottom: 1px solid var(--border);
@@ -466,7 +422,6 @@
             .professor-card {
                 border-left: 4px solid var(--purple);
             }
-
             .vault-entry {
                 margin-bottom: 1rem;
                 padding: 0.8rem;
@@ -475,12 +430,10 @@
                 border: 1px solid var(--border);
                 color: var(--text);
             }
-
             .vault-type {
                 font-weight: 700;
                 margin-bottom: 0.3rem;
             }
-
             .vault-type--key {
                 color: var(--accent);
             }
@@ -494,7 +447,6 @@
             .accordion-item {
                 border-bottom: 1px solid var(--border);
             }
-
             .accordion-trigger {
                 width: 100%;
                 background: none;
@@ -509,7 +461,6 @@
                 font-family: inherit;
                 font-size: 1rem;
             }
-
             .accordion-body {
                 max-height: 0;
                 overflow: hidden;
@@ -517,7 +468,6 @@
                 padding: 0 0.5rem;
                 color: var(--text-secondary);
             }
-
             .accordion-body.open {
                 max-height: 200px;
                 padding-bottom: 1rem;
@@ -529,7 +479,6 @@
                 padding: 1.5rem;
                 border-radius: var(--radius);
             }
-
             .quiz-header {
                 display: flex;
                 justify-content: space-between;
@@ -538,7 +487,6 @@
                 font-weight: 600;
                 font-size: 0.9rem;
             }
-
             .quiz-question {
                 font-weight: 600;
                 color: var(--fg0);
@@ -546,7 +494,6 @@
                 font-size: 1.05rem;
                 line-height: 1.6;
             }
-
             .quiz-options label {
                 display: block;
                 margin: 0.5rem 0;
@@ -558,18 +505,15 @@
                 background: var(--surface);
                 color: var(--text);
             }
-
             .quiz-options label:hover {
                 border-color: var(--primary);
                 background: var(--bg2);
             }
-
             .quiz-options input[type="radio"] {
                 margin-right: 10px;
                 accent-color: var(--primary);
                 transform: scale(1.1);
             }
-
             .quiz-feedback {
                 background: var(--surface);
                 padding: 0.8rem 1rem;
@@ -579,15 +523,12 @@
                 color: var(--text);
                 line-height: 1.6;
             }
-
             .hidden {
                 display: none !important;
             }
-
             button {
                 cursor: pointer;
             }
-
             footer {
                 text-align: center;
                 font-size: 0.85rem;
@@ -601,30 +542,24 @@
                 color: var(--text);
                 border: 1px solid var(--border);
             }
-
             #quiz-hint-btn:hover,
             #quiz-prev-btn:hover {
                 background: var(--primary);
                 color: var(--bg0_h);
                 border-color: var(--primary);
             }
-
             #quiz-next-btn,
             #retry-btn {
                 background: var(--primary);
                 color: var(--bg0_h);
                 border: none;
             }
-
             .score-display {
                 color: var(--primary);
                 font-weight: 700;
                 font-size: 2rem;
             }
 
-            /* ================================================================
-               MOBILE SIDEBAR TOGGLE
-               ================================================================ */
             .sidebar-toggle {
                 display: none;
                 background: var(--primary);
@@ -638,63 +573,7 @@
                 box-shadow: var(--shadow);
             }
 
-            @media (max-width: 900px) {
-    .toolbar-hamburger {
-        display: none !important;
-    }
-    .sidebar {
-        display: none !important;
-    }
-    .toolbar {
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        padding: 0.5rem 1rem;
-        left: 0;
-        right: 0;
-    }
-    .concept-number {
-        min-width: 32px;
-        min-height: 32px;
-        width: auto;
-        height: auto;
-        padding: 0.25rem 0.5rem;
-        flex-shrink: 0;
-    }
-    html, body {
-        overflow-x: hidden;
-        width: 100%;
-    }
-                body {
-                    flex-direction: column;
-                }
-
-                .sidebar {
-                    position: fixed;
-                    left: -100%;
-                    top: 0;
-                    height: 100vh;
-                    width: 280px;
-                    transition: left 0.3s ease;
-                    z-index: 15;
-                }
-
-                .sidebar.open {
-                    left: 0;
-                }
-
-                .toolbar-hamburger {
-                    display: flex !important;
-                    align-items: center;
-                    justify-content: center;
-                }
-
-                .main-wrapper {
-                    padding: 1rem;
-                    width: 100%;
-                }
-            }
-            /* Toolbar full width above sidebar */
+            /* Toolbar */
             .toolbar {
                 position: sticky;
                 top: 0;
@@ -714,18 +593,15 @@
                 margin-left: calc(-50vw + 600px);
                 margin-right: calc(-50vw + 600px);
             }
-
             [data-theme="dark"] .toolbar {
                 background: rgba(29, 32, 33, 0.9);
             }
-
             .toolbar-left,
             .toolbar-right {
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
             }
-
             .toolbar-center {
                 display: flex;
                 align-items: center;
@@ -738,7 +614,6 @@
                 border-radius: 2rem;
                 border: 1px solid var(--border);
             }
-
             .toolbar-btn {
                 background: var(--surface-alt);
                 border: 1px solid var(--border);
@@ -754,45 +629,33 @@
                 font-size: 1rem;
                 transition: all 0.2s ease;
             }
-
             .toolbar-btn:hover {
                 background: var(--primary);
                 color: var(--bg0_h);
-                border-color: var(--primary);
+                border-color: var(--aqua);
             }
-
             .toolbar-btn.disabled-btn {
                 opacity: 0.3;
                 cursor: not-allowed;
                 pointer-events: none;
             }
+
+            /* MOBILE */
             @media (max-width: 900px) {
-    .toolbar-hamburger {
-        display: none !important;
-    }
-    .sidebar {
-        display: none !important;
-    }
-    .toolbar {
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        padding: 0.5rem 1rem;
-        left: 0;
-        right: 0;
-    }
-    .concept-number {
-        min-width: 32px;
-        min-height: 32px;
-        width: auto;
-        height: auto;
-        padding: 0.25rem 0.5rem;
-        flex-shrink: 0;
-    }
-    html, body {
-        overflow-x: hidden;
-        width: 100%;
-    }
+                body {
+                    flex-direction: column;
+                }
+                .sidebar {
+                    display: none !important;
+                }
+                .sidebar-toggle {
+                    display: flex !important;
+                    position: static !important;
+                    margin: 0;
+                }
+                .toolbar-hamburger {
+                    display: none !important;
+                }
                 .toolbar {
                     width: 100%;
                     margin-left: 0;
@@ -801,30 +664,27 @@
                     left: 0;
                     right: 0;
                 }
-
-                .sidebar {
-                    top: 56px;
-                    height: calc(100vh - 56px);
+                .concept-number {
+                    min-width: 32px;
+                    min-height: 32px;
+                    width: auto;
+                    height: auto;
+                    padding: 0.25rem 0.5rem;
+                    flex-shrink: 0;
                 }
-
-                .sidebar-toggle {
-                    display: flex !important;
-                    position: static !important;
-                    margin: 0;
-                }
-
                 html,
                 body {
                     overflow-x: hidden;
+                    width: 100%;
+                }
+                .main-wrapper {
+                    padding: 1rem;
                     width: 100%;
                 }
             }
         </style>
     </head>
     <body>
-        <!-- ================================================================
-             SIDEBAR
-             ================================================================ -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">📑 SCI201</div>
             <ul class="sidebar-nav">
@@ -880,7 +740,7 @@
                 </li>
                 <li>
                     <a href="#formulas"
-                        ><span class="emoji"> 📐</span> Formulas Summary</a
+                        ><span class="emoji">📐</span> Formulas Summary</a
                     >
                 </li>
                 <hr class="sidebar-divider" />
@@ -905,9 +765,6 @@
             </ul>
         </aside>
 
-        <!-- ================================================================
-             MAIN CONTENT
-             ================================================================ -->
         <div class="main-wrapper">
             <header>
                 <h1>⚡ Electric Potential</h1>
@@ -925,7 +782,6 @@
                 </div>
             </header>
             <main>
-                <!-- Learning Objectives -->
                 <section id="objectives">
                     <h2>🎯 Learning Objectives</h2>
                     <ul class="objectives-list">
@@ -949,7 +805,6 @@
                     </ul>
                 </section>
 
-                <!-- CONCEPT 1 -->
                 <div class="concept-card" id="concept1">
                     <div class="concept-header">
                         <span class="concept-number">1</span>
@@ -957,12 +812,10 @@
                     </div>
                     <div class="depth-tabs">
                         <button class="depth-tab active" data-layer="short">
-                            ⚡ Short
-                        </button>
-                        <button class="depth-tab" data-layer="full">
-                            📖 Full
-                        </button>
-                        <button class="depth-tab" data-layer="deep">
+                            ⚡ Short</button
+                        ><button class="depth-tab" data-layer="full">
+                            📖 Full</button
+                        ><button class="depth-tab" data-layer="deep">
                             🔬 Deep
                         </button>
                     </div>
@@ -1028,8 +881,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- CONCEPT 2 -->
                 <div class="concept-card" id="concept2">
                     <div class="concept-header">
                         <span class="concept-number">2</span>
@@ -1037,12 +888,10 @@
                     </div>
                     <div class="depth-tabs">
                         <button class="depth-tab active" data-layer="short">
-                            ⚡ Short
-                        </button>
-                        <button class="depth-tab" data-layer="full">
-                            📖 Full
-                        </button>
-                        <button class="depth-tab" data-layer="deep">
+                            ⚡ Short</button
+                        ><button class="depth-tab" data-layer="full">
+                            📖 Full</button
+                        ><button class="depth-tab" data-layer="deep">
                             🔬 Deep
                         </button>
                     </div>
@@ -1080,8 +929,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- CONCEPT 3 -->
                 <div class="concept-card" id="concept3">
                     <div class="concept-header">
                         <span class="concept-number">3</span>
@@ -1089,12 +936,10 @@
                     </div>
                     <div class="depth-tabs">
                         <button class="depth-tab active" data-layer="short">
-                            ⚡ Short
-                        </button>
-                        <button class="depth-tab" data-layer="full">
-                            📖 Full
-                        </button>
-                        <button class="depth-tab" data-layer="deep">
+                            ⚡ Short</button
+                        ><button class="depth-tab" data-layer="full">
+                            📖 Full</button
+                        ><button class="depth-tab" data-layer="deep">
                             🔬 Deep
                         </button>
                     </div>
@@ -1146,8 +991,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- CONCEPT 4 -->
                 <div class="concept-card" id="concept4">
                     <div class="concept-header">
                         <span class="concept-number">4</span>
@@ -1155,12 +998,10 @@
                     </div>
                     <div class="depth-tabs">
                         <button class="depth-tab active" data-layer="short">
-                            ⚡ Short
-                        </button>
-                        <button class="depth-tab" data-layer="full">
-                            📖 Full
-                        </button>
-                        <button class="depth-tab" data-layer="deep">
+                            ⚡ Short</button
+                        ><button class="depth-tab" data-layer="full">
+                            📖 Full</button
+                        ><button class="depth-tab" data-layer="deep">
                             🔬 Deep
                         </button>
                     </div>
@@ -1199,8 +1040,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- CONCEPT 5 -->
                 <div class="concept-card" id="concept5">
                     <div class="concept-header">
                         <span class="concept-number">5</span>
@@ -1208,12 +1047,10 @@
                     </div>
                     <div class="depth-tabs">
                         <button class="depth-tab active" data-layer="short">
-                            ⚡ Short
-                        </button>
-                        <button class="depth-tab" data-layer="full">
-                            📖 Full
-                        </button>
-                        <button class="depth-tab" data-layer="deep">
+                            ⚡ Short</button
+                        ><button class="depth-tab" data-layer="full">
+                            📖 Full</button
+                        ><button class="depth-tab" data-layer="deep">
                             🔬 Deep
                         </button>
                     </div>
@@ -1248,8 +1085,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- CONCEPT 6 -->
                 <div class="concept-card" id="concept6">
                     <div class="concept-header">
                         <span class="concept-number">6</span>
@@ -1257,12 +1092,10 @@
                     </div>
                     <div class="depth-tabs">
                         <button class="depth-tab active" data-layer="short">
-                            ⚡ Short
-                        </button>
-                        <button class="depth-tab" data-layer="full">
-                            📖 Full
-                        </button>
-                        <button class="depth-tab" data-layer="deep">
+                            ⚡ Short</button
+                        ><button class="depth-tab" data-layer="full">
+                            📖 Full</button
+                        ><button class="depth-tab" data-layer="deep">
                             🔬 Deep
                         </button>
                     </div>
@@ -1296,8 +1129,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- CONCEPT 7 -->
                 <div class="concept-card" id="concept7">
                     <div class="concept-header">
                         <span class="concept-number">7</span>
@@ -1305,12 +1136,10 @@
                     </div>
                     <div class="depth-tabs">
                         <button class="depth-tab active" data-layer="short">
-                            ⚡ Short
-                        </button>
-                        <button class="depth-tab" data-layer="full">
-                            📖 Full
-                        </button>
-                        <button class="depth-tab" data-layer="deep">
+                            ⚡ Short</button
+                        ><button class="depth-tab" data-layer="full">
+                            📖 Full</button
+                        ><button class="depth-tab" data-layer="deep">
                             🔬 Deep
                         </button>
                     </div>
@@ -1356,8 +1185,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- CONCEPT 8 -->
                 <div class="concept-card" id="concept8">
                     <div class="concept-header">
                         <span class="concept-number">8</span>
@@ -1365,12 +1192,10 @@
                     </div>
                     <div class="depth-tabs">
                         <button class="depth-tab active" data-layer="short">
-                            ⚡ Short
-                        </button>
-                        <button class="depth-tab" data-layer="full">
-                            📖 Full
-                        </button>
-                        <button class="depth-tab" data-layer="deep">
+                            ⚡ Short</button
+                        ><button class="depth-tab" data-layer="full">
+                            📖 Full</button
+                        ><button class="depth-tab" data-layer="deep">
                             🔬 Deep
                         </button>
                     </div>
@@ -1397,6 +1222,7 @@
                         </p>
                     </div>
                 </div>
+
                 <section id="formulas">
                     <h2>📐 Important Formulas Summary</h2>
                     <div class="concept-card">
@@ -1459,7 +1285,6 @@
                             </table>
                         </div>
                     </div>
-
                     <h2>± Sign Conventions</h2>
                     <div class="concept-card">
                         <div class="comparison-table-wrap">
@@ -1493,7 +1318,6 @@
                     </div>
                 </section>
 
-                <!-- Professor's Narrative -->
                 <section class="professor-card" id="narrative">
                     <h2>🎓 Professor's Narrative</h2>
                     <p>
@@ -1510,8 +1334,6 @@
                         from high potential to low potential.
                     </p>
                 </section>
-
-                <!-- Ask the Professor -->
                 <section class="ask-section" id="ask-professor">
                     <h2>❓ Ask the Professor</h2>
                     <div class="accordion">
@@ -1547,8 +1369,6 @@
                         </div>
                     </div>
                 </section>
-
-                <!-- Exam Vault -->
                 <section class="vault-section" id="exam-vault">
                     <h2>🔐 Exam Vault</h2>
                     <div class="vault-entry">
@@ -1575,39 +1395,26 @@
                         charge at a constant velocity, simply use W = qΔV.
                     </div>
                 </section>
-
-                <!-- Quiz -->
                 <section class="quiz-section" id="quiz">
                     <h2>📝 Chapter 1: Electric Potential Quiz</h2>
                     <div id="quiz-container"></div>
                 </section>
             </main>
-
             <footer>SCI201 · Chapter 1: Electric Potential</footer>
         </div>
 
         <script>
             (function () {
-                // THEME TOGGLE
                 window.toggleTheme = function () {
                     const html = document.documentElement;
                     const cur = html.getAttribute("data-theme");
                     const next = cur === "dark" ? "light" : "dark";
                     html.setAttribute("data-theme", next);
                     localStorage.setItem("garden_theme", next);
-                    const btn = document.getElementById("themeBtn");
-                    if (btn)
-                        btn.textContent =
-                            next === "dark" ? "🌙 Dark Mode" : "☀️ Light Mode";
                 };
                 const saved = localStorage.getItem("garden_theme") || "dark";
                 document.documentElement.setAttribute("data-theme", saved);
-                const btn = document.getElementById("themeBtn");
-                if (btn)
-                    btn.textContent =
-                        saved === "dark" ? "🌙 Dark Mode" : "☀️ Light Mode";
 
-                // DEPTH TABS
                 document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
                     const card = tabGroup.closest(".concept-card");
                     if (!card) return;
@@ -1627,7 +1434,6 @@
                     });
                 });
 
-                // ACCORDION
                 document
                     .querySelectorAll(".accordion-trigger")
                     .forEach((btn) => {
@@ -1642,14 +1448,12 @@
                         });
                     });
 
-                // Mark chapter as viewed
                 const currentStatus = localStorage.getItem("chapter_1_status");
                 if (!currentStatus || currentStatus === "not-started") {
                     localStorage.setItem("chapter_1_status", "viewed");
                 }
             })();
         </script>
-
         <script src="../js/quiz.js"></script>
         <script>
             initQuiz({
@@ -1776,4 +1580,3 @@
         <script src="../js/toolbar.js"></script>
     </body>
 </html>
- 
