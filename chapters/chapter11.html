@@ -1,0 +1,1579 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=yes"
+        />
+        <title>Chapter 11: Wave Motion and Sound Waves (Part 2) · SCI201</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+        <style>
+            /* ================================================================
+               GRUVBOX COLOR PALETTE
+               ================================================================ */
+            :root {
+                --bg: #fbf1c7;
+                --bg0_h: #f9f5d7;
+                --bg0: #fbf1c7;
+                --bg1: #ebdbb2;
+                --bg2: #d5c4a1;
+                --bg3: #bdae93;
+                --bg4: #a89984;
+                --fg: #3c3836;
+                --fg0: #282828;
+                --fg1: #3c3836;
+                --fg2: #504945;
+                --fg3: #665c54;
+                --fg4: #7c6f64;
+                --gray: #928374;
+                --red: #9d0006;
+                --green: #79740e;
+                --yellow: #b57614;
+                --blue: #076678;
+                --purple: #8f3f71;
+                --aqua: #427b58;
+                --orange: #d65d0e;
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --accent: var(--yellow);
+                --success: var(--green);
+                --danger: var(--red);
+                --warning: var(--orange);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+                --shadow:
+                    0 4px 6px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+                --radius: 12px;
+                --radius-sm: 8px;
+                --transition: 0.2s ease;
+                --sidebar-width: 260px;
+            }
+
+            [data-theme="dark"] {
+                --bg: #282828;
+                --bg0_h: #1d2021;
+                --bg0: #282828;
+                --bg1: #3c3836;
+                --bg2: #504945;
+                --bg3: #665c54;
+                --bg4: #7c6f64;
+                --fg: #ebdbb2;
+                --fg0: #fbf1c7;
+                --fg1: #ebdbb2;
+                --fg2: #d5c4a1;
+                --fg3: #bdae93;
+                --fg4: #a89984;
+                --gray: #928374;
+                --red: #cc241d;
+                --green: #98971a;
+                --yellow: #d79921;
+                --blue: #458588;
+                --purple: #b16286;
+                --aqua: #689d6a;
+                --orange: #d65d0e;
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+                --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.6;
+                transition:
+                    background var(--transition),
+                    color var(--transition);
+                min-height: 100vh;
+                max-width: 1200px;
+                margin: 0 auto;
+                overflow-x: hidden;
+            }
+
+            .sidebar {
+                width: var(--sidebar-width);
+                flex-shrink: 0;
+                position: sticky;
+                top: 56px;
+                height: calc(100vh - 56px);
+                background: var(--surface);
+                border-inline-end: 1px solid var(--border);
+                padding: 1.5rem 1rem;
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                overflow-x: hidden;
+                z-index: 10;
+                transition:
+                    background var(--transition),
+                    border-color var(--transition);
+            }
+
+            .sidebar-header {
+                font-weight: 700;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--text-muted);
+                margin-bottom: 1rem;
+                padding-bottom: 0.75rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .sidebar-nav {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .sidebar-nav li a {
+                display: block;
+                padding: 0.5rem 0.75rem;
+                border-radius: 6px;
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: 500;
+                transition: all 0.15s ease;
+                border-left: 3px solid transparent;
+            }
+            .sidebar-nav li a:hover {
+                background: var(--surface-alt);
+                color: var(--text);
+                border-left-color: var(--border);
+            }
+            .sidebar-nav li a.active {
+                background: var(--primary-light);
+                color: var(--primary);
+                font-weight: 600;
+                border-left-color: var(--primary);
+            }
+            .sidebar-nav li a .emoji {
+                margin-right: 6px;
+                font-size: 0.9rem;
+            }
+            .sidebar-divider {
+                border: none;
+                border-top: 1px solid var(--border);
+                margin: 0.75rem 0;
+            }
+
+            .main-wrapper {
+                flex: 1;
+                min-width: 0;
+                padding: 1.5rem 2rem;
+            }
+
+            header,
+            section,
+            footer,
+            .concept-card,
+            .professor-card,
+            .ask-section,
+            .vault-section,
+            .quiz-section {
+                background: var(--surface);
+                border-radius: var(--radius);
+                padding: 1.8rem;
+                margin-bottom: 2rem;
+                box-shadow: var(--shadow);
+                border: 1px solid var(--border);
+            }
+
+            header {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+            }
+
+            h1,
+            h2,
+            h3 {
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                color: var(--fg0);
+                scroll-margin-top: 1rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin: 0.5rem 0 0.3rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+                margin: 1.2rem 0 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--primary);
+            }
+
+            .nav-btn {
+                background: var(--primary);
+                border: none;
+                color: var(--bg0_h);
+                padding: 0.5rem 1rem;
+                border-radius: 2rem;
+                font-weight: 500;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: 0.2s;
+                font-family: inherit;
+            }
+            .nav-btn:hover {
+                filter: brightness(1.1);
+                text-decoration: none;
+                color: var(--bg0_h);
+            }
+            .nav-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            .tag-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+            .tag {
+                background: rgba(255, 255, 255, 0.15);
+                color: var(--bg0_h);
+                padding: 0.25rem 0.9rem;
+                border-radius: 2rem;
+                font-size: 0.8rem;
+                font-weight: 500;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .tag--accent {
+                background: rgba(255, 255, 255, 0.25);
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .objectives-list {
+                list-style: none;
+                padding-left: 0;
+            }
+            .objectives-list li {
+                padding: 0.4rem 0;
+                display: flex;
+                align-items: baseline;
+                gap: 0.5rem;
+                color: var(--text);
+            }
+            .objectives-list li::before {
+                content: "●";
+                color: var(--primary);
+                font-weight: bold;
+            }
+
+            .concept-card {
+                border-left: 4px solid var(--primary);
+                padding: 1.5rem;
+                scroll-margin-top: 1rem;
+            }
+            .concept-header {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+            }
+            .concept-number {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+            }
+
+            .depth-tabs {
+                display: inline-flex;
+                gap: 4px;
+                margin-bottom: 20px;
+                background: var(--surface-alt);
+                padding: 4px;
+                border-radius: 10px;
+                border: 1px solid var(--border);
+            }
+            .depth-tab {
+                background: transparent;
+                border: none;
+                padding: 0.5rem 1.2rem;
+                font-weight: 600;
+                color: var(--text-secondary);
+                cursor: pointer;
+                border-radius: 2rem;
+                transition: 0.2s;
+                font-size: 0.9rem;
+                font-family: inherit;
+            }
+            .depth-tab.active {
+                background: var(--primary);
+                color: var(--bg0_h);
+            }
+
+            .depth-content {
+                display: none;
+                animation: fade 0.2s ease;
+                color: var(--text);
+            }
+            .depth-content.active {
+                display: block;
+            }
+            @keyframes fade {
+                from {
+                    opacity: 0.3;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .formula {
+                background: var(--surface-alt);
+                padding: 0.8rem 1.2rem;
+                border-radius: var(--radius-sm);
+                margin: 1rem 0;
+                font-family: "Courier New", monospace;
+                font-weight: 500;
+                border-left: 4px solid var(--primary);
+                color: var(--fg0);
+            }
+            .label {
+                display: block;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--primary);
+                margin-bottom: 0.2rem;
+                font-weight: 600;
+            }
+
+            .note-box {
+                background: var(--accent);
+                border-left: 4px solid var(--orange);
+                padding: 0.8rem 1rem;
+                border-radius: 0.5rem;
+                margin: 1.2rem 0;
+                color: var(--bg0_h);
+            }
+            [data-theme="light"] .note-box {
+                color: var(--fg0);
+                background: var(--bg2);
+            }
+
+            .comparison-table-wrap {
+                overflow-x: auto;
+                margin: 1rem 0;
+            }
+            .comparison-table {
+                width: 100%;
+                border-collapse: collapse;
+                background: var(--surface);
+                border-radius: 0.5rem;
+                overflow: hidden;
+                border: 1px solid var(--border);
+            }
+            .comparison-table th {
+                background: var(--surface-alt);
+                padding: 0.7rem;
+                text-align: left;
+                color: var(--fg0);
+                border-bottom: 2px solid var(--border);
+            }
+            .comparison-table td {
+                padding: 0.6rem;
+                border-bottom: 1px solid var(--border);
+                color: var(--text);
+            }
+
+            .professor-card {
+                border-left: 4px solid var(--purple);
+            }
+            .vault-entry {
+                margin-bottom: 1rem;
+                padding: 0.8rem;
+                border-radius: 0.6rem;
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                color: var(--text);
+            }
+            .vault-type {
+                font-weight: 700;
+                margin-bottom: 0.3rem;
+            }
+            .vault-type--key {
+                color: var(--accent);
+            }
+            .vault-type--trap {
+                color: var(--red);
+            }
+            .vault-type--secret {
+                color: var(--green);
+            }
+
+            .accordion-item {
+                border-bottom: 1px solid var(--border);
+            }
+            .accordion-trigger {
+                width: 100%;
+                background: none;
+                border: none;
+                text-align: left;
+                padding: 1rem 0;
+                font-weight: 600;
+                display: flex;
+                justify-content: space-between;
+                color: var(--text);
+                cursor: pointer;
+                font-family: inherit;
+                font-size: 1rem;
+            }
+            .accordion-body {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0 0.5rem;
+                color: var(--text-secondary);
+            }
+            .accordion-body.open {
+                max-height: 300px;
+                padding-bottom: 1rem;
+            }
+
+            .quiz-card {
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                padding: 1.5rem;
+                border-radius: var(--radius);
+            }
+            .quiz-header {
+                display: flex;
+                justify-content: space-between;
+                color: var(--text-secondary);
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+            .quiz-question {
+                font-weight: 600;
+                color: var(--fg0);
+                margin: 1rem 0;
+                font-size: 1.05rem;
+                line-height: 1.6;
+            }
+            .quiz-options label {
+                display: block;
+                margin: 0.5rem 0;
+                cursor: pointer;
+                padding: 0.75rem 1rem;
+                border-radius: var(--radius-sm);
+                border: 1px solid var(--border);
+                transition: 0.2s;
+                background: var(--surface);
+                color: var(--text);
+            }
+            .quiz-options label:hover {
+                border-color: var(--primary);
+                background: var(--bg2);
+            }
+            .quiz-options input[type="radio"] {
+                margin-right: 10px;
+                accent-color: var(--primary);
+                transform: scale(1.1);
+            }
+            .quiz-feedback {
+                background: var(--surface);
+                padding: 0.8rem 1rem;
+                border-radius: var(--radius-sm);
+                margin-top: 1rem;
+                border-left: 4px solid var(--primary);
+                color: var(--text);
+                line-height: 1.6;
+            }
+            .hidden {
+                display: none !important;
+            }
+            button {
+                cursor: pointer;
+            }
+            footer {
+                text-align: center;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                border-top: 1px solid var(--border);
+            }
+
+            #quiz-hint-btn,
+            #quiz-prev-btn {
+                background: var(--surface);
+                color: var(--text);
+                border: 1px solid var(--border);
+            }
+            #quiz-hint-btn:hover,
+            #quiz-prev-btn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--primary);
+            }
+            #quiz-next-btn,
+            #retry-btn {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+            }
+            .score-display {
+                color: var(--primary);
+                font-weight: 700;
+                font-size: 2rem;
+            }
+
+            .sidebar-toggle {
+                display: none;
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                font-size: 1.2rem;
+                cursor: pointer;
+                box-shadow: var(--shadow);
+            }
+
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                .sidebar {
+                    position: fixed;
+                    left: -100%;
+                    top: 56px;
+                    height: calc(100vh - 56px);
+                    width: 280px;
+                    transition: left 0.3s ease;
+                    z-index: 15;
+                }
+                .sidebar.open {
+                    left: 0;
+                }
+                .toolbar-hamburger {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
+
+            .toolbar {
+                position: sticky;
+                top: 0;
+                z-index: 50;
+                width: 100vw;
+                left: 0;
+                right: 0;
+                background: rgba(251, 241, 199, 0.85);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border);
+                padding: 0.5rem calc((100vw - 1200px) / 2 + 1.5rem);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                margin-left: calc(-50vw + 600px);
+                margin-right: calc(-50vw + 600px);
+            }
+            [data-theme="dark"] .toolbar {
+                background: rgba(29, 32, 33, 0.9);
+            }
+            .toolbar-left,
+            .toolbar-right {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .toolbar-center {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-weight: 700;
+                font-size: 0.9rem;
+                color: var(--text);
+                background: var(--surface-alt);
+                padding: 0.4rem 1rem;
+                border-radius: 2rem;
+                border: 1px solid var(--border);
+            }
+            .toolbar-btn {
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                color: var(--text);
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 1rem;
+                transition: all 0.2s ease;
+            }
+            .toolbar-btn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--aqua);
+            }
+            .toolbar-btn.disabled-btn {
+                opacity: 0.3;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">📑 SCI201</div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#objectives"
+                        ><span class="emoji">🎯</span> Learning Objectives</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept1"
+                        ><span class="emoji">1️⃣</span> Characteristics of Sound
+                        Waves</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept2"
+                        ><span class="emoji">2️⃣</span> Displacement & Pressure
+                        in Sound</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept3"
+                        ><span class="emoji">3️⃣</span> Speed of Sound in Various
+                        Media</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept4"
+                        ><span class="emoji">4️⃣</span> Sound Intensity & Sound
+                        Level</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept5"
+                        ><span class="emoji">5️⃣</span> The Doppler Effect</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept6"
+                        ><span class="emoji">6️⃣</span> Doppler Effect Cases</a
+                    >
+                </li>
+                <hr class="sidebar-divider" />
+                <li>
+                    <a href="#formulas"
+                        ><span class="emoji">📐</span> Equations</a
+                    >
+                </li>
+                <li>
+                    <a href="#narrative"
+                        ><span class="emoji">🎓</span> Professor's Narrative</a
+                    >
+                </li>
+                <li>
+                    <a href="#ask-professor"
+                        ><span class="emoji">❓</span> Ask the Professor</a
+                    >
+                </li>
+                <li>
+                    <a href="#exam-vault"
+                        ><span class="emoji">🔐</span> Exam Vault</a
+                    >
+                </li>
+                <li>
+                    <a href="#quiz"><span class="emoji">📝</span> Self Quiz</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <h1>🔊 Wave Motion and Sound Waves (Part 2)</h1>
+                <p style="color: var(--bg0_h); opacity: 0.9">
+                    Sound waves, intensity, Doppler effect, and speed of sound
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Sound Waves</span>
+                    <span class="tag">Intensity</span>
+                    <span class="tag">Doppler Effect</span>
+                    <span class="tag tag--accent"
+                        ><i class="fa-regular fa-clock"></i> 45 min</span
+                    >
+                </div>
+            </header>
+
+            <main>
+                <section id="objectives">
+                    <h2>🎯 Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand the properties of sound waves.</li>
+                        <li>
+                            Define and calculate sound intensity and sound level
+                            (decibels).
+                        </li>
+                        <li>
+                            Apply the Doppler effect to moving sources and
+                            observers.
+                        </li>
+                        <li>Understand the speed of sound in various media.</li>
+                    </ul>
+                </section>
+
+                <div class="concept-card" id="concept1">
+                    <div class="concept-header">
+                        <span class="concept-number">1</span>
+                        <h2>Characteristics of Sound Waves</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Sound waves are longitudinal mechanical waves that
+                            travel through any material medium. They consist of
+                            compressions (high pressure) and rarefactions (low
+                            pressure). The audible range for humans is 20 Hz to
+                            20,000 Hz.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Sound waves are longitudinal waves—the particles of
+                            the medium oscillate parallel to the direction of
+                            propagation. They consist of:
+                        </p>
+                        <p>
+                            <strong>Compressions:</strong> Regions of high
+                            pressure and density.
+                        </p>
+                        <p>
+                            <strong>Rarefactions:</strong> Regions of low
+                            pressure and density.
+                        </p>
+                        <p>
+                            <strong>Frequency ranges:</strong> Infrasonic (below
+                            20 Hz), Audible (20 Hz to 20,000 Hz), Ultrasonic
+                            (above 20,000 Hz).
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The speed of sound depends on the medium: Gases
+                            slowest (≈343 m/s in air at 20°C), Liquids faster
+                            (≈1480 m/s in water), Solids fastest (≈5000 m/s in
+                            steel). The speed of sound in air depends on
+                            temperature: v = 331 m/s √(1 + T/273), where T is in
+                            °C.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept2">
+                    <div class="concept-header">
+                        <span class="concept-number">2</span>
+                        <h2>Displacement and Pressure in Sound Waves</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            A sound wave can be described in terms of
+                            displacement or pressure. ΔP<sub>max</sub> = B k
+                            s<sub>max</sub>. Displacement and pressure are 90°
+                            out of phase.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>A sinusoidal sound wave is described by:</p>
+                        <div class="formula">
+                            <span class="label">Pressure Wave</span> ΔP = ΔP<sub
+                                >max</sub
+                            >
+                            sin(kx - ωt)
+                        </div>
+                        <p>The displacement of the medium is:</p>
+                        <div class="formula">
+                            <span class="label">Displacement</span> s = s<sub
+                                >max</sub
+                            >
+                            cos(kx - ωt)
+                        </div>
+                        <p>
+                            Pressure is maximum where displacement is zero, and
+                            vice versa. ΔP<sub>max</sub> = B k s<sub>max</sub> =
+                            ρvω s<sub>max</sub>.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The pressure is maximum at the compressions and
+                            rarefactions, where the displacement of the medium
+                            is zero. The displacement is maximum where the
+                            pressure equals the equilibrium pressure. This phase
+                            relationship is a fundamental property of
+                            longitudinal waves.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept3">
+                    <div class="concept-header">
+                        <span class="concept-number">3</span>
+                        <h2>Speed of Sound in Various Media</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The speed of sound depends on the medium's density
+                            and compressibility. For a gas, v = √(B/ρ). For air,
+                            v = (331 m/s)√(1 + T/273), where T is in °C.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            The speed of all mechanical waves follows: v =
+                            √(elastic property / inertial property). For sound
+                            waves:
+                        </p>
+                        <p>
+                            <strong>Gas or liquid:</strong> v = √(B/ρ), where B
+                            is the bulk modulus.
+                        </p>
+                        <p>
+                            <strong>Solid rod:</strong> v = √(Y/ρ), where Y is
+                            Young's modulus.
+                        </p>
+                        <p>In air at 0°C, v = 331 m/s. At 20°C, v ≈ 343 m/s.</p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The speed of sound in a gas depends on temperature
+                            because the bulk modulus is proportional to
+                            pressure, which is related to temperature. At higher
+                            temperatures, molecules move faster and collide more
+                            frequently, so the speed of sound increases. The
+                            speed does not depend on pressure (for fixed
+                            temperature), because pressure increases both
+                            density and bulk modulus in the same proportion.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept4">
+                    <div class="concept-header">
+                        <span class="concept-number">4</span>
+                        <h2>Sound Intensity and Sound Level</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Sound intensity (I) is power per unit area: I = P/A.
+                            Sound level in decibels (dB): β = 10 log(I/I₀),
+                            where I₀ = 10⁻¹² W/m² is the threshold of hearing.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Sound intensity is the average power per unit area
+                            perpendicular to the direction of propagation:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Intensity</span> I = P/A =
+                            ½ρvω²s<sub>max</sub>²
+                        </div>
+                        <p>
+                            For spherical waves: I = P/(4πr²), so intensity
+                            decreases as 1/r².
+                        </p>
+                        <p>The sound level in decibels:</p>
+                        <div class="formula">
+                            <span class="label">Sound Level</span> β = 10
+                            log(I/I₀)
+                        </div>
+                        <p>
+                            where I₀ = 10⁻¹² W/m². Doubling intensity increases
+                            level by 3 dB. A ten-fold increase in intensity
+                            corresponds to a 10 dB increase.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The decibel scale is logarithmic because the human
+                            ear responds logarithmically. A sound of 60 dB is
+                            not twice as loud as 30 dB—it is 10³ = 1000 times
+                            more intense. The threshold of pain is about 120 dB
+                            (I = 1 W/m²). Prolonged exposure above 85 dB can
+                            cause hearing damage.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept5">
+                    <div class="concept-header">
+                        <span class="concept-number">5</span>
+                        <h2>The Doppler Effect</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The Doppler effect is the change in observed
+                            frequency due to relative motion between source and
+                            observer. f' = f (v ± v<sub>D</sub>)/(v ±
+                            v<sub>S</sub>).
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>The observed frequency f' is:</p>
+                        <div class="formula">
+                            <span class="label">Doppler Effect</span> f' = f (v
+                            ± v<sub>D</sub>)/(v ± v<sub>S</sub>)
+                        </div>
+                        <p>
+                            where v is the speed of sound, v<sub>D</sub> is the
+                            speed of the detector (observer), and v<sub>S</sub>
+                            is the speed of the source.
+                        </p>
+                        <p>
+                            <strong>Sign conventions:</strong> Detector toward
+                            source: v<sub>D</sub> positive. Source toward
+                            detector: v<sub>S</sub> negative.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The Doppler effect is observed in many contexts:
+                            Sound (passing siren changes pitch), Light (redshift
+                            of distant galaxies), Radar (police radar guns),
+                            Medicine (Doppler ultrasound for blood flow). It
+                            results from relative motion changing the number of
+                            wave fronts per unit time.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept6">
+                    <div class="concept-header">
+                        <span class="concept-number">6</span>
+                        <h2>Doppler Effect Cases</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Source toward stationary observer: f' = f v/(v -
+                            v<sub>S</sub>) (higher). Source away: f' = f v/(v +
+                            v<sub>S</sub>) (lower). Observer toward source: f' =
+                            f (v + v<sub>D</sub>)/v (higher).
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            <strong>Source moving toward observer:</strong> f' =
+                            f v/(v - v<sub>S</sub>) → frequency increases.
+                        </p>
+                        <p>
+                            <strong>Source moving away from observer:</strong>
+                            f' = f v/(v + v<sub>S</sub>) → frequency decreases.
+                        </p>
+                        <p>
+                            <strong>Observer moving toward source:</strong> f' =
+                            f (v + v<sub>D</sub>)/v → frequency increases.
+                        </p>
+                        <p>
+                            <strong>Observer moving away from source:</strong>
+                            f' = f (v - v<sub>D</sub>)/v → frequency decreases.
+                        </p>
+                        <p>
+                            <strong>Both moving:</strong> Use general formula f'
+                            = f (v ± v<sub>D</sub>)/(v ± v<sub>S</sub>).
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The Doppler effect is a powerful tool for measuring
+                            velocities. In astronomy, redshift of light from
+                            galaxies tells us how fast they're moving away. In
+                            medicine, Doppler ultrasound measures blood flow
+                            velocity. In police work, radar guns use the Doppler
+                            effect to measure car speeds. The effect is
+                            symmetric—it depends only on relative motion.
+                        </p>
+                    </div>
+                </div>
+
+                <section id="formulas">
+                    <h2>📐 Equations</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Formula</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Speed of Sound in Air</td>
+                                        <td>v = 331√(1 + T/273)</td>
+                                        <td>m/s</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pressure Amplitude</td>
+                                        <td>
+                                            ΔP<sub>max</sub> = B k s<sub
+                                                >max</sub
+                                            >
+                                        </td>
+                                        <td>Pa</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pressure Amplitude (Alt)</td>
+                                        <td>
+                                            ΔP<sub>max</sub> = ρvωs<sub
+                                                >max</sub
+                                            >
+                                        </td>
+                                        <td>Pa</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sound Intensity</td>
+                                        <td>I = P/A</td>
+                                        <td>W/m²</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Intensity (Spherical Wave)</td>
+                                        <td>I = P/(4πr²)</td>
+                                        <td>W/m²</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sound Intensity (Wave Form)</td>
+                                        <td>I = ½ρvω²s<sub>max</sub>²</td>
+                                        <td>W/m²</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sound Level</td>
+                                        <td>β = 10 log(I/I₀)</td>
+                                        <td>dB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Threshold of Hearing</td>
+                                        <td>I₀ = 1.0 × 10⁻¹²</td>
+                                        <td>W/m²</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Doppler Effect (General)</td>
+                                        <td>
+                                            f' = f (v ± v<sub>D</sub>)/(v ±
+                                            v<sub>S</sub>)
+                                        </td>
+                                        <td>Hz</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2>🔊 Sound Frequency Ranges</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Frequency Range</th>
+                                        <th>Examples</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Infrasonic</td>
+                                        <td>Below 20 Hz</td>
+                                        <td>Elephants, earthquakes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Audible</td>
+                                        <td>20 Hz to 20,000 Hz</td>
+                                        <td>Human hearing, music</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ultrasonic</td>
+                                        <td>Above 20,000 Hz</td>
+                                        <td>Bats, medical imaging</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="professor-card" id="narrative">
+                    <h2>🎓 Professor's Narrative</h2>
+                    <p>
+                        Sound waves are longitudinal pressure waves that travel
+                        through any material medium. They are everywhere—from
+                        the sound of a voice to the roar of a jet engine.
+                    </p>
+                    <p>
+                        The speed of sound depends on the properties of the
+                        medium. In air, the speed increases with temperature
+                        because the molecules move faster. In solids, sound
+                        travels faster because the molecules are more tightly
+                        coupled.
+                    </p>
+                    <p>
+                        Sound intensity is measured in decibels, which is a
+                        logarithmic scale. The human ear can detect sounds from
+                        the threshold of hearing (0 dB) to the threshold of pain
+                        (120 dB). The decibel scale is logarithmic because the
+                        ear responds logarithmically to intensity.
+                    </p>
+                    <p>
+                        The Doppler effect is the change in frequency due to
+                        relative motion between source and observer. It's a
+                        universal phenomenon—it applies to all types of waves,
+                        including sound and light. The effect is used in many
+                        applications, from astronomy to medicine to everyday
+                        life.
+                    </p>
+                </section>
+
+                <section class="ask-section" id="ask-professor">
+                    <h2>❓ Ask the Professor</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why does the pitch of a siren drop as it passes
+                                you? <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    As the siren approaches, sound waves are
+                                    compressed, giving a higher frequency
+                                    (pitch). As it passes and moves away, sound
+                                    waves are stretched, giving a lower
+                                    frequency. This is the classic example of
+                                    the Doppler effect.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why is sound louder when you're closer to the
+                                source? <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Sound intensity decreases as 1/r² for
+                                    spherical waves. As you move away from the
+                                    source, the same power is spread over a
+                                    larger spherical surface area, so the
+                                    intensity per unit area decreases.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why can't we hear ultrasonic sounds?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    The human ear is sensitive to frequencies
+                                    from 20 Hz to 20,000 Hz. Ultrasonic sounds
+                                    are above 20,000 Hz, so our ears can't
+                                    detect them. However, some animals (like
+                                    bats and dolphins) can hear ultrasonic
+                                    frequencies and use them for echolocation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="vault-section" id="exam-vault">
+                    <h2>🔐 Exam Vault</h2>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Sound intensity: I = P/A = ½ρvω²s<sub>max</sub>². Sound
+                        level: β = 10 log(I/I₀), I₀ = 10⁻¹² W/m².
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Doubling the intensity increases the sound level by 3
+                        dB, not by a factor of 2. A 10 dB increase corresponds
+                        to a ten-fold increase in intensity.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--secret"
+                            >🤫 Secret</span
+                        >
+                        The Doppler effect formula: f' = f (v ±
+                        v<sub>D</sub>)/(v ± v<sub>S</sub>). Remember the sign
+                        conventions carefully.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Speed of sound in air: v = (331 m/s)√(1 + T/273), where
+                        T is in °C.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        The Doppler effect depends on the relative motion
+                        between source and observer. It is not the same as the
+                        speed of sound changing due to the motion of the medium.
+                    </div>
+                </section>
+
+                <section class="quiz-section" id="quiz">
+                    <h2>
+                        📝 Chapter 11: Wave Motion and Sound Waves (Part 2) Quiz
+                    </h2>
+                    <div id="quiz-container"></div>
+                </section>
+            </main>
+
+            <footer>
+                SCI201 · Chapter 11: Wave Motion and Sound Waves (Part 2)
+            </footer>
+        </div>
+
+        <script>
+            (function () {
+                window.toggleTheme = function () {
+                    const html = document.documentElement;
+                    const cur = html.getAttribute("data-theme");
+                    const next = cur === "dark" ? "light" : "dark";
+                    html.setAttribute("data-theme", next);
+                    localStorage.setItem("garden_theme", next);
+                };
+                const saved = localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", saved);
+
+                document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
+                    const card = tabGroup.closest(".concept-card");
+                    if (!card) return;
+                    const tabs = tabGroup.querySelectorAll(".depth-tab");
+                    const contents = card.querySelectorAll(".depth-content");
+                    tabs.forEach((tab) => {
+                        tab.addEventListener("click", function () {
+                            const layer = this.dataset.layer;
+                            tabs.forEach((t) => t.classList.remove("active"));
+                            this.classList.add("active");
+                            contents.forEach((c) => {
+                                c.classList.remove("active");
+                                if (c.dataset.layer === layer)
+                                    c.classList.add("active");
+                            });
+                        });
+                    });
+                });
+
+                document
+                    .querySelectorAll(".accordion-trigger")
+                    .forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            const body = this.nextElementSibling;
+                            const isOpen = body.classList.contains("open");
+                            const section = this.closest(".accordion");
+                            section
+                                .querySelectorAll(".accordion-body")
+                                .forEach((b) => b.classList.remove("open"));
+                            if (!isOpen) body.classList.add("open");
+                        });
+                    });
+
+                const currentStatus = localStorage.getItem("chapter_11_status");
+                if (!currentStatus || currentStatus === "not-started") {
+                    localStorage.setItem("chapter_11_status", "viewed");
+                }
+            })();
+        </script>
+
+        <script src="../js/quiz.js"></script>
+        <script>
+            initQuiz({
+                chapterNum: 11,
+                quizData: [
+                    {
+                        question: "1. Sound waves are:",
+                        options: [
+                            "Transverse.",
+                            "Longitudinal.",
+                            "Electromagnetic.",
+                            "Matter waves.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Sound compresses and expands the air, so it's longitudinal.",
+                        hint: "Sound compresses and expands the air.",
+                    },
+                    {
+                        question: "2. The audible range for humans is:",
+                        options: [
+                            "20 Hz to 20,000 Hz.",
+                            "0 to 20,000 Hz.",
+                            "20,000 Hz to 200,000 Hz.",
+                            "0 to 1000 Hz.",
+                        ],
+                        correct: 0,
+                        explanation: "This is the range of human hearing.",
+                        hint: "This is the range of human hearing.",
+                    },
+                    {
+                        question: "3. Sound intensity is defined as:",
+                        options: [
+                            "Power per unit area.",
+                            "Power per unit volume.",
+                            "Energy per unit area.",
+                            "Force per unit area.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "Intensity is the power passing through a unit area.",
+                        hint: "It's the power passing through a unit area.",
+                    },
+                    {
+                        question: "4. The decibel is a unit of:",
+                        options: [
+                            "Frequency.",
+                            "Sound level.",
+                            "Wavelength.",
+                            "Speed.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "It's a logarithmic measure of sound intensity.",
+                        hint: "It's a logarithmic measure of sound intensity.",
+                    },
+                    {
+                        question:
+                            "5. The speed of sound in air at 20°C is approximately:",
+                        options: [
+                            "343 m/s.",
+                            "300 m/s.",
+                            "500 m/s.",
+                            "1000 m/s.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "This is the standard value at room temperature.",
+                        hint: "This is the standard value.",
+                    },
+                    {
+                        question:
+                            "6. The Doppler effect is the change in observed frequency due to:",
+                        options: [
+                            "The speed of sound.",
+                            "The relative motion of source and observer.",
+                            "The intensity of the sound.",
+                            "The temperature of the air.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Think about a passing siren changing pitch.",
+                        hint: "Think about a passing siren.",
+                    },
+                    {
+                        question:
+                            "7. When a source moves toward a stationary observer, the observed frequency:",
+                        options: [
+                            "Increases.",
+                            "Decreases.",
+                            "Stays the same.",
+                            "Becomes zero.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "The waves are compressed, giving a higher frequency.",
+                        hint: "Think about the compression of waves.",
+                    },
+                    {
+                        question: "8. The threshold of hearing is:",
+                        options: [
+                            "I₀ = 10⁻¹² W/m².",
+                            "I₀ = 10⁻⁶ W/m².",
+                            "I₀ = 1 W/m².",
+                            "I₀ = 10⁻³ W/m².",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "This is the reference intensity for the decibel scale.",
+                        hint: "This is the reference intensity for decibels.",
+                    },
+                    {
+                        question:
+                            "9. The pressure amplitude in a sound wave is related to the displacement amplitude by:",
+                        options: [
+                            "ΔP_max = B k s_max.",
+                            "ΔP_max = B s_max/k.",
+                            "ΔP_max = B k/s_max.",
+                            "ΔP_max = k s_max/B.",
+                        ],
+                        correct: 0,
+                        explanation: "This is the relationship in a gas.",
+                        hint: "This is the relationship in a gas.",
+                    },
+                    {
+                        question: "10. Ultrasonic waves have frequencies:",
+                        options: [
+                            "Below 20 Hz.",
+                            "Above 20,000 Hz.",
+                            "Between 20 Hz and 20,000 Hz.",
+                            "Equal to 20,000 Hz.",
+                        ],
+                        correct: 1,
+                        explanation: '"Ultra" means beyond the audible range.',
+                        hint: '"Ultra" means beyond the audible range.',
+                    },
+                ],
+            });
+        </script>
+        <script src="../js/toolbar.js"></script>
+    </body>
+</html>

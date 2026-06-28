@@ -1,0 +1,1558 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=yes"
+        />
+        <title>Chapter 6: Temperature and Thermodynamics · SCI201</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+        <style>
+            /* ================================================================
+               GRUVBOX COLOR PALETTE
+               ================================================================ */
+            :root {
+                --bg: #fbf1c7;
+                --bg0_h: #f9f5d7;
+                --bg0: #fbf1c7;
+                --bg1: #ebdbb2;
+                --bg2: #d5c4a1;
+                --bg3: #bdae93;
+                --bg4: #a89984;
+                --fg: #3c3836;
+                --fg0: #282828;
+                --fg1: #3c3836;
+                --fg2: #504945;
+                --fg3: #665c54;
+                --fg4: #7c6f64;
+                --gray: #928374;
+                --red: #9d0006;
+                --green: #79740e;
+                --yellow: #b57614;
+                --blue: #076678;
+                --purple: #8f3f71;
+                --aqua: #427b58;
+                --orange: #d65d0e;
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --accent: var(--yellow);
+                --success: var(--green);
+                --danger: var(--red);
+                --warning: var(--orange);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+                --shadow:
+                    0 4px 6px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+                --radius: 12px;
+                --radius-sm: 8px;
+                --transition: 0.2s ease;
+                --sidebar-width: 260px;
+            }
+
+            [data-theme="dark"] {
+                --bg: #282828;
+                --bg0_h: #1d2021;
+                --bg0: #282828;
+                --bg1: #3c3836;
+                --bg2: #504945;
+                --bg3: #665c54;
+                --bg4: #7c6f64;
+                --fg: #ebdbb2;
+                --fg0: #fbf1c7;
+                --fg1: #ebdbb2;
+                --fg2: #d5c4a1;
+                --fg3: #bdae93;
+                --fg4: #a89984;
+                --gray: #928374;
+                --red: #cc241d;
+                --green: #98971a;
+                --yellow: #d79921;
+                --blue: #458588;
+                --purple: #b16286;
+                --aqua: #689d6a;
+                --orange: #d65d0e;
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+                --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.6;
+                transition:
+                    background var(--transition),
+                    color var(--transition);
+                min-height: 100vh;
+                max-width: 1200px;
+                margin: 0 auto;
+                overflow-x: hidden;
+            }
+
+            .sidebar {
+                width: var(--sidebar-width);
+                flex-shrink: 0;
+                position: sticky;
+                top: 56px;
+                height: calc(100vh - 56px);
+                background: var(--surface);
+                border-inline-end: 1px solid var(--border);
+                padding: 1.5rem 1rem;
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                overflow-x: hidden;
+                z-index: 10;
+                transition:
+                    background var(--transition),
+                    border-color var(--transition);
+            }
+
+            .sidebar-header {
+                font-weight: 700;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--text-muted);
+                margin-bottom: 1rem;
+                padding-bottom: 0.75rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .sidebar-nav {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .sidebar-nav li a {
+                display: block;
+                padding: 0.5rem 0.75rem;
+                border-radius: 6px;
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: 500;
+                transition: all 0.15s ease;
+                border-left: 3px solid transparent;
+            }
+
+            .sidebar-nav li a:hover {
+                background: var(--surface-alt);
+                color: var(--text);
+                border-left-color: var(--border);
+            }
+
+            .sidebar-nav li a.active {
+                background: var(--primary-light);
+                color: var(--primary);
+                font-weight: 600;
+                border-left-color: var(--primary);
+            }
+
+            .sidebar-nav li a .emoji {
+                margin-right: 6px;
+                font-size: 0.9rem;
+            }
+            .sidebar-divider {
+                border: none;
+                border-top: 1px solid var(--border);
+                margin: 0.75rem 0;
+            }
+
+            .main-wrapper {
+                flex: 1;
+                min-width: 0;
+                padding: 1.5rem 2rem;
+            }
+
+            header,
+            section,
+            footer,
+            .concept-card,
+            .professor-card,
+            .ask-section,
+            .vault-section,
+            .quiz-section {
+                background: var(--surface);
+                border-radius: var(--radius);
+                padding: 1.8rem;
+                margin-bottom: 2rem;
+                box-shadow: var(--shadow);
+                border: 1px solid var(--border);
+            }
+
+            header {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+            }
+
+            h1,
+            h2,
+            h3 {
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                color: var(--fg0);
+                scroll-margin-top: 1rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin: 0.5rem 0 0.3rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+                margin: 1.2rem 0 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--primary);
+            }
+
+            .nav-btn {
+                background: var(--primary);
+                border: none;
+                color: var(--bg0_h);
+                padding: 0.5rem 1rem;
+                border-radius: 2rem;
+                font-weight: 500;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: 0.2s;
+                font-family: inherit;
+            }
+            .nav-btn:hover {
+                filter: brightness(1.1);
+                text-decoration: none;
+                color: var(--bg0_h);
+            }
+            .nav-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            .tag-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+            .tag {
+                background: rgba(255, 255, 255, 0.15);
+                color: var(--bg0_h);
+                padding: 0.25rem 0.9rem;
+                border-radius: 2rem;
+                font-size: 0.8rem;
+                font-weight: 500;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .tag--accent {
+                background: rgba(255, 255, 255, 0.25);
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .objectives-list {
+                list-style: none;
+                padding-left: 0;
+            }
+            .objectives-list li {
+                padding: 0.4rem 0;
+                display: flex;
+                align-items: baseline;
+                gap: 0.5rem;
+                color: var(--text);
+            }
+            .objectives-list li::before {
+                content: "●";
+                color: var(--primary);
+                font-weight: bold;
+            }
+
+            .concept-card {
+                border-left: 4px solid var(--primary);
+                padding: 1.5rem;
+                scroll-margin-top: 1rem;
+            }
+            .concept-header {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+            }
+            .concept-number {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+            }
+
+            .depth-tabs {
+                display: inline-flex;
+                gap: 4px;
+                margin-bottom: 20px;
+                background: var(--surface-alt);
+                padding: 4px;
+                border-radius: 10px;
+                border: 1px solid var(--border);
+            }
+            .depth-tab {
+                background: transparent;
+                border: none;
+                padding: 0.5rem 1.2rem;
+                font-weight: 600;
+                color: var(--text-secondary);
+                cursor: pointer;
+                border-radius: 2rem;
+                transition: 0.2s;
+                font-size: 0.9rem;
+                font-family: inherit;
+            }
+            .depth-tab.active {
+                background: var(--primary);
+                color: var(--bg0_h);
+            }
+
+            .depth-content {
+                display: none;
+                animation: fade 0.2s ease;
+                color: var(--text);
+            }
+            .depth-content.active {
+                display: block;
+            }
+            @keyframes fade {
+                from {
+                    opacity: 0.3;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .formula {
+                background: var(--surface-alt);
+                padding: 0.8rem 1.2rem;
+                border-radius: var(--radius-sm);
+                margin: 1rem 0;
+                font-family: "Courier New", monospace;
+                font-weight: 500;
+                border-left: 4px solid var(--primary);
+                color: var(--fg0);
+            }
+            .label {
+                display: block;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--primary);
+                margin-bottom: 0.2rem;
+                font-weight: 600;
+            }
+
+            .note-box {
+                background: var(--accent);
+                border-left: 4px solid var(--orange);
+                padding: 0.8rem 1rem;
+                border-radius: 0.5rem;
+                margin: 1.2rem 0;
+                color: var(--bg0_h);
+            }
+            [data-theme="light"] .note-box {
+                color: var(--fg0);
+                background: var(--bg2);
+            }
+
+            .comparison-table-wrap {
+                overflow-x: auto;
+                margin: 1rem 0;
+            }
+            .comparison-table {
+                width: 100%;
+                border-collapse: collapse;
+                background: var(--surface);
+                border-radius: 0.5rem;
+                overflow: hidden;
+                border: 1px solid var(--border);
+            }
+            .comparison-table th {
+                background: var(--surface-alt);
+                padding: 0.7rem;
+                text-align: left;
+                color: var(--fg0);
+                border-bottom: 2px solid var(--border);
+            }
+            .comparison-table td {
+                padding: 0.6rem;
+                border-bottom: 1px solid var(--border);
+                color: var(--text);
+            }
+
+            .professor-card {
+                border-left: 4px solid var(--purple);
+            }
+            .vault-entry {
+                margin-bottom: 1rem;
+                padding: 0.8rem;
+                border-radius: 0.6rem;
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                color: var(--text);
+            }
+            .vault-type {
+                font-weight: 700;
+                margin-bottom: 0.3rem;
+            }
+            .vault-type--key {
+                color: var(--accent);
+            }
+            .vault-type--trap {
+                color: var(--red);
+            }
+            .vault-type--secret {
+                color: var(--green);
+            }
+
+            .accordion-item {
+                border-bottom: 1px solid var(--border);
+            }
+            .accordion-trigger {
+                width: 100%;
+                background: none;
+                border: none;
+                text-align: left;
+                padding: 1rem 0;
+                font-weight: 600;
+                display: flex;
+                justify-content: space-between;
+                color: var(--text);
+                cursor: pointer;
+                font-family: inherit;
+                font-size: 1rem;
+            }
+            .accordion-body {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0 0.5rem;
+                color: var(--text-secondary);
+            }
+            .accordion-body.open {
+                max-height: 300px;
+                padding-bottom: 1rem;
+            }
+
+            .quiz-card {
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                padding: 1.5rem;
+                border-radius: var(--radius);
+            }
+            .quiz-header {
+                display: flex;
+                justify-content: space-between;
+                color: var(--text-secondary);
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+            .quiz-question {
+                font-weight: 600;
+                color: var(--fg0);
+                margin: 1rem 0;
+                font-size: 1.05rem;
+                line-height: 1.6;
+            }
+            .quiz-options label {
+                display: block;
+                margin: 0.5rem 0;
+                cursor: pointer;
+                padding: 0.75rem 1rem;
+                border-radius: var(--radius-sm);
+                border: 1px solid var(--border);
+                transition: 0.2s;
+                background: var(--surface);
+                color: var(--text);
+            }
+            .quiz-options label:hover {
+                border-color: var(--primary);
+                background: var(--bg2);
+            }
+            .quiz-options input[type="radio"] {
+                margin-right: 10px;
+                accent-color: var(--primary);
+                transform: scale(1.1);
+            }
+            .quiz-feedback {
+                background: var(--surface);
+                padding: 0.8rem 1rem;
+                border-radius: var(--radius-sm);
+                margin-top: 1rem;
+                border-left: 4px solid var(--primary);
+                color: var(--text);
+                line-height: 1.6;
+            }
+            .hidden {
+                display: none !important;
+            }
+            button {
+                cursor: pointer;
+            }
+            footer {
+                text-align: center;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                border-top: 1px solid var(--border);
+            }
+
+            #quiz-hint-btn,
+            #quiz-prev-btn {
+                background: var(--surface);
+                color: var(--text);
+                border: 1px solid var(--border);
+            }
+            #quiz-hint-btn:hover,
+            #quiz-prev-btn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--primary);
+            }
+            #quiz-next-btn,
+            #retry-btn {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+            }
+            .score-display {
+                color: var(--primary);
+                font-weight: 700;
+                font-size: 2rem;
+            }
+
+            .sidebar-toggle {
+                display: none;
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                font-size: 1.2rem;
+                cursor: pointer;
+                box-shadow: var(--shadow);
+            }
+
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                .sidebar {
+                    position: fixed;
+                    left: -100%;
+                    top: 56px;
+                    height: calc(100vh - 56px);
+                    width: 280px;
+                    transition: left 0.3s ease;
+                    z-index: 15;
+                }
+                .sidebar.open {
+                    left: 0;
+                }
+                .toolbar-hamburger {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
+
+            .toolbar {
+                position: sticky;
+                top: 0;
+                z-index: 50;
+                width: 100vw;
+                left: 0;
+                right: 0;
+                background: rgba(251, 241, 199, 0.85);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border);
+                padding: 0.5rem calc((100vw - 1200px) / 2 + 1.5rem);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                margin-left: calc(-50vw + 600px);
+                margin-right: calc(-50vw + 600px);
+            }
+            [data-theme="dark"] .toolbar {
+                background: rgba(29, 32, 33, 0.9);
+            }
+            .toolbar-left,
+            .toolbar-right {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .toolbar-center {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-weight: 700;
+                font-size: 0.9rem;
+                color: var(--text);
+                background: var(--surface-alt);
+                padding: 0.4rem 1rem;
+                border-radius: 2rem;
+                border: 1px solid var(--border);
+            }
+            .toolbar-btn {
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                color: var(--text);
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 1rem;
+                transition: all 0.2s ease;
+            }
+            .toolbar-btn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--aqua);
+            }
+            .toolbar-btn.disabled-btn {
+                opacity: 0.3;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">📑 SCI201</div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#objectives"
+                        ><span class="emoji">🎯</span> Learning Objectives</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept1"
+                        ><span class="emoji">1️⃣</span> Temperature & Thermal
+                        Equilibrium</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept2"
+                        ><span class="emoji">2️⃣</span> Thermometers &
+                        Temperature Scales</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept3"
+                        ><span class="emoji">3️⃣</span> The Zeroth Law of
+                        Thermodynamics</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept4"
+                        ><span class="emoji">4️⃣</span> Thermal Expansion</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept5"
+                        ><span class="emoji">5️⃣</span> Coefficients of
+                        Expansion</a
+                    >
+                </li>
+                <hr class="sidebar-divider" />
+                <li>
+                    <a href="#formulas"
+                        ><span class="emoji">📐</span> Equations</a
+                    >
+                </li>
+                <li>
+                    <a href="#narrative"
+                        ><span class="emoji">🎓</span> Professor's Narrative</a
+                    >
+                </li>
+                <li>
+                    <a href="#ask-professor"
+                        ><span class="emoji">❓</span> Ask the Professor</a
+                    >
+                </li>
+                <li>
+                    <a href="#exam-vault"
+                        ><span class="emoji">🔐</span> Exam Vault</a
+                    >
+                </li>
+                <li>
+                    <a href="#quiz"><span class="emoji">📝</span> Self Quiz</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <h1>🌡️ Temperature and Thermodynamics</h1>
+                <p style="color: var(--bg0_h); opacity: 0.9">
+                    Temperature scales, thermal expansion, and thermal
+                    equilibrium
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Temperature</span>
+                    <span class="tag">Thermal Expansion</span>
+                    <span class="tag">Zeroth Law</span>
+                    <span class="tag tag--accent"
+                        ><i class="fa-regular fa-clock"></i> 45 min</span
+                    >
+                </div>
+            </header>
+
+            <main>
+                <section id="objectives">
+                    <h2>🎯 Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand temperature and thermal equilibrium.</li>
+                        <li>Explain the Zeroth Law of Thermodynamics.</li>
+                        <li>
+                            Convert between temperature scales (Celsius,
+                            Fahrenheit, Kelvin).
+                        </li>
+                        <li>
+                            Understand thermal expansion and calculate linear
+                            and volume expansion.
+                        </li>
+                        <li>
+                            Describe the relationship between temperature and
+                            molecular motion.
+                        </li>
+                    </ul>
+                </section>
+
+                <div class="concept-card" id="concept1">
+                    <div class="concept-header">
+                        <span class="concept-number">1</span>
+                        <h2>Temperature and Thermal Equilibrium</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Temperature determines whether objects are in
+                            thermal equilibrium. Two objects in thermal
+                            equilibrium have the same temperature. If
+                            temperatures differ, energy transfers as heat from
+                            hotter to colder.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Temperature is a measure of the average kinetic
+                            energy of the particles in a substance. It
+                            determines whether energy will transfer between two
+                            objects in thermal contact. If two objects have the
+                            same temperature, they are in thermal equilibrium,
+                            and no net energy transfer occurs.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Temperature is an intensive property—it doesn't
+                            depend on the amount of material present. It's
+                            fundamentally related to the average kinetic energy
+                            of atoms or molecules. Our senses provide a
+                            qualitative indication of temperature, but they are
+                            unreliable; we need thermometers for quantitative
+                            measurement.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept2">
+                    <div class="concept-header">
+                        <span class="concept-number">2</span>
+                        <h2>Thermometers and Temperature Scales</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Thermometers measure temperature based on physical
+                            properties that change with temperature. Three
+                            common scales: Fahrenheit (°F), Celsius (°C), and
+                            Kelvin (K).
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Thermometers utilize physical properties that change
+                            predictably: volume of a liquid, pressure of a gas,
+                            electrical resistance, or color of an object.
+                        </p>
+                        <p>
+                            <strong>Celsius:</strong> Water freezes at 0°C,
+                            boils at 100°C
+                        </p>
+                        <p>
+                            <strong>Fahrenheit:</strong> Water freezes at 32°F,
+                            boils at 212°F
+                        </p>
+                        <p>
+                            <strong>Kelvin:</strong> Absolute scale; 0 K is
+                            absolute zero (-273.15°C)
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The Kelvin scale is the SI unit. 0 K represents
+                            absolute zero, where molecular motion ceases. A
+                            temperature change of 1°C equals a change of 1 K.
+                            The Fahrenheit degree is smaller (1°F = 5/9 of a
+                            Celsius degree). The conversion formulas are:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Celsius to Kelvin</span> T<sub
+                                >K</sub
+                            >
+                            = T<sub>C</sub> + 273.15
+                        </div>
+                        <div class="formula">
+                            <span class="label">Celsius to Fahrenheit</span>
+                            T<sub>F</sub> = 1.8 × T<sub>C</sub> + 32
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept3">
+                    <div class="concept-header">
+                        <span class="concept-number">3</span>
+                        <h2>The Zeroth Law of Thermodynamics</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            If two objects are separately in thermal equilibrium
+                            with a third object, then they are in thermal
+                            equilibrium with each other. This allows
+                            thermometers to measure temperature.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            If objects A and B are each in thermal equilibrium
+                            with a third object C (a thermometer), then A and B
+                            are in thermal equilibrium with each other. This
+                            provides a foundation for temperature measurement—a
+                            thermometer measures its own temperature, and by the
+                            Zeroth Law, that is also the temperature of the
+                            object it's in contact with.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The Zeroth Law is called "zeroth" because it was
+                            formulated after the First and Second Laws, but it's
+                            logically prior to them—it establishes temperature
+                            as a measurable quantity. Without it, the concept of
+                            temperature would be ill-defined. The law allows us
+                            to calibrate thermometers and compare temperatures.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept4">
+                    <div class="concept-header">
+                        <span class="concept-number">4</span>
+                        <h2>Thermal Expansion</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Most materials expand when heated and contract when
+                            cooled. Linear expansion: ΔL = αL₀ΔT. Volume
+                            expansion: ΔV = βV₀ΔT. For solids, β ≈ 3α.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Thermal expansion occurs because particles vibrate
+                            more at higher temperatures and move farther apart
+                            on average.
+                        </p>
+                        <div class="formula">
+                            <span class="label">Linear Expansion</span> ΔL =
+                            αL₀ΔT
+                        </div>
+                        <p>
+                            where α is the coefficient of linear expansion
+                            (°C⁻¹).
+                        </p>
+                        <div class="formula">
+                            <span class="label">Volume Expansion</span> ΔV =
+                            βV₀ΔT
+                        </div>
+                        <p>
+                            where β is the coefficient of volume expansion
+                            (°C⁻¹). For solids, β ≈ 3α.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Bridges have expansion joints to accommodate
+                            temperature changes. Thermometers rely on the
+                            expansion of liquids. Bimetallic strips (two metals
+                            with different expansion coefficients) are used in
+                            thermostats. Water is unusual—it contracts from
+                            100°C to 4°C, then expands as it cools to 0°C. This
+                            is why ice floats and lakes freeze from the top
+                            down.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept5">
+                    <div class="concept-header">
+                        <span class="concept-number">5</span>
+                        <h2>Coefficients of Expansion</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Different materials expand at different rates.
+                            Metals have higher expansion coefficients than
+                            glass. Liquids and gases expand much more than
+                            solids.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Material</th>
+                                        <th>Linear Expansion α (°C⁻¹)</th>
+                                        <th>Volume Expansion β (°C⁻¹)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Aluminum</td>
+                                        <td>24 × 10⁻⁶</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brass/Bronze</td>
+                                        <td>19 × 10⁻⁶</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Copper</td>
+                                        <td>17 × 10⁻⁶</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Steel</td>
+                                        <td>11 × 10⁻⁶</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Glass (ordinary)</td>
+                                        <td>9 × 10⁻⁶</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Glass (Pyrex)</td>
+                                        <td>3.2 × 10⁻⁶</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Invar (Ni-Fe alloy)</td>
+                                        <td>0.9 × 10⁻⁶</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mercury</td>
+                                        <td>—</td>
+                                        <td>1.82 × 10⁻⁴</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ethyl alcohol</td>
+                                        <td>—</td>
+                                        <td>1.12 × 10⁻⁴</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gasoline</td>
+                                        <td>—</td>
+                                        <td>9.6 × 10⁻⁴</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Air</td>
+                                        <td>—</td>
+                                        <td>3.67 × 10⁻³</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Invar has an extremely low coefficient of expansion,
+                            useful for precision instruments. Mercury has a
+                            relatively high volume expansion coefficient, making
+                            it suitable for thermometers. Gases expand much more
+                            than liquids or solids for the same temperature
+                            change.
+                        </p>
+                    </div>
+                </div>
+
+                <section id="formulas">
+                    <h2>📐 Equations</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Formula</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Celsius to Kelvin</td>
+                                        <td>
+                                            T<sub>K</sub> = T<sub>C</sub> +
+                                            273.15
+                                        </td>
+                                        <td>K</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Celsius to Fahrenheit</td>
+                                        <td>
+                                            T<sub>F</sub> = 1.8T<sub>C</sub> +
+                                            32
+                                        </td>
+                                        <td>°F</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Linear Expansion</td>
+                                        <td>ΔL = αL₀ΔT</td>
+                                        <td>m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Volume Expansion</td>
+                                        <td>ΔV = βV₀ΔT</td>
+                                        <td>m³</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Volume Expansion for Solids</td>
+                                        <td>β = 3α</td>
+                                        <td>(°C)⁻¹</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2>🌡️ Temperature Scales</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Celsius</th>
+                                        <th>Fahrenheit</th>
+                                        <th>Kelvin</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Freezing Point of Water</td>
+                                        <td>0°C</td>
+                                        <td>32°F</td>
+                                        <td>273.15 K</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Boiling Point of Water</td>
+                                        <td>100°C</td>
+                                        <td>212°F</td>
+                                        <td>373.15 K</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Absolute Zero</td>
+                                        <td>-273.15°C</td>
+                                        <td>-459.67°F</td>
+                                        <td>0 K</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Degree Size</td>
+                                        <td>1°C</td>
+                                        <td>5/9 °C</td>
+                                        <td>1 K</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SI Unit?</td>
+                                        <td>No</td>
+                                        <td>No</td>
+                                        <td>Yes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="professor-card" id="narrative">
+                    <h2>🎓 Professor's Narrative</h2>
+                    <p>
+                        Temperature is one of the most fundamental concepts in
+                        physics. It's not just about "hot" and "cold"—it's about
+                        the average kinetic energy of the particles in a
+                        substance. Thermal equilibrium is the state where no net
+                        energy transfer occurs between objects at the same
+                        temperature.
+                    </p>
+                    <p>
+                        The Zeroth Law of Thermodynamics is the foundation of
+                        temperature measurement. It's what allows us to say
+                        "this thermometer reads 25°C, so the object is also
+                        25°C." Without it, we couldn't calibrate thermometers or
+                        compare temperatures.
+                    </p>
+                    <p>
+                        Thermal expansion is everywhere—from the expansion
+                        joints in bridges to the mercury in thermometers.
+                        Remember that different materials expand at different
+                        rates, which is why bimetallic strips can be used as
+                        temperature sensors. And don't forget the exception:
+                        water expands when it freezes, which is why ice floats
+                        and why pipes burst in winter.
+                    </p>
+                    <p>
+                        Finally, be careful with temperature conversions. The
+                        formulas are simple, but it's easy to make mistakes.
+                        Always check your units and remember that the Kelvin
+                        scale is absolute—there's no such thing as a negative
+                        Kelvin temperature.
+                    </p>
+                </section>
+
+                <section class="ask-section" id="ask-professor">
+                    <h2>❓ Ask the Professor</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                What is absolute zero, and why can't we reach
+                                it? <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Absolute zero (0 K or -273.15°C) is the
+                                    temperature at which molecular motion
+                                    ceases. According to the Third Law of
+                                    Thermodynamics, it's impossible to reach
+                                    absolute zero—you can only approach it
+                                    asymptotically. As a system approaches
+                                    absolute zero, the entropy approaches a
+                                    minimum value, and it takes an infinite
+                                    number of steps to actually reach 0 K.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why do materials expand when heated?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    When materials are heated, the particles
+                                    (atoms or molecules) vibrate more
+                                    vigorously. This increased vibration causes
+                                    the average distance between particles to
+                                    increase, which results in expansion. The
+                                    material expands in all directions, which is
+                                    why we see both linear and volume expansion.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why does water expand when it freezes?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Water has a unique property due to its
+                                    molecular structure (hydrogen bonding). In
+                                    liquid water, molecules are packed
+                                    relatively closely. When water freezes, the
+                                    molecules form a crystalline structure (ice)
+                                    that has more empty space between molecules
+                                    than the liquid phase. This is why ice is
+                                    less dense than liquid water and floats.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="vault-section" id="exam-vault">
+                    <h2>🔐 Exam Vault</h2>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Temperature conversion: T<sub>K</sub> = T<sub>C</sub> +
+                        273.15 and T<sub>F</sub> = 1.8 × T<sub>C</sub> + 32.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Temperature changes in Celsius and Kelvin are the same.
+                        A change of 1°C = 1 K. But a change of 1°F = 5/9 of a
+                        change in Celsius.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--secret"
+                            >🤫 Secret</span
+                        >
+                        The Zeroth Law of Thermodynamics is the foundation of
+                        temperature measurement. It's called "zeroth" because it
+                        was formulated after the First and Second Laws but is
+                        logically prior to them.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Thermal expansion: ΔL = αL₀ΔT (linear) and ΔV = βV₀ΔT
+                        (volume). For solids, β ≈ 3α.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Water is an exception—it contracts from 100°C to 4°C and
+                        then expands from 4°C to 0°C, becoming less dense as it
+                        freezes.
+                    </div>
+                </section>
+
+                <section class="quiz-section" id="quiz">
+                    <h2>📝 Chapter 6: Temperature and Thermodynamics Quiz</h2>
+                    <div id="quiz-container"></div>
+                </section>
+            </main>
+
+            <footer>SCI201 · Chapter 6: Temperature and Thermodynamics</footer>
+        </div>
+
+        <script>
+            (function () {
+                window.toggleTheme = function () {
+                    const html = document.documentElement;
+                    const cur = html.getAttribute("data-theme");
+                    const next = cur === "dark" ? "light" : "dark";
+                    html.setAttribute("data-theme", next);
+                    localStorage.setItem("garden_theme", next);
+                };
+                const saved = localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", saved);
+
+                document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
+                    const card = tabGroup.closest(".concept-card");
+                    if (!card) return;
+                    const tabs = tabGroup.querySelectorAll(".depth-tab");
+                    const contents = card.querySelectorAll(".depth-content");
+                    tabs.forEach((tab) => {
+                        tab.addEventListener("click", function () {
+                            const layer = this.dataset.layer;
+                            tabs.forEach((t) => t.classList.remove("active"));
+                            this.classList.add("active");
+                            contents.forEach((c) => {
+                                c.classList.remove("active");
+                                if (c.dataset.layer === layer)
+                                    c.classList.add("active");
+                            });
+                        });
+                    });
+                });
+
+                document
+                    .querySelectorAll(".accordion-trigger")
+                    .forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            const body = this.nextElementSibling;
+                            const isOpen = body.classList.contains("open");
+                            const section = this.closest(".accordion");
+                            section
+                                .querySelectorAll(".accordion-body")
+                                .forEach((b) => b.classList.remove("open"));
+                            if (!isOpen) body.classList.add("open");
+                        });
+                    });
+
+                const currentStatus = localStorage.getItem("chapter_6_status");
+                if (!currentStatus || currentStatus === "not-started") {
+                    localStorage.setItem("chapter_6_status", "viewed");
+                }
+            })();
+        </script>
+
+        <script src="../js/quiz.js"></script>
+        <script>
+            initQuiz({
+                chapterNum: 6,
+                quizData: [
+                    {
+                        question: "1. Temperature is a measure of:",
+                        options: [
+                            "The total thermal energy of a system.",
+                            "The average kinetic energy of the particles.",
+                            "The pressure of the gas.",
+                            "The volume of the system.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Temperature is directly related to the average kinetic energy of particles.",
+                        hint: "Think about what temperature measures on a molecular level.",
+                    },
+                    {
+                        question: "2. Two objects in thermal equilibrium have:",
+                        options: [
+                            "The same volume.",
+                            "The same pressure.",
+                            "The same temperature.",
+                            "The same mass.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "Thermal equilibrium means no net energy transfer, which occurs when temperatures are equal.",
+                        hint: "Thermal equilibrium means no net energy transfer.",
+                    },
+                    {
+                        question:
+                            "3. The Zeroth Law of Thermodynamics states that:",
+                        options: [
+                            "Energy is conserved.",
+                            "Entropy always increases.",
+                            "If A is in equilibrium with C and B is in equilibrium with C, then A and B are in equilibrium.",
+                            "Heat flows from hot to cold.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "The Zeroth Law establishes temperature as a measurable quantity.",
+                        hint: "This law establishes temperature as a measurable quantity.",
+                    },
+                    {
+                        question:
+                            "4. The formula to convert Celsius to Kelvin is:",
+                        options: [
+                            "T_K = T_C - 273.15.",
+                            "T_K = T_C + 273.15.",
+                            "T_K = 1.8 × T_C + 32.",
+                            "T_K = T_C × 1.8.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "The difference between the scales is 273.15 degrees.",
+                        hint: "The difference between the scales is 273.15 degrees.",
+                    },
+                    {
+                        question:
+                            "5. The coefficient of linear expansion is defined as:",
+                        options: ["ΔL/L₀ΔT.", "L₀ΔT/ΔL.", "ΔT/ΔL.", "L₀/ΔLΔT."],
+                        correct: 0,
+                        explanation:
+                            "α = ΔL/(L₀ΔT), the fractional change in length per degree change.",
+                        hint: "It's the fractional change in length per degree change in temperature.",
+                    },
+                    {
+                        question:
+                            "6. For solids, the coefficient of volume expansion (β) is approximately:",
+                        options: ["α.", "2α.", "3α.", "4α."],
+                        correct: 2,
+                        explanation:
+                            "Volume expansion in three dimensions: β ≈ 3α for isotropic solids.",
+                        hint: "Volume expansion in three dimensions.",
+                    },
+                    {
+                        question:
+                            "7. Which material expands the most for a given temperature change?",
+                        options: [
+                            "Steel.",
+                            "Aluminum.",
+                            "Copper.",
+                            "Pyrex glass.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Aluminum has α = 24 × 10⁻⁶ °C⁻¹, the highest among these options.",
+                        hint: "Check the coefficients of linear expansion.",
+                    },
+                    {
+                        question: "8. Water behaves unusually because it:",
+                        options: [
+                            "Expands when heated.",
+                            "Contracts when frozen.",
+                            "Expands when frozen.",
+                            "Has a negative expansion coefficient.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "Water expands when it freezes, making ice less dense than liquid water.",
+                        hint: "Think about why ice floats.",
+                    },
+                    {
+                        question: "9. Absolute zero is:",
+                        options: ["0°C.", "0°F.", "0 K.", "-100°C."],
+                        correct: 2,
+                        explanation:
+                            "Absolute zero is 0 K, the lowest possible temperature.",
+                        hint: "This is the lowest possible temperature.",
+                    },
+                    {
+                        question:
+                            "10. The Fahrenheit scale was designed so that:",
+                        options: [
+                            "Water freezes at 0°F.",
+                            "Water boils at 100°F.",
+                            "Water freezes at 32°F and boils at 212°F.",
+                            "The scale starts at absolute zero.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "Fahrenheit set water freezing at 32°F and boiling at 212°F.",
+                        hint: "This is the scale used in the United States.",
+                    },
+                ],
+            });
+        </script>
+        <script src="../js/toolbar.js"></script>
+    </body>
+</html>

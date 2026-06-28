@@ -1,0 +1,1735 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=yes"
+        />
+        <title>
+            Chapter 2: Electric Potential Due to Continuous Charge Distribution
+            · SCI201
+        </title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+        <style>
+            /* ================================================================
+               GRUVBOX COLOR PALETTE
+               ================================================================ */
+            :root {
+                --bg: #fbf1c7;
+                --bg0_h: #f9f5d7;
+                --bg0: #fbf1c7;
+                --bg1: #ebdbb2;
+                --bg2: #d5c4a1;
+                --bg3: #bdae93;
+                --bg4: #a89984;
+                --fg: #3c3836;
+                --fg0: #282828;
+                --fg1: #3c3836;
+                --fg2: #504945;
+                --fg3: #665c54;
+                --fg4: #7c6f64;
+                --gray: #928374;
+                --red: #9d0006;
+                --green: #79740e;
+                --yellow: #b57614;
+                --blue: #076678;
+                --purple: #8f3f71;
+                --aqua: #427b58;
+                --orange: #d65d0e;
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --accent: var(--yellow);
+                --success: var(--green);
+                --danger: var(--red);
+                --warning: var(--orange);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+                --shadow:
+                    0 4px 6px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+                --radius: 12px;
+                --radius-sm: 8px;
+                --transition: 0.2s ease;
+                --sidebar-width: 260px;
+            }
+
+            [data-theme="dark"] {
+                --bg: #282828;
+                --bg0_h: #1d2021;
+                --bg0: #282828;
+                --bg1: #3c3836;
+                --bg2: #504945;
+                --bg3: #665c54;
+                --bg4: #7c6f64;
+                --fg: #ebdbb2;
+                --fg0: #fbf1c7;
+                --fg1: #ebdbb2;
+                --fg2: #d5c4a1;
+                --fg3: #bdae93;
+                --fg4: #a89984;
+                --gray: #928374;
+                --red: #cc241d;
+                --green: #98971a;
+                --yellow: #d79921;
+                --blue: #458588;
+                --purple: #b16286;
+                --aqua: #689d6a;
+                --orange: #d65d0e;
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+                --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.6;
+                transition:
+                    background var(--transition),
+                    color var(--transition);
+                min-height: 100vh;
+                max-width: 1200px;
+                margin: 0 auto;
+                overflow-x: hidden;
+            }
+
+            /* ================================================================
+               SIDEBAR
+               ================================================================ */
+            .sidebar {
+                width: var(--sidebar-width);
+                flex-shrink: 0;
+                position: sticky;
+                top: 56px;
+                height: calc(100vh - 56px);
+                background: var(--surface);
+                border-inline-end: 1px solid var(--border);
+                padding: 1.5rem 1rem;
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                overflow-x: hidden;
+                z-index: 10;
+                transition:
+                    background var(--transition),
+                    border-color var(--transition);
+            }
+
+            .sidebar-header {
+                font-weight: 700;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--text-muted);
+                margin-bottom: 1rem;
+                padding-bottom: 0.75rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .sidebar-nav {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .sidebar-nav li a {
+                display: block;
+                padding: 0.5rem 0.75rem;
+                border-radius: 6px;
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: 500;
+                transition: all 0.15s ease;
+                border-left: 3px solid transparent;
+            }
+
+            .sidebar-nav li a:hover {
+                background: var(--surface-alt);
+                color: var(--text);
+                border-left-color: var(--border);
+            }
+
+            .sidebar-nav li a.active {
+                background: var(--primary-light);
+                color: var(--primary);
+                font-weight: 600;
+                border-left-color: var(--primary);
+            }
+
+            .sidebar-nav li a .emoji {
+                margin-right: 6px;
+                font-size: 0.9rem;
+            }
+
+            .sidebar-divider {
+                border: none;
+                border-top: 1px solid var(--border);
+                margin: 0.75rem 0;
+            }
+
+            /* ================================================================
+               MAIN CONTENT WRAPPER
+               ================================================================ */
+            .main-wrapper {
+                flex: 1;
+                min-width: 0;
+                padding: 1.5rem 2rem;
+            }
+
+            /* ================================================================
+               HEADER & SECTIONS
+               ================================================================ */
+            header,
+            section,
+            footer,
+            .concept-card,
+            .professor-card,
+            .ask-section,
+            .vault-section,
+            .quiz-section {
+                background: var(--surface);
+                border-radius: var(--radius);
+                padding: 1.8rem;
+                margin-bottom: 2rem;
+                box-shadow: var(--shadow);
+                border: 1px solid var(--border);
+            }
+
+            header {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+            }
+
+            h1,
+            h2,
+            h3 {
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                color: var(--fg0);
+                scroll-margin-top: 1rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+                margin: 0.5rem 0 0.3rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin: 1.2rem 0 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--primary);
+            }
+
+            .nav-btn {
+                background: var(--primary);
+                border: none;
+                color: var(--bg0_h);
+                padding: 0.5rem 1rem;
+                border-radius: 2rem;
+                font-weight: 500;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: 0.2s;
+                font-family: inherit;
+            }
+
+            .nav-btn:hover {
+                filter: brightness(1.1);
+                text-decoration: none;
+                color: var(--bg0_h);
+            }
+
+            .nav-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            .tag-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .tag {
+                background: rgba(255, 255, 255, 0.15);
+                color: var(--bg0_h);
+                padding: 0.25rem 0.9rem;
+                border-radius: 2rem;
+                font-size: 0.8rem;
+                font-weight: 500;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .tag--accent {
+                background: rgba(255, 255, 255, 0.25);
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .objectives-list {
+                list-style: none;
+                padding-left: 0;
+            }
+
+            .objectives-list li {
+                padding: 0.4rem 0;
+                display: flex;
+                align-items: baseline;
+                gap: 0.5rem;
+                color: var(--text);
+            }
+
+            .objectives-list li::before {
+                content: "●";
+                color: var(--primary);
+                font-weight: bold;
+            }
+
+            .concept-card {
+                border-left: 4px solid var(--primary);
+                padding: 1.5rem;
+                scroll-margin-top: 1rem;
+            }
+
+            .concept-header {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .concept-number {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+            }
+
+            .depth-tabs {
+                display: inline-flex;
+                gap: 4px;
+                margin-bottom: 20px;
+                background: var(--surface-alt);
+                padding: 4px;
+                border-radius: 10px;
+                border: 1px solid var(--border);
+            }
+
+            .depth-tab {
+                background: transparent;
+                border: none;
+                padding: 0.5rem 1.2rem;
+                font-weight: 600;
+                color: var(--text-secondary);
+                cursor: pointer;
+                border-radius: 2rem;
+                transition: 0.2s;
+                font-size: 0.9rem;
+                font-family: inherit;
+            }
+
+            .depth-tab.active {
+                background: var(--primary);
+                color: var(--bg0_h);
+            }
+
+            .depth-content {
+                display: none;
+                animation: fade 0.2s ease;
+                color: var(--text);
+            }
+
+            .depth-content.active {
+                display: block;
+            }
+
+            @keyframes fade {
+                from {
+                    opacity: 0.3;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .formula {
+                background: var(--surface-alt);
+                padding: 0.8rem 1.2rem;
+                border-radius: var(--radius-sm);
+                margin: 1rem 0;
+                font-family: "Courier New", monospace;
+                font-weight: 500;
+                border-left: 4px solid var(--primary);
+                color: var(--fg0);
+            }
+
+            .label {
+                display: block;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--primary);
+                margin-bottom: 0.2rem;
+                font-weight: 600;
+            }
+
+            .note-box {
+                background: var(--accent);
+                border-left: 4px solid var(--orange);
+                padding: 0.8rem 1rem;
+                border-radius: 0.5rem;
+                margin: 1.2rem 0;
+                color: var(--bg0_h);
+            }
+
+            [data-theme="light"] .note-box {
+                color: var(--fg0);
+                background: var(--bg2);
+            }
+
+            .comparison-table-wrap {
+                overflow-x: auto;
+                margin: 1rem 0;
+            }
+
+            .comparison-table {
+                width: 100%;
+                border-collapse: collapse;
+                background: var(--surface);
+                border-radius: 0.5rem;
+                overflow: hidden;
+                border: 1px solid var(--border);
+            }
+
+            .comparison-table th {
+                background: var(--surface-alt);
+                padding: 0.7rem;
+                text-align: left;
+                color: var(--fg0);
+                border-bottom: 2px solid var(--border);
+            }
+
+            .comparison-table td {
+                padding: 0.6rem;
+                border-bottom: 1px solid var(--border);
+                color: var(--text);
+            }
+
+            .professor-card {
+                border-left: 4px solid var(--purple);
+            }
+
+            .vault-entry {
+                margin-bottom: 1rem;
+                padding: 0.8rem;
+                border-radius: 0.6rem;
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                color: var(--text);
+            }
+
+            .vault-type {
+                font-weight: 700;
+                margin-bottom: 0.3rem;
+            }
+
+            .vault-type--key {
+                color: var(--accent);
+            }
+            .vault-type--trap {
+                color: var(--red);
+            }
+            .vault-type--secret {
+                color: var(--green);
+            }
+
+            .accordion-item {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .accordion-trigger {
+                width: 100%;
+                background: none;
+                border: none;
+                text-align: left;
+                padding: 1rem 0;
+                font-weight: 600;
+                display: flex;
+                justify-content: space-between;
+                color: var(--text);
+                cursor: pointer;
+                font-family: inherit;
+                font-size: 1rem;
+            }
+
+            .accordion-body {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0 0.5rem;
+                color: var(--text-secondary);
+            }
+
+            .accordion-body.open {
+                max-height: 300px;
+                padding-bottom: 1rem;
+            }
+
+            .quiz-card {
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                padding: 1.5rem;
+                border-radius: var(--radius);
+            }
+
+            .quiz-header {
+                display: flex;
+                justify-content: space-between;
+                color: var(--text-secondary);
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+
+            .quiz-question {
+                font-weight: 600;
+                color: var(--fg0);
+                margin: 1rem 0;
+                font-size: 1.05rem;
+                line-height: 1.6;
+            }
+
+            .quiz-options label {
+                display: block;
+                margin: 0.5rem 0;
+                cursor: pointer;
+                padding: 0.75rem 1rem;
+                border-radius: var(--radius-sm);
+                border: 1px solid var(--border);
+                transition: 0.2s;
+                background: var(--surface);
+                color: var(--text);
+            }
+
+            .quiz-options label:hover {
+                border-color: var(--primary);
+                background: var(--bg2);
+            }
+
+            .quiz-options input[type="radio"] {
+                margin-right: 10px;
+                accent-color: var(--primary);
+                transform: scale(1.1);
+            }
+
+            .quiz-feedback {
+                background: var(--surface);
+                padding: 0.8rem 1rem;
+                border-radius: var(--radius-sm);
+                margin-top: 1rem;
+                border-left: 4px solid var(--primary);
+                color: var(--text);
+                line-height: 1.6;
+            }
+
+            .hidden {
+                display: none !important;
+            }
+
+            button {
+                cursor: pointer;
+            }
+
+            footer {
+                text-align: center;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                border-top: 1px solid var(--border);
+            }
+
+            #quiz-hint-btn,
+            #quiz-prev-btn {
+                background: var(--surface);
+                color: var(--text);
+                border: 1px solid var(--border);
+            }
+
+            #quiz-hint-btn:hover,
+            #quiz-prev-btn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--primary);
+            }
+
+            #quiz-next-btn,
+            #retry-btn {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+            }
+
+            .score-display {
+                color: var(--primary);
+                font-weight: 700;
+                font-size: 2rem;
+            }
+
+            /* ================================================================
+               MOBILE SIDEBAR TOGGLE
+               ================================================================ */
+            .sidebar-toggle {
+                display: none;
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                font-size: 1.2rem;
+                cursor: pointer;
+                box-shadow: var(--shadow);
+            }
+
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                .sidebar {
+                    position: fixed;
+                    left: -100%;
+                    top: 56px;
+                    height: calc(100vh - 56px);
+                    width: 280px;
+                    transition: left 0.3s ease;
+                    z-index: 15;
+                }
+
+                .sidebar.open {
+                    left: 0;
+                }
+
+                .toolbar-hamburger {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
+
+            /* Toolbar */
+            .toolbar {
+                position: sticky;
+                top: 0;
+                z-index: 50;
+                width: 100vw;
+                left: 0;
+                right: 0;
+                background: rgba(251, 241, 199, 0.85);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border);
+                padding: 0.5rem calc((100vw - 1200px) / 2 + 1.5rem);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                margin-left: calc(-50vw + 600px);
+                margin-right: calc(-50vw + 600px);
+            }
+
+            [data-theme="dark"] .toolbar {
+                background: rgba(29, 32, 33, 0.9);
+            }
+
+            .toolbar-left,
+            .toolbar-right {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .toolbar-center {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-weight: 700;
+                font-size: 0.9rem;
+                color: var(--text);
+                background: var(--surface-alt);
+                padding: 0.4rem 1rem;
+                border-radius: 2rem;
+                border: 1px solid var(--border);
+            }
+
+            .toolbar-btn {
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                color: var(--text);
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 1rem;
+                transition: all 0.2s ease;
+            }
+
+            .toolbar-btn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--aqua);
+            }
+
+            .toolbar-btn.disabled-btn {
+                opacity: 0.3;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">📑 SCI201</div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#objectives"
+                        ><span class="emoji">🎯</span> Learning Objectives</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept1"
+                        ><span class="emoji">1️⃣</span> Potential Due to Point
+                        Charges</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept2"
+                        ><span class="emoji">2️⃣</span> Positive or Negative
+                        Charge</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept3"
+                        ><span class="emoji">3️⃣</span> Multiple Charges
+                        (Superposition)</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept4"
+                        ><span class="emoji">4️⃣</span> Potential Energy of
+                        Systems</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept5"
+                        ><span class="emoji">5️⃣</span> Field & Potential
+                        Relationship</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept6"
+                        ><span class="emoji">6️⃣</span> Equipotential Surfaces</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept7"
+                        ><span class="emoji">7️⃣</span> Electric Dipole
+                        Potential</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept8"
+                        ><span class="emoji">8️⃣</span> Field from Potential
+                        (Visual)</a
+                    >
+                </li>
+                <li>
+                    <a href="#formulas"
+                        ><span class="emoji">📐</span> Formulas
+                    </a>
+                </li>
+                <hr class="sidebar-divider" />
+                <li>
+                    <a href="#narrative"
+                        ><span class="emoji">🎓</span> Professor's Narrative</a
+                    >
+                </li>
+                <li>
+                    <a href="#ask-professor"
+                        ><span class="emoji">❓</span> Ask the Professor</a
+                    >
+                </li>
+                <li>
+                    <a href="#exam-vault"
+                        ><span class="emoji">🔐</span> Exam Vault</a
+                    >
+                </li>
+                <li>
+                    <a href="#quiz"><span class="emoji">📝</span> Self Quiz</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <h1>
+                    ⚡ Electric Potential Due to Continuous Charge Distribution
+                </h1>
+                <p style="color: var(--bg0_h); opacity: 0.9">
+                    Point charges, superposition, equipotential surfaces, and
+                    electric dipoles
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Electric Potential</span>
+                    <span class="tag">Superposition</span>
+                    <span class="tag">Dipole</span>
+                    <span class="tag tag--accent"
+                        ><i class="fa-regular fa-clock"></i> 45 min</span
+                    >
+                </div>
+            </header>
+
+            <main>
+                <section id="objectives">
+                    <h2>🎯 Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>
+                            Calculate the electric potential due to a single
+                            point charge.
+                        </li>
+                        <li>
+                            Apply the superposition principle to find the total
+                            electric potential due to multiple point charges.
+                        </li>
+                        <li>
+                            Calculate the total potential energy of a system of
+                            multiple point charges.
+                        </li>
+                        <li>
+                            Understand equipotential surfaces and their
+                            relationship to electric field lines.
+                        </li>
+                        <li>
+                            Describe the electric potential of an electric
+                            dipole.
+                        </li>
+                    </ul>
+                </section>
+
+                <div class="concept-card" id="concept1">
+                    <div class="concept-header">
+                        <span class="concept-number">1</span>
+                        <h2>Electric Potential Due to Point Charges</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The electric potential at a distance <em>r</em> from
+                            a single point charge <em>q</em> is given by
+                            <strong>V = kq/r</strong>, where V is taken to be
+                            zero at infinity.
+                        </p>
+                        <div class="formula">
+                            <span class="label"
+                                >Potential of a Point Charge</span
+                            >
+                            V = kq / r
+                        </div>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            The electric potential due to a point charge
+                            <em>q</em> at a distance <em>r</em> can be derived
+                            from its electric field. The potential is
+                            conventionally taken to be zero at infinity, where
+                            the electric field is zero. The formula is:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Point Charge Potential</span> V
+                            = k · q / r
+                        </div>
+                        <p>where k = 8.99 × 10⁹ N·m²/C².</p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Using the definition of potential and integrating
+                            the electric field of a point charge from infinity
+                            to a point P at distance <em>r</em> yields the same
+                            result. The potential can be positive or negative,
+                            depending on the sign of the charge <em>q</em>. It
+                            is a scalar quantity, so you do not need to consider
+                            direction, only the sign of the charge.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept2">
+                    <div class="concept-header">
+                        <span class="concept-number">2</span>
+                        <h2>
+                            Electric Potential for a Positive or Negative Charge
+                        </h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            For a positive charge, the potential is positive and
+                            decreases as you move away. For a negative charge,
+                            the potential is negative and increases (becomes
+                            less negative) as you move away.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            The formula V = kq/r is applied directly. Include
+                            the sign of the charge in your calculation. For
+                            example, a +20 μC charge at 0.50 m yields V = 3.6 ×
+                            10⁵ V. A -20 μC charge at the same distance yields V
+                            = -3.6 × 10⁵ V.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The sign of the potential is a direct result of the
+                            sign of the source charge. This is a crucial
+                            distinction from electric field, which always points
+                            away from a positive charge and toward a negative
+                            charge. The potential's sign reflects the work
+                            required to bring a positive test charge from
+                            infinity.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept3">
+                    <div class="concept-header">
+                        <span class="concept-number">3</span>
+                        <h2>
+                            Electric Potential Due to Multiple Point Charges
+                            (Superposition)
+                        </h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The total electric potential at a point due to
+                            several point charges is the algebraic sum of the
+                            potentials due to each individual charge.
+                        </p>
+                        <div class="formula">
+                            <span class="label">Superposition Principle</span> V
+                            = k<sub>e</sub> Σ (q<sub>i</sub> / r<sub>i</sub>)
+                        </div>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Because electric potential is a scalar, the
+                            superposition principle is applied by adding the
+                            scalar contributions, not by vector addition. For a
+                            group of point charges q₁, q₂, q₃..., the total
+                            potential at point P is:
+                        </p>
+                        <div class="formula">
+                            <span class="label"
+                                >Multiple Charges Potential</span
+                            >
+                            V = k<sub>e</sub> (q₁/r₁ + q₂/r₂ + q₃/r₃ + ...)
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            This is a powerful simplification. Unlike the
+                            electric field, which requires vector addition, the
+                            potential is a scalar sum. This means finding the
+                            potential due to multiple charges is often much
+                            easier than finding the electric field. You simply
+                            calculate the potential from each charge (including
+                            its sign) and add the numbers together.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept4">
+                    <div class="concept-header">
+                        <span class="concept-number">4</span>
+                        <h2>Potential Energy of a System of Charges</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The total electric potential energy of a system of
+                            multiple charges is the sum of the potential
+                            energies of every pair of charges.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            For a system of more than two charged particles, the
+                            total potential energy is calculated by summing the
+                            interaction energy for every pair. For three charges
+                            q₁, q₂, and q₃:
+                        </p>
+                        <div class="formula">
+                            <span class="label">System Potential Energy</span>
+                            U<sub>E</sub> = k<sub>e</sub> (q₁q₂/r₁₂ + q₁q₃/r₁₃ +
+                            q₂q₃/r₂₃)
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            This energy represents the work required to assemble
+                            the system of charges from infinity. Each term
+                            represents the potential energy of a pair of point
+                            charges. The signs of the charges are crucial:
+                            opposite charges give a negative potential energy (a
+                            bound, attractive system), while like charges give a
+                            positive potential energy (a repulsive, unbound
+                            system).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept5">
+                    <div class="concept-header">
+                        <span class="concept-number">5</span>
+                        <h2>
+                            Relationship Between Electric Field and Potential
+                        </h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The electric field is the negative gradient of the
+                            electric potential. The field points in the
+                            direction of the steepest decrease in potential.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            In a uniform field, the relationship is E = -ΔV/Δs
+                            (where Δs is the displacement). More generally,
+                            E<sub>x</sub> = -∂V/∂x. If you know the potential as
+                            a function of position, you can find the electric
+                            field.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            This is one of the most important relationships in
+                            electromagnetism. It ties the force concept (field)
+                            to the energy concept (potential). It also explains
+                            why equipotential surfaces are perpendicular to
+                            electric field lines: no work is done moving a
+                            charge along a surface of constant potential,
+                            meaning the force (and thus the field) has no
+                            component along the surface.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept6">
+                    <div class="concept-header">
+                        <span class="concept-number">6</span>
+                        <h2>Equipotential Surfaces</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            An equipotential surface has the same potential
+                            everywhere. No work is required to move a charge on
+                            it, and it is always perpendicular to electric field
+                            lines.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Equipotential surfaces are the 3D extension of
+                            equipotential lines. For a uniform field, they are
+                            planes perpendicular to the field. For a point
+                            charge, they are concentric spheres. Field lines are
+                            always perpendicular to these surfaces.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The electric field is strongest where equipotential
+                            surfaces are closest together, because a large
+                            change in potential over a small distance implies a
+                            strong field. They are analogous to contour lines on
+                            a topographic map, where the steepest slope (the
+                            "field") is perpendicular to the contour lines.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept7">
+                    <div class="concept-header">
+                        <span class="concept-number">7</span>
+                        <h2>Electric Dipole Potential</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The electric potential of a dipole falls off as
+                            1/r². It depends on the dipole moment p = ql and the
+                            angle.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            For a point P far from the dipole (r >> l), the
+                            potential is:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Dipole Potential</span> V ≈ k (p
+                            cos θ) / r²
+                        </div>
+                        <p>
+                            where p = ql is the dipole moment, l is the
+                            separation, and θ is the angle from the dipole axis.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The dipole potential falls off much faster (as 1/r²)
+                            than a single charge (1/r). This is because the two
+                            charges' potentials nearly cancel at large
+                            distances. The dipole moment is a vector pointing
+                            from negative to positive charge, crucial for
+                            understanding polar molecules and dielectrics.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept8">
+                    <div class="concept-header">
+                        <span class="concept-number">8</span>
+                        <h2>
+                            Calculating Field from Potential (Visualization)
+                        </h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            By examining the spacing of equipotential surfaces,
+                            you can determine the strength and direction of the
+                            electric field. Field is strongest where
+                            equipotentials are closest.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Field lines are perpendicular to equipotential lines
+                            and point toward decreasing potential. The magnitude
+                            of the field is larger where equipotential lines are
+                            closer together.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            This applies E = -dV/ds practically. If
+                            equipotential lines are close together, distance ds
+                            is small, resulting in a large electric field. This
+                            skill is essential for interpreting diagrams and
+                            connecting abstract potential to measurable force.
+                        </p>
+                    </div>
+                </div>
+                <section id="formulas">
+                    <h2>🔑 Summary: Key Differences</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Aspect</th>
+                                        <th>Electric Field (E)</th>
+                                        <th>Electric Potential (V)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nature</td>
+                                        <td>Vector</td>
+                                        <td>Scalar</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Addition</td>
+                                        <td>Vector sum (x, y, z components)</td>
+                                        <td>Algebraic sum (with signs)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Units</td>
+                                        <td>N/C or V/m</td>
+                                        <td>V (J/C)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Direction</td>
+                                        <td>From + to - charge</td>
+                                        <td>Decreases along field direction</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Work</td>
+                                        <td>F = qE</td>
+                                        <td>ΔU = qΔV</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zero at Infinity</td>
+                                        <td>Field → 0</td>
+                                        <td>V → 0 (by convention)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2>📐 Equations</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Formula</th>
+                                        <th>Units</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Single Point Charge</td>
+                                        <td>V = kq/r</td>
+                                        <td>V (J/C)</td>
+                                        <td>k = 8.99 × 10⁹ N·m²/C²</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Multiple Point Charges</td>
+                                        <td>V = kΣ(qᵢ/rᵢ)</td>
+                                        <td>V</td>
+                                        <td>Scalar sum (algebraic addition)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potential Energy (2 Charges)</td>
+                                        <td>U = kq₁q₂/r</td>
+                                        <td>J</td>
+                                        <td>For a pair of charges</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potential Energy (3+ Charges)</td>
+                                        <td>U = kΣ(qᵢqⱼ/rᵢⱼ)</td>
+                                        <td>J</td>
+                                        <td>Sum over all pairs</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Electric Field from Potential</td>
+                                        <td>E = -dV/dx</td>
+                                        <td>V/m</td>
+                                        <td>General form</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Uniform Field from Potential</td>
+                                        <td>E = -ΔV/d</td>
+                                        <td>V/m</td>
+                                        <td>For uniform field</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dipole Potential</td>
+                                        <td>V ≈ kp·cosθ/r²</td>
+                                        <td>V</td>
+                                        <td>For r >> l (far from dipole)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dipole Moment</td>
+                                        <td>p = ql</td>
+                                        <td>C·m</td>
+                                        <td>l = separation distance</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="professor-card" id="narrative">
+                    <h2>🎓 Professor's Narrative</h2>
+                    <p>
+                        The superposition principle is your most powerful tool
+                        when dealing with multiple charges. Since potential is a
+                        scalar, you can simply add the contributions from each
+                        source charge, which is much simpler than vector
+                        addition for electric fields. Remember, the sign of the
+                        charge determines the sign of its potential
+                        contribution.
+                    </p>
+                    <p>
+                        Pay close attention to the distinction between potential
+                        energy of a system (which depends on a charge placed in
+                        the field) and the electric potential at a point (which
+                        is a property of the field itself). The potential is
+                        like the altitude on a topographic map; it exists
+                        everywhere, independent of whether you put a ball on the
+                        hill. The potential energy is the energy that ball would
+                        have.
+                    </p>
+                    <p>
+                        Finally, always remember the fundamental relationship: E
+                        = -ΔV/Δs. This is the "master equation" connecting the
+                        force-based field and the energy-based potential. It's
+                        the key to understanding why equipotential surfaces and
+                        electric field lines are always perpendicular.
+                    </p>
+                </section>
+
+                <section class="ask-section" id="ask-professor">
+                    <h2>❓ Ask the Professor</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why is the potential at infinity taken to be
+                                zero for a point charge?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    This is a convention. It's the most
+                                    convenient choice because the electric field
+                                    and force go to zero at infinity, making it
+                                    a logical reference point where a charge
+                                    would have no potential energy due to the
+                                    source charge.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                If I have two positive charges, is it possible
+                                for the electric potential to be zero at some
+                                point? <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    No. Since both charges are positive, they
+                                    both produce a positive potential at every
+                                    point in space. Their contributions add, so
+                                    the total potential is always positive.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why are equipotential surfaces perpendicular to
+                                electric field lines?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    If an electric field had a component along
+                                    an equipotential surface, it would do work
+                                    on a test charge moved along that surface,
+                                    changing the potential. Therefore, the field
+                                    must be entirely perpendicular.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="vault-section" id="exam-vault">
+                    <h2>🔐 Exam Vault</h2>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        For a point charge, V = kq/r. Always include the sign of
+                        q when calculating potential. Potential is a scalar, so
+                        just add the numbers for multiple charges.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Do not confuse electric potential (V) with electric
+                        potential energy (U). The potential energy is U = qV.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--secret"
+                            >🤫 Secret</span
+                        >
+                        The potential energy of a pair of charges is the work to
+                        bring them together from infinity. Sum the potential
+                        energies of all distinct pairs for a system.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Equipotential surfaces are always perpendicular to
+                        electric field lines. Field points in direction of
+                        decreasing potential.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        For superposition of potential, you're adding numbers,
+                        not vectors. No x and y components needed.
+                    </div>
+                </section>
+
+                <section class="quiz-section" id="quiz">
+                    <h2>
+                        📝 Chapter 2: Electric Potential Due to Continuous
+                        Charge Distribution Quiz
+                    </h2>
+                    <div id="quiz-container"></div>
+                </section>
+            </main>
+
+            <footer>
+                SCI201 · Chapter 2: Electric Potential Due to Continuous Charge
+                Distribution
+            </footer>
+        </div>
+
+        <script>
+            (function () {
+                window.toggleTheme = function () {
+                    const html = document.documentElement;
+                    const cur = html.getAttribute("data-theme");
+                    const next = cur === "dark" ? "light" : "dark";
+                    html.setAttribute("data-theme", next);
+                    localStorage.setItem("garden_theme", next);
+                };
+                const saved = localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", saved);
+
+                document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
+                    const card = tabGroup.closest(".concept-card");
+                    if (!card) return;
+                    const tabs = tabGroup.querySelectorAll(".depth-tab");
+                    const contents = card.querySelectorAll(".depth-content");
+                    tabs.forEach((tab) => {
+                        tab.addEventListener("click", function () {
+                            const layer = this.dataset.layer;
+                            tabs.forEach((t) => t.classList.remove("active"));
+                            this.classList.add("active");
+                            contents.forEach((c) => {
+                                c.classList.remove("active");
+                                if (c.dataset.layer === layer)
+                                    c.classList.add("active");
+                            });
+                        });
+                    });
+                });
+
+                document
+                    .querySelectorAll(".accordion-trigger")
+                    .forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            const body = this.nextElementSibling;
+                            const isOpen = body.classList.contains("open");
+                            const section = this.closest(".accordion");
+                            section
+                                .querySelectorAll(".accordion-body")
+                                .forEach((b) => b.classList.remove("open"));
+                            if (!isOpen) body.classList.add("open");
+                        });
+                    });
+
+                const currentStatus = localStorage.getItem("chapter_2_status");
+                if (!currentStatus || currentStatus === "not-started") {
+                    localStorage.setItem("chapter_2_status", "viewed");
+                }
+            })();
+        </script>
+
+        <script src="../js/quiz.js"></script>
+        <script>
+            initQuiz({
+                chapterNum: 2,
+                quizData: [
+                    {
+                        question:
+                            "1. What is the electric potential at a distance of 2 m from a +5 μC point charge? (k = 9.0 × 10⁹ N·m²/C²)",
+                        options: ["11,250 V", "22,500 V", "45,000 V", "2.25 V"],
+                        correct: 1,
+                        explanation:
+                            "V = kq/r = (9.0×10⁹)(5×10⁻⁶)/2 = 22,500 V.",
+                        hint: "Use the formula V = kq/r and don't forget to convert μC to C.",
+                    },
+                    {
+                        question:
+                            "2. The electric potential due to a point charge is:",
+                        options: [
+                            "A vector quantity.",
+                            "A scalar quantity.",
+                            "Zero at the location of the charge.",
+                            "Always positive.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Potential is a scalar; it has magnitude but no direction.",
+                        hint: "Think about whether potential depends on direction or just the distance.",
+                    },
+                    {
+                        question:
+                            "3. Two charges, +3 μC and -3 μC, are placed 1 m apart. What is the potential at the midpoint between them?",
+                        options: ["54,000 V", "0 V", "108,000 V", "-54,000 V"],
+                        correct: 1,
+                        explanation:
+                            "The contributions are equal in magnitude but opposite in sign, so they cancel to zero.",
+                        hint: "The contributions from each charge are equal in magnitude but opposite in sign.",
+                    },
+                    {
+                        question:
+                            "4. The total electric potential energy of a system of three charges is the sum of:",
+                        options: [
+                            "Three potentials from each charge.",
+                            "The potential energy for two pairs of charges.",
+                            "The potential energy for three pairs of charges.",
+                            "The potentials divided by their respective charges.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "Energy is a pairwise interaction. For three charges, there are three distinct pairs.",
+                        hint: "Energy is a pairwise interaction.",
+                    },
+                    {
+                        question:
+                            "5. If the distance from a point charge is doubled, by what factor does the electric potential change?",
+                        options: [
+                            "It is doubled.",
+                            "It is quartered.",
+                            "It is halved.",
+                            "It stays the same.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "From V = kq/r, if r is doubled, V becomes V/2.",
+                        hint: "Look at the formula V = kq/r.",
+                    },
+                    {
+                        question:
+                            "6. An equipotential surface is a surface on which:",
+                        options: [
+                            "The electric field is zero.",
+                            "The electric field is constant.",
+                            "The electric potential is constant.",
+                            "The potential energy is zero.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "By definition, every point on an equipotential surface has the same potential.",
+                        hint: "The name itself gives away the answer.",
+                    },
+                    {
+                        question:
+                            "7. Electric field lines are always _____ to equipotential surfaces.",
+                        options: [
+                            "parallel",
+                            "perpendicular",
+                            "at a 45° angle",
+                            "no relation",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "No work is done moving along an equipotential, so the field has no component along it.",
+                        hint: "No work is done moving a charge along an equipotential.",
+                    },
+                    {
+                        question:
+                            "8. The potential of an electric dipole falls off as:",
+                        options: ["1/r", "1/r²", "1/r³", "It is constant."],
+                        correct: 1,
+                        explanation:
+                            "The two charges' effects nearly cancel at large distances, making the potential fall off faster than a single charge.",
+                        hint: "The two charges' effects nearly cancel at large distances.",
+                    },
+                    {
+                        question:
+                            "9. What is the relationship between the electric field (E) and the electric potential (V) in a uniform field?",
+                        options: [
+                            "E = -V/d",
+                            "E = V × d",
+                            "E = d/V",
+                            "E = V/d",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "The negative sign indicates the field points toward decreasing potential.",
+                        hint: "Recall the connection between potential and work.",
+                    },
+                    {
+                        question:
+                            "10. The dipole moment of a molecule is a measure of its:",
+                        options: [
+                            "Total charge.",
+                            "Mass.",
+                            "Separation of positive and negative charge.",
+                            "Size.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "The dipole moment is defined as p = ql, where l is the separation distance.",
+                        hint: "The dipole moment is defined as p = ql.",
+                    },
+                ],
+            });
+        </script>
+        <script src="../js/toolbar.js"></script>
+    </body>
+</html>

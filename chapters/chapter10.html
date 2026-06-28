@@ -1,0 +1,1573 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=yes"
+        />
+        <title>Chapter 10: Wave Motion and Sound Waves (Part 1) · SCI201</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+        <style>
+            /* ================================================================
+               GRUVBOX COLOR PALETTE
+               ================================================================ */
+            :root {
+                --bg: #fbf1c7;
+                --bg0_h: #f9f5d7;
+                --bg0: #fbf1c7;
+                --bg1: #ebdbb2;
+                --bg2: #d5c4a1;
+                --bg3: #bdae93;
+                --bg4: #a89984;
+                --fg: #3c3836;
+                --fg0: #282828;
+                --fg1: #3c3836;
+                --fg2: #504945;
+                --fg3: #665c54;
+                --fg4: #7c6f64;
+                --gray: #928374;
+                --red: #9d0006;
+                --green: #79740e;
+                --yellow: #b57614;
+                --blue: #076678;
+                --purple: #8f3f71;
+                --aqua: #427b58;
+                --orange: #d65d0e;
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --accent: var(--yellow);
+                --success: var(--green);
+                --danger: var(--red);
+                --warning: var(--orange);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+                --shadow:
+                    0 4px 6px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+                --radius: 12px;
+                --radius-sm: 8px;
+                --transition: 0.2s ease;
+                --sidebar-width: 260px;
+            }
+
+            [data-theme="dark"] {
+                --bg: #282828;
+                --bg0_h: #1d2021;
+                --bg0: #282828;
+                --bg1: #3c3836;
+                --bg2: #504945;
+                --bg3: #665c54;
+                --bg4: #7c6f64;
+                --fg: #ebdbb2;
+                --fg0: #fbf1c7;
+                --fg1: #ebdbb2;
+                --fg2: #d5c4a1;
+                --fg3: #bdae93;
+                --fg4: #a89984;
+                --gray: #928374;
+                --red: #cc241d;
+                --green: #98971a;
+                --yellow: #d79921;
+                --blue: #458588;
+                --purple: #b16286;
+                --aqua: #689d6a;
+                --orange: #d65d0e;
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+                --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.6;
+                transition:
+                    background var(--transition),
+                    color var(--transition);
+                min-height: 100vh;
+                max-width: 1200px;
+                margin: 0 auto;
+                overflow-x: hidden;
+            }
+
+            .sidebar {
+                width: var(--sidebar-width);
+                flex-shrink: 0;
+                position: sticky;
+                top: 56px;
+                height: calc(100vh - 56px);
+                background: var(--surface);
+                border-inline-end: 1px solid var(--border);
+                padding: 1.5rem 1rem;
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                overflow-x: hidden;
+                z-index: 10;
+                transition:
+                    background var(--transition),
+                    border-color var(--transition);
+            }
+
+            .sidebar-header {
+                font-weight: 700;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--text-muted);
+                margin-bottom: 1rem;
+                padding-bottom: 0.75rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .sidebar-nav {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .sidebar-nav li a {
+                display: block;
+                padding: 0.5rem 0.75rem;
+                border-radius: 6px;
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: 500;
+                transition: all 0.15s ease;
+                border-left: 3px solid transparent;
+            }
+            .sidebar-nav li a:hover {
+                background: var(--surface-alt);
+                color: var(--text);
+                border-left-color: var(--border);
+            }
+            .sidebar-nav li a.active {
+                background: var(--primary-light);
+                color: var(--primary);
+                font-weight: 600;
+                border-left-color: var(--primary);
+            }
+            .sidebar-nav li a .emoji {
+                margin-right: 6px;
+                font-size: 0.9rem;
+            }
+            .sidebar-divider {
+                border: none;
+                border-top: 1px solid var(--border);
+                margin: 0.75rem 0;
+            }
+
+            .main-wrapper {
+                flex: 1;
+                min-width: 0;
+                padding: 1.5rem 2rem;
+            }
+
+            header,
+            section,
+            footer,
+            .concept-card,
+            .professor-card,
+            .ask-section,
+            .vault-section,
+            .quiz-section {
+                background: var(--surface);
+                border-radius: var(--radius);
+                padding: 1.8rem;
+                margin-bottom: 2rem;
+                box-shadow: var(--shadow);
+                border: 1px solid var(--border);
+            }
+
+            header {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+            }
+
+            h1,
+            h2,
+            h3 {
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                color: var(--fg0);
+                scroll-margin-top: 1rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin: 0.5rem 0 0.3rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+                margin: 1.2rem 0 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--primary);
+            }
+
+            .nav-btn {
+                background: var(--primary);
+                border: none;
+                color: var(--bg0_h);
+                padding: 0.5rem 1rem;
+                border-radius: 2rem;
+                font-weight: 500;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: 0.2s;
+                font-family: inherit;
+            }
+            .nav-btn:hover {
+                filter: brightness(1.1);
+                text-decoration: none;
+                color: var(--bg0_h);
+            }
+            .nav-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            .tag-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+            .tag {
+                background: rgba(255, 255, 255, 0.15);
+                color: var(--bg0_h);
+                padding: 0.25rem 0.9rem;
+                border-radius: 2rem;
+                font-size: 0.8rem;
+                font-weight: 500;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .tag--accent {
+                background: rgba(255, 255, 255, 0.25);
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .objectives-list {
+                list-style: none;
+                padding-left: 0;
+            }
+            .objectives-list li {
+                padding: 0.4rem 0;
+                display: flex;
+                align-items: baseline;
+                gap: 0.5rem;
+                color: var(--text);
+            }
+            .objectives-list li::before {
+                content: "●";
+                color: var(--primary);
+                font-weight: bold;
+            }
+
+            .concept-card {
+                border-left: 4px solid var(--primary);
+                padding: 1.5rem;
+                scroll-margin-top: 1rem;
+            }
+            .concept-header {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+            }
+            .concept-number {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+            }
+
+            .depth-tabs {
+                display: inline-flex;
+                gap: 4px;
+                margin-bottom: 20px;
+                background: var(--surface-alt);
+                padding: 4px;
+                border-radius: 10px;
+                border: 1px solid var(--border);
+            }
+            .depth-tab {
+                background: transparent;
+                border: none;
+                padding: 0.5rem 1.2rem;
+                font-weight: 600;
+                color: var(--text-secondary);
+                cursor: pointer;
+                border-radius: 2rem;
+                transition: 0.2s;
+                font-size: 0.9rem;
+                font-family: inherit;
+            }
+            .depth-tab.active {
+                background: var(--primary);
+                color: var(--bg0_h);
+            }
+
+            .depth-content {
+                display: none;
+                animation: fade 0.2s ease;
+                color: var(--text);
+            }
+            .depth-content.active {
+                display: block;
+            }
+            @keyframes fade {
+                from {
+                    opacity: 0.3;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .formula {
+                background: var(--surface-alt);
+                padding: 0.8rem 1.2rem;
+                border-radius: var(--radius-sm);
+                margin: 1rem 0;
+                font-family: "Courier New", monospace;
+                font-weight: 500;
+                border-left: 4px solid var(--primary);
+                color: var(--fg0);
+            }
+            .label {
+                display: block;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--primary);
+                margin-bottom: 0.2rem;
+                font-weight: 600;
+            }
+
+            .note-box {
+                background: var(--accent);
+                border-left: 4px solid var(--orange);
+                padding: 0.8rem 1rem;
+                border-radius: 0.5rem;
+                margin: 1.2rem 0;
+                color: var(--bg0_h);
+            }
+            [data-theme="light"] .note-box {
+                color: var(--fg0);
+                background: var(--bg2);
+            }
+
+            .comparison-table-wrap {
+                overflow-x: auto;
+                margin: 1rem 0;
+            }
+            .comparison-table {
+                width: 100%;
+                border-collapse: collapse;
+                background: var(--surface);
+                border-radius: 0.5rem;
+                overflow: hidden;
+                border: 1px solid var(--border);
+            }
+            .comparison-table th {
+                background: var(--surface-alt);
+                padding: 0.7rem;
+                text-align: left;
+                color: var(--fg0);
+                border-bottom: 2px solid var(--border);
+            }
+            .comparison-table td {
+                padding: 0.6rem;
+                border-bottom: 1px solid var(--border);
+                color: var(--text);
+            }
+
+            .professor-card {
+                border-left: 4px solid var(--purple);
+            }
+            .vault-entry {
+                margin-bottom: 1rem;
+                padding: 0.8rem;
+                border-radius: 0.6rem;
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                color: var(--text);
+            }
+            .vault-type {
+                font-weight: 700;
+                margin-bottom: 0.3rem;
+            }
+            .vault-type--key {
+                color: var(--accent);
+            }
+            .vault-type--trap {
+                color: var(--red);
+            }
+            .vault-type--secret {
+                color: var(--green);
+            }
+
+            .accordion-item {
+                border-bottom: 1px solid var(--border);
+            }
+            .accordion-trigger {
+                width: 100%;
+                background: none;
+                border: none;
+                text-align: left;
+                padding: 1rem 0;
+                font-weight: 600;
+                display: flex;
+                justify-content: space-between;
+                color: var(--text);
+                cursor: pointer;
+                font-family: inherit;
+                font-size: 1rem;
+            }
+            .accordion-body {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0 0.5rem;
+                color: var(--text-secondary);
+            }
+            .accordion-body.open {
+                max-height: 300px;
+                padding-bottom: 1rem;
+            }
+
+            .quiz-card {
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                padding: 1.5rem;
+                border-radius: var(--radius);
+            }
+            .quiz-header {
+                display: flex;
+                justify-content: space-between;
+                color: var(--text-secondary);
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+            .quiz-question {
+                font-weight: 600;
+                color: var(--fg0);
+                margin: 1rem 0;
+                font-size: 1.05rem;
+                line-height: 1.6;
+            }
+            .quiz-options label {
+                display: block;
+                margin: 0.5rem 0;
+                cursor: pointer;
+                padding: 0.75rem 1rem;
+                border-radius: var(--radius-sm);
+                border: 1px solid var(--border);
+                transition: 0.2s;
+                background: var(--surface);
+                color: var(--text);
+            }
+            .quiz-options label:hover {
+                border-color: var(--primary);
+                background: var(--bg2);
+            }
+            .quiz-options input[type="radio"] {
+                margin-right: 10px;
+                accent-color: var(--primary);
+                transform: scale(1.1);
+            }
+            .quiz-feedback {
+                background: var(--surface);
+                padding: 0.8rem 1rem;
+                border-radius: var(--radius-sm);
+                margin-top: 1rem;
+                border-left: 4px solid var(--primary);
+                color: var(--text);
+                line-height: 1.6;
+            }
+            .hidden {
+                display: none !important;
+            }
+            button {
+                cursor: pointer;
+            }
+            footer {
+                text-align: center;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                border-top: 1px solid var(--border);
+            }
+
+            #quiz-hint-btn,
+            #quiz-prev-btn {
+                background: var(--surface);
+                color: var(--text);
+                border: 1px solid var(--border);
+            }
+            #quiz-hint-btn:hover,
+            #quiz-prev-btn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--primary);
+            }
+            #quiz-next-btn,
+            #retry-btn {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+            }
+            .score-display {
+                color: var(--primary);
+                font-weight: 700;
+                font-size: 2rem;
+            }
+
+            .sidebar-toggle {
+                display: none;
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                font-size: 1.2rem;
+                cursor: pointer;
+                box-shadow: var(--shadow);
+            }
+
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                .sidebar {
+                    position: fixed;
+                    left: -100%;
+                    top: 56px;
+                    height: calc(100vh - 56px);
+                    width: 280px;
+                    transition: left 0.3s ease;
+                    z-index: 15;
+                }
+                .sidebar.open {
+                    left: 0;
+                }
+                .toolbar-hamburger {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
+
+            .toolbar {
+                position: sticky;
+                top: 0;
+                z-index: 50;
+                width: 100vw;
+                left: 0;
+                right: 0;
+                background: rgba(251, 241, 199, 0.85);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border);
+                padding: 0.5rem calc((100vw - 1200px) / 2 + 1.5rem);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                margin-left: calc(-50vw + 600px);
+                margin-right: calc(-50vw + 600px);
+            }
+            [data-theme="dark"] .toolbar {
+                background: rgba(29, 32, 33, 0.9);
+            }
+            .toolbar-left,
+            .toolbar-right {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .toolbar-center {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-weight: 700;
+                font-size: 0.9rem;
+                color: var(--text);
+                background: var(--surface-alt);
+                padding: 0.4rem 1rem;
+                border-radius: 2rem;
+                border: 1px solid var(--border);
+            }
+            .toolbar-btn {
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                color: var(--text);
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 1rem;
+                transition: all 0.2s ease;
+            }
+            .toolbar-btn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--aqua);
+            }
+            .toolbar-btn.disabled-btn {
+                opacity: 0.3;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">📑 SCI201</div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#objectives"
+                        ><span class="emoji">🎯</span> Learning Objectives</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept1"
+                        ><span class="emoji">1️⃣</span> Types of Waves</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept2"
+                        ><span class="emoji">2️⃣</span> Transverse & Longitudinal
+                        Waves</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept3"
+                        ><span class="emoji">3️⃣</span> Wave Parameters</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept4"
+                        ><span class="emoji">4️⃣</span> Speed of a Wave on a
+                        String</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept5"
+                        ><span class="emoji">5️⃣</span> Energy & Power in a
+                        Wave</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept6"
+                        ><span class="emoji">6️⃣</span> The Linear Wave
+                        Equation</a
+                    >
+                </li>
+                <hr class="sidebar-divider" />
+                <li>
+                    <a href="#formulas"
+                        ><span class="emoji">📐</span> Equations</a
+                    >
+                </li>
+                <li>
+                    <a href="#narrative"
+                        ><span class="emoji">🎓</span> Professor's Narrative</a
+                    >
+                </li>
+                <li>
+                    <a href="#ask-professor"
+                        ><span class="emoji">❓</span> Ask the Professor</a
+                    >
+                </li>
+                <li>
+                    <a href="#exam-vault"
+                        ><span class="emoji">🔐</span> Exam Vault</a
+                    >
+                </li>
+                <li>
+                    <a href="#quiz"><span class="emoji">📝</span> Self Quiz</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <h1>🌊 Wave Motion and Sound Waves (Part 1)</h1>
+                <p style="color: var(--bg0_h); opacity: 0.9">
+                    Types of waves, wave speed, energy in waves, and the wave
+                    equation
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Waves</span>
+                    <span class="tag">Wave Speed</span>
+                    <span class="tag">Energy</span>
+                    <span class="tag tag--accent"
+                        ><i class="fa-regular fa-clock"></i> 45 min</span
+                    >
+                </div>
+            </header>
+
+            <main>
+                <section id="objectives">
+                    <h2>🎯 Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>
+                            Understand the nature and types of waves
+                            (mechanical, electromagnetic, matter).
+                        </li>
+                        <li>
+                            Distinguish between transverse and longitudinal
+                            waves.
+                        </li>
+                        <li>
+                            Apply the wave equation and understand wave
+                            parameters.
+                        </li>
+                        <li>
+                            Calculate the speed of a wave on a stretched string.
+                        </li>
+                        <li>
+                            Understand the energy and power transmitted by a
+                            wave.
+                        </li>
+                        <li>Apply the linear wave equation.</li>
+                    </ul>
+                </section>
+
+                <div class="concept-card" id="concept1">
+                    <div class="concept-header">
+                        <span class="concept-number">1</span>
+                        <h2>Types of Waves</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Waves transfer energy without transferring matter.
+                            Mechanical waves require a medium. Electromagnetic
+                            waves do not. Matter waves are associated with
+                            particles. Examples include sound, light, water, and
+                            seismic waves.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            <strong>Mechanical Waves:</strong> Require a medium
+                            to travel through. Examples: water waves, sound
+                            waves, seismic waves.
+                        </p>
+                        <p>
+                            <strong>Electromagnetic Waves:</strong> Do not
+                            require a medium. Can travel through vacuum.
+                            Examples: light, radio waves, X-rays. All travel at
+                            c = 3.00 × 10⁸ m/s in vacuum.
+                        </p>
+                        <p>
+                            <strong>Matter Waves:</strong> Associated with
+                            moving particles (electrons, protons, atoms).
+                            Predicted by quantum mechanics.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Mechanical waves transfer energy through a medium by
+                            causing particles to oscillate. The medium itself
+                            does not travel with the wave—only the disturbance
+                            propagates. Electromagnetic waves are
+                            self-propagating oscillations of electric and
+                            magnetic fields. They can travel through a vacuum,
+                            which is why we can see the Sun. Matter waves are a
+                            quantum mechanical concept—they describe the
+                            wave-like behavior of particles.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept2">
+                    <div class="concept-header">
+                        <span class="concept-number">2</span>
+                        <h2>Transverse and Longitudinal Waves</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            In transverse waves, particles move perpendicular to
+                            the wave direction. In longitudinal waves, particles
+                            move parallel to the direction of propagation. Sound
+                            waves are longitudinal; light waves are transverse.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            <strong>Transverse Waves:</strong> The particles of
+                            the medium move perpendicular to the direction of
+                            wave propagation. Example: waves on a string,
+                            electromagnetic waves.
+                        </p>
+                        <p>
+                            <strong>Longitudinal Waves:</strong> The particles
+                            of the medium move parallel to the direction of wave
+                            propagation. Example: sound waves, seismic P-waves.
+                            The wave consists of compressions (high density) and
+                            rarefactions (low density).
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Transverse waves can only propagate in solids (or on
+                            surfaces of liquids), because they require shear
+                            forces. Longitudinal waves can propagate in solids,
+                            liquids, and gases, because they involve compression
+                            and expansion of the medium. Sound waves are
+                            longitudinal because they propagate through air by
+                            compressing and expanding the air molecules.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept3">
+                    <div class="concept-header">
+                        <span class="concept-number">3</span>
+                        <h2>
+                            Wave Parameters (Wavelength, Frequency, Period,
+                            Speed)
+                        </h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The speed of a wave is related to its wavelength and
+                            frequency by v = fλ = ω/k. The period is T = 1/f,
+                            and the angular frequency is ω = 2πf. The wave
+                            number is k = 2π/λ.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>A sinusoidal wave is described by:</p>
+                        <div class="formula">
+                            <span class="label">Wave Function</span> y(x,t) = A
+                            sin(kx - ωt)
+                        </div>
+                        <p>
+                            where A is the amplitude, k = 2π/λ is the wave
+                            number (rad/m), ω = 2πf = 2π/T is the angular
+                            frequency (rad/s), λ is the wavelength (m), f is the
+                            frequency (Hz), T is the period (s), and v = fλ =
+                            ω/k is the wave speed (m/s).
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The wave equation y(x,t) = A sin(kx - ωt) describes
+                            a wave traveling to the right (in the positive x
+                            direction). For a wave traveling to the left,
+                            replace kx - ωt with kx + ωt. The parameters k and ω
+                            are related to the wavelength and period,
+                            respectively. The speed v = ω/k = fλ is the speed at
+                            which the wave profile moves.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept4">
+                    <div class="concept-header">
+                        <span class="concept-number">4</span>
+                        <h2>Speed of a Wave on a Stretched String</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The speed of a wave on a stretched string is v =
+                            √(T/μ), where T is the tension in the string and μ =
+                            m/L is the linear mass density. The speed depends on
+                            the properties of the string, not on the wave
+                            itself.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>For a wave on a stretched string under tension T:</p>
+                        <div class="formula">
+                            <span class="label">Wave Speed on String</span> v =
+                            √(T/μ)
+                        </div>
+                        <p>
+                            where T is the tension in the string (N), μ = m/L is
+                            the linear mass density (kg/m), m is the mass of the
+                            string, and L is the length of the string. Higher
+                            tension gives higher speed. Heavier strings (larger
+                            μ) give lower speed.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The formula v = √(T/μ) is derived from Newton's
+                            second law applied to a small element of the string.
+                            It shows that the wave speed depends only on the
+                            properties of the medium (the string), not on the
+                            wave itself. This is a general property of waves—the
+                            speed is determined by the medium, not by the
+                            source. For sound waves, the speed depends on the
+                            properties of the gas (temperature, pressure, etc.).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept5">
+                    <div class="concept-header">
+                        <span class="concept-number">5</span>
+                        <h2>Energy and Power in a Wave</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The power transmitted by a sinusoidal wave on a
+                            stretched string is P = ½μvω²A². The power is
+                            proportional to the square of the amplitude and the
+                            square of the angular frequency.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            A wave transfers energy as it propagates. The
+                            average power transmitted by a sinusoidal wave on a
+                            stretched string is:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Wave Power</span> P = ½μvω²A²
+                        </div>
+                        <p>
+                            where μ is the linear mass density, v is the wave
+                            speed, ω is the angular frequency, and A is the
+                            amplitude.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The power depends on the properties of the string (μ
+                            and v) and the wave parameters (ω and A). The energy
+                            per unit length of the string is E/L = ½μω²A². The
+                            power is the energy per unit length times the wave
+                            speed. The power is proportional to A² and ω², which
+                            means that doubling the amplitude quadruples the
+                            power.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept6">
+                    <div class="concept-header">
+                        <span class="concept-number">6</span>
+                        <h2>The Linear Wave Equation</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The linear wave equation is ∂²y/∂x² = (1/v²)
+                            ∂²y/∂t². Any function of the form y = f(x ± vt)
+                            satisfies this equation, and the wave speed is v.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>The linear wave equation is:</p>
+                        <div class="formula">
+                            <span class="label">Wave Equation</span> ∂²y/∂x² =
+                            (1/v²) ∂²y/∂t²
+                        </div>
+                        <p>
+                            where y(x,t) is the wave function. This equation is
+                            satisfied by any wave function of the form y = f(x ±
+                            vt). The wave speed is v. For a wave on a string,
+                            this equation is derived from Newton's second law
+                            applied to a small element of the string.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The linear wave equation is one of the most
+                            important equations in physics. It describes how
+                            waves propagate through a medium. The equation is
+                            linear, which means that the superposition principle
+                            applies—the sum of any two solutions is also a
+                            solution. This is why waves can interfere with each
+                            other. The wave equation is the basis for
+                            understanding all wave phenomena, from sound to
+                            light to quantum mechanics.
+                        </p>
+                    </div>
+                </div>
+
+                <section id="formulas">
+                    <h2>📐 Equations</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Formula</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Wave Speed</td>
+                                        <td>v = fλ</td>
+                                        <td>m/s</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wave Number</td>
+                                        <td>k = 2π/λ</td>
+                                        <td>rad/m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Angular Frequency</td>
+                                        <td>ω = 2πf = 2π/T</td>
+                                        <td>rad/s</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wave Function (Right)</td>
+                                        <td>y(x,t) = A sin(kx - ωt)</td>
+                                        <td>m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wave Function (Left)</td>
+                                        <td>y(x,t) = A sin(kx + ωt)</td>
+                                        <td>m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Speed on Stretched String</td>
+                                        <td>v = √(T/μ)</td>
+                                        <td>m/s</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Linear Mass Density</td>
+                                        <td>μ = m/L</td>
+                                        <td>kg/m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Power Transmitted by Wave</td>
+                                        <td>P = ½μvω²A²</td>
+                                        <td>W</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Linear Wave Equation</td>
+                                        <td>∂²y/∂x² = (1/v²)∂²y/∂t²</td>
+                                        <td>—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2>⚖️ Transverse vs Longitudinal Waves</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Transverse</th>
+                                        <th>Longitudinal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Particle Motion</td>
+                                        <td>Perpendicular to wave direction</td>
+                                        <td>Parallel to wave direction</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Medium Required</td>
+                                        <td>Solids (or surfaces)</td>
+                                        <td>Solids, liquids, gases</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Compression/Rarefaction</td>
+                                        <td>No</td>
+                                        <td>Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Examples</td>
+                                        <td>Waves on string, light</td>
+                                        <td>Sound waves</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="professor-card" id="narrative">
+                    <h2>🎓 Professor's Narrative</h2>
+                    <p>
+                        Wave motion is one of the most fundamental phenomena in
+                        physics. Waves transfer energy without transferring
+                        matter. They are everywhere—from the sound of a voice to
+                        the light from the Sun.
+                    </p>
+                    <p>
+                        The key distinction is between transverse waves (where
+                        particles move perpendicular to the wave direction) and
+                        longitudinal waves (where particles move parallel to the
+                        wave direction). Sound waves are longitudinal, while
+                        light waves are transverse.
+                    </p>
+                    <p>
+                        The speed of a wave is determined by the properties of
+                        the medium, not by the source. For a stretched string,
+                        the speed depends on the tension and the mass density.
+                        For sound waves, the speed depends on the temperature
+                        and pressure of the gas.
+                    </p>
+                    <p>
+                        The wave equation is the mathematical description of
+                        wave motion. It's a second-order partial differential
+                        equation that describes how waves propagate.
+                        Understanding the wave equation is essential for
+                        understanding all wave phenomena.
+                    </p>
+                </section>
+
+                <section class="ask-section" id="ask-professor">
+                    <h2>❓ Ask the Professor</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why do waves transfer energy but not matter?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    In a wave, the particles of the medium
+                                    oscillate about their equilibrium positions,
+                                    but they don't travel with the wave. Only
+                                    the disturbance (energy) propagates. Think
+                                    of a wave in a stadium—people stand up and
+                                    sit down, but the "wave" travels around the
+                                    stadium. The people (matter) don't move
+                                    around the stadium, only the disturbance
+                                    (energy) does.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why do sound waves require a medium?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Sound waves are longitudinal pressure waves.
+                                    They require particles to collide and
+                                    transfer pressure variations. In a vacuum,
+                                    there are no particles to collide, so sound
+                                    cannot travel. This is why you can't hear
+                                    anything in space.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                What determines the speed of a wave?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    The speed of a wave is determined by the
+                                    properties of the medium, not by the source.
+                                    For a wave on a string, the speed depends on
+                                    tension and mass density. For sound in air,
+                                    the speed depends on temperature. For light,
+                                    the speed depends on the refractive index of
+                                    the medium (it's constant in vacuum).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="vault-section" id="exam-vault">
+                    <h2>🔐 Exam Vault</h2>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Wave speed: v = fλ = ω/k. For a string: v = √(T/μ). For
+                        sound in a gas: v = √(B/ρ).
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        The speed of a wave is determined by the medium, not by
+                        the source. Changing the frequency does not change the
+                        speed—it changes the wavelength.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--secret"
+                            >🤫 Secret</span
+                        >
+                        The linear wave equation ∂²y/∂x² = (1/v²)∂²y/∂t² is
+                        satisfied by any function of the form y = f(x ± vt).
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Power transmitted by a wave: P = ½μvω²A². Power is
+                        proportional to A² and ω².
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Transverse waves require a medium with shear forces
+                        (solids). Longitudinal waves can travel through solids,
+                        liquids, and gases.
+                    </div>
+                </section>
+
+                <section class="quiz-section" id="quiz">
+                    <h2>
+                        📝 Chapter 10: Wave Motion and Sound Waves (Part 1) Quiz
+                    </h2>
+                    <div id="quiz-container"></div>
+                </section>
+            </main>
+
+            <footer>
+                SCI201 · Chapter 10: Wave Motion and Sound Waves (Part 1)
+            </footer>
+        </div>
+
+        <script>
+            (function () {
+                window.toggleTheme = function () {
+                    const html = document.documentElement;
+                    const cur = html.getAttribute("data-theme");
+                    const next = cur === "dark" ? "light" : "dark";
+                    html.setAttribute("data-theme", next);
+                    localStorage.setItem("garden_theme", next);
+                };
+                const saved = localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", saved);
+
+                document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
+                    const card = tabGroup.closest(".concept-card");
+                    if (!card) return;
+                    const tabs = tabGroup.querySelectorAll(".depth-tab");
+                    const contents = card.querySelectorAll(".depth-content");
+                    tabs.forEach((tab) => {
+                        tab.addEventListener("click", function () {
+                            const layer = this.dataset.layer;
+                            tabs.forEach((t) => t.classList.remove("active"));
+                            this.classList.add("active");
+                            contents.forEach((c) => {
+                                c.classList.remove("active");
+                                if (c.dataset.layer === layer)
+                                    c.classList.add("active");
+                            });
+                        });
+                    });
+                });
+
+                document
+                    .querySelectorAll(".accordion-trigger")
+                    .forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            const body = this.nextElementSibling;
+                            const isOpen = body.classList.contains("open");
+                            const section = this.closest(".accordion");
+                            section
+                                .querySelectorAll(".accordion-body")
+                                .forEach((b) => b.classList.remove("open"));
+                            if (!isOpen) body.classList.add("open");
+                        });
+                    });
+
+                const currentStatus = localStorage.getItem("chapter_10_status");
+                if (!currentStatus || currentStatus === "not-started") {
+                    localStorage.setItem("chapter_10_status", "viewed");
+                }
+            })();
+        </script>
+
+        <script src="../js/quiz.js"></script>
+        <script>
+            initQuiz({
+                chapterNum: 10,
+                quizData: [
+                    {
+                        question: "1. Mechanical waves require:",
+                        options: [
+                            "A medium.",
+                            "A vacuum.",
+                            "Electromagnetic fields.",
+                            "Matter waves.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "Mechanical waves need particles to vibrate.",
+                        hint: "They need particles to vibrate.",
+                    },
+                    {
+                        question:
+                            "2. In a transverse wave, the particles move:",
+                        options: [
+                            "Parallel to the wave direction.",
+                            "Perpendicular to the wave direction.",
+                            "In circles.",
+                            "Randomly.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Particles move perpendicular to the direction of wave propagation.",
+                        hint: "Think about a wave on a string.",
+                    },
+                    {
+                        question: "3. Sound waves are:",
+                        options: [
+                            "Transverse.",
+                            "Longitudinal.",
+                            "Electromagnetic.",
+                            "Matter waves.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Sound compresses and expands the air, so it's longitudinal.",
+                        hint: "Sound compresses and expands the air.",
+                    },
+                    {
+                        question:
+                            "4. The speed of a wave on a stretched string is given by:",
+                        options: [
+                            "v = √(T/μ).",
+                            "v = √(μ/T).",
+                            "v = T/μ.",
+                            "v = μ/T.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "v = √(T/μ), where T is tension and μ is linear mass density.",
+                        hint: "T is tension, μ is linear mass density.",
+                    },
+                    {
+                        question: "5. The wave number k is defined as:",
+                        options: [
+                            "k = 2π/λ.",
+                            "k = 2πλ.",
+                            "k = λ/2π.",
+                            "k = 2πf.",
+                        ],
+                        correct: 0,
+                        explanation: "k = 2π/λ, relates to the wavelength.",
+                        hint: "It relates to the wavelength.",
+                    },
+                    {
+                        question: "6. The angular frequency ω is defined as:",
+                        options: [
+                            "ω = 2πf.",
+                            "ω = 2π/T.",
+                            "Both A and B.",
+                            "Neither A nor B.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "ω = 2πf = 2π/T, relates to both frequency and period.",
+                        hint: "It relates to both frequency and period.",
+                    },
+                    {
+                        question:
+                            "7. The power transmitted by a wave is proportional to:",
+                        options: [
+                            "The amplitude squared.",
+                            "The amplitude.",
+                            "The amplitude cubed.",
+                            "The amplitude raised to the fourth power.",
+                        ],
+                        correct: 0,
+                        explanation: "P = ½μvω²A², so power ∝ A².",
+                        hint: "Power ∝ A².",
+                    },
+                    {
+                        question: "8. The linear wave equation is:",
+                        options: [
+                            "∂²y/∂x² = (1/v²)∂²y/∂t².",
+                            "∂²y/∂x² = v²∂²y/∂t².",
+                            "∂y/∂x = (1/v)∂y/∂t.",
+                            "y = A sin(kx - ωt).",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "This is the second-order partial differential equation for waves.",
+                        hint: "It's a second-order partial differential equation.",
+                    },
+                    {
+                        question:
+                            "9. Electromagnetic waves can travel through:",
+                        options: [
+                            "Vacuum.",
+                            "Solids only.",
+                            "Liquids only.",
+                            "Gases only.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "Electromagnetic waves don't need a medium—they can travel through vacuum.",
+                        hint: "They don't need a medium.",
+                    },
+                    {
+                        question:
+                            "10. The speed of a wave on a string depends on:",
+                        options: [
+                            "The tension and the mass per unit length.",
+                            "The frequency of the wave.",
+                            "The amplitude of the wave.",
+                            "The wavelength of the wave.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "The medium (string properties) determines the speed, not the wave parameters.",
+                        hint: "The medium determines the speed.",
+                    },
+                ],
+            });
+        </script>
+        <script src="../js/toolbar.js"></script>
+    </body>
+</html>

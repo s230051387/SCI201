@@ -1,0 +1,1778 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=yes"
+        />
+        <title>Chapter 1: Electric Potential · SCI201</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+        <style>
+            /* ================================================================
+                GRUVBOX COLOR PALETTE
+                ================================================================ */
+            :root {
+                --bg: #fbf1c7;
+                --bg0_h: #f9f5d7;
+                --bg0: #fbf1c7;
+                --bg1: #ebdbb2;
+                --bg2: #d5c4a1;
+                --bg3: #bdae93;
+                --bg4: #a89984;
+                --fg: #3c3836;
+                --fg0: #282828;
+                --fg1: #3c3836;
+                --fg2: #504945;
+                --fg3: #665c54;
+                --fg4: #7c6f64;
+                --gray: #928374;
+                --red: #9d0006;
+                --green: #79740e;
+                --yellow: #b57614;
+                --blue: #076678;
+                --purple: #8f3f71;
+                --aqua: #427b58;
+                --orange: #d65d0e;
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --accent: var(--yellow);
+                --success: var(--green);
+                --danger: var(--red);
+                --warning: var(--orange);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+                --shadow:
+                    0 4px 6px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+                --radius: 12px;
+                --radius-sm: 8px;
+                --transition: 0.2s ease;
+                --sidebar-width: 260px;
+            }
+
+            [data-theme="dark"] {
+                --bg: #282828;
+                --bg0_h: #1d2021;
+                --bg0: #282828;
+                --bg1: #3c3836;
+                --bg2: #504945;
+                --bg3: #665c54;
+                --bg4: #7c6f64;
+                --fg: #ebdbb2;
+                --fg0: #fbf1c7;
+                --fg1: #ebdbb2;
+                --fg2: #d5c4a1;
+                --fg3: #bdae93;
+                --fg4: #a89984;
+                --gray: #928374;
+                --red: #cc241d;
+                --green: #98971a;
+                --yellow: #d79921;
+                --blue: #458588;
+                --purple: #b16286;
+                --aqua: #689d6a;
+                --orange: #d65d0e;
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+                --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.6;
+                transition:
+                    background var(--transition),
+                    color var(--transition);
+                min-height: 100vh;
+                max-width: 1200px;
+                margin: 0 auto;
+                overflow-x: hidden;
+            }
+
+            /* ================================================================
+                SIDEBAR
+                ================================================================ */
+            .sidebar {
+                width: var(--sidebar-width);
+                flex-shrink: 0;
+                position: sticky;
+                top: 56px;
+                height: calc(100vh - 56px);
+                background: var(--surface);
+                border-inline-end: 1px solid var(--border);
+                padding: 1.5rem 1rem;
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                overflow-x: hidden;
+                z-index: 10;
+                transition:
+                    background var(--transition),
+                    border-color var(--transition);
+            }
+            .sidebar-header {
+                font-weight: 700;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--text-muted);
+                margin-bottom: 1rem;
+                padding-bottom: 0.75rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .sidebar-nav {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .sidebar-nav li a {
+                display: block;
+                padding: 0.5rem 0.75rem;
+                border-radius: 6px;
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: 500;
+                transition: all 0.15s ease;
+                border-left: 3px solid transparent;
+            }
+
+            .sidebar-nav li a:hover {
+                background: var(--surface-alt);
+                color: var(--text);
+                border-left-color: var(--border);
+            }
+
+            .sidebar-nav li a.active {
+                background: var(--primary-light);
+                color: var(--primary);
+                font-weight: 600;
+                border-left-color: var(--primary);
+            }
+
+            .sidebar-nav li a .emoji {
+                margin-right: 6px;
+                font-size: 0.9rem;
+            }
+
+            .sidebar-divider {
+                border: none;
+                border-top: 1px solid var(--border);
+                margin: 0.75rem 0;
+            }
+
+            /* ================================================================
+                MAIN CONTENT WRAPPER
+                ================================================================ */
+            .main-wrapper {
+                flex: 1;
+                min-width: 0;
+                padding: 1.5rem 2rem;
+            }
+
+            /* ================================================================
+                    HEADER & SECTIONS
+                    ================================================================ */
+            header,
+            section,
+            footer,
+            .concept-card,
+            .professor-card,
+            .ask-section,
+            .vault-section,
+            .quiz-section {
+                background: var(--surface);
+                border-radius: var(--radius);
+                padding: 1.8rem;
+                margin-bottom: 2rem;
+                box-shadow: var(--shadow);
+                border: 1px solid var(--border);
+            }
+            header {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+            }
+            h1,
+            h2,
+            h3 {
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                color: var(--fg0);
+                scroll-margin-top: 1rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+                margin: 0.5rem 0 0.3rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin: 1.2rem 0 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--primary);
+            }
+
+            .chapter-nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 0.8rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .nav-btn {
+                background: var(--primary);
+                border: none;
+                color: var(--bg0_h);
+                padding: 0.5rem 1rem;
+                border-radius: 2rem;
+                font-weight: 500;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: 0.2s;
+                font-family: inherit;
+            }
+
+            .nav-btn:hover {
+                filter: brightness(1.1);
+                text-decoration: none;
+                color: var(--bg0_h);
+            }
+
+            .nav-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            .tag-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .tag {
+                background: rgba(255, 255, 255, 0.15);
+                color: var(--bg0_h);
+                padding: 0.25rem 0.9rem;
+                border-radius: 2rem;
+                font-size: 0.8rem;
+                font-weight: 500;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .tag--accent {
+                background: rgba(255, 255, 255, 0.25);
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .objectives-list {
+                list-style: none;
+                padding-left: 0;
+            }
+
+            .objectives-list li {
+                padding: 0.4rem 0;
+                display: flex;
+                align-items: baseline;
+                gap: 0.5rem;
+                color: var(--text);
+            }
+
+            .objectives-list li::before {
+                content: "●";
+                color: var(--primary);
+                font-weight: bold;
+            }
+
+            .concept-card {
+                border-left: 4px solid var(--primary);
+                padding: 1.5rem;
+                scroll-margin-top: 1rem;
+            }
+
+            .concept-header {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .concept-number {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+            }
+
+            .depth-tabs {
+                display: inline-flex;
+                gap: 4px;
+                margin-bottom: 20px;
+                background: var(--surface-alt);
+                padding: 4px;
+                border-radius: 10px;
+                border: 1px solid var(--border);
+            }
+
+            .depth-tab {
+                background: transparent;
+                border: none;
+                padding: 0.5rem 1.2rem;
+                font-weight: 600;
+                color: var(--text-secondary);
+                cursor: pointer;
+                border-radius: 2rem;
+                transition: 0.2s;
+                font-size: 0.9rem;
+                font-family: inherit;
+            }
+
+            .depth-tab.active {
+                background: var(--primary);
+                color: var(--bg0_h);
+            }
+
+            .depth-content {
+                display: none;
+                animation: fade 0.2s ease;
+                color: var(--text);
+            }
+
+            .depth-content.active {
+                display: block;
+            }
+
+            @keyframes fade {
+                from {
+                    opacity: 0.3;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .formula {
+                background: var(--surface-alt);
+                padding: 0.8rem 1.2rem;
+                border-radius: var(--radius-sm);
+                margin: 1rem 0;
+                font-family: "Courier New", monospace;
+                font-weight: 500;
+                border-left: 4px solid var(--primary);
+                color: var(--fg0);
+            }
+
+            .label {
+                display: block;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--primary);
+                margin-bottom: 0.2rem;
+                font-weight: 600;
+            }
+
+            .note-box {
+                background: var(--accent);
+                border-left: 4px solid var(--orange);
+                padding: 0.8rem 1rem;
+                border-radius: 0.5rem;
+                margin: 1.2rem 0;
+                color: var(--bg0_h);
+            }
+
+            [data-theme="light"] .note-box {
+                color: var(--fg0);
+                background: var(--bg2);
+            }
+
+            .comparison-table-wrap {
+                overflow-x: auto;
+                margin: 1rem 0;
+            }
+
+            .comparison-table {
+                width: 100%;
+                border-collapse: collapse;
+                background: var(--surface);
+                border-radius: 0.5rem;
+                overflow: hidden;
+                border: 1px solid var(--border);
+            }
+
+            .comparison-table th {
+                background: var(--surface-alt);
+                padding: 0.7rem;
+                text-align: left;
+                color: var(--fg0);
+                border-bottom: 2px solid var(--border);
+            }
+
+            .comparison-table td {
+                padding: 0.6rem;
+                border-bottom: 1px solid var(--border);
+                color: var(--text);
+            }
+
+            .professor-card {
+                border-left: 4px solid var(--purple);
+            }
+
+            .vault-entry {
+                margin-bottom: 1rem;
+                padding: 0.8rem;
+                border-radius: 0.6rem;
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                color: var(--text);
+            }
+
+            .vault-type {
+                font-weight: 700;
+                margin-bottom: 0.3rem;
+            }
+
+            .vault-type--key {
+                color: var(--accent);
+            }
+            .vault-type--trap {
+                color: var(--red);
+            }
+            .vault-type--secret {
+                color: var(--green);
+            }
+
+            .accordion-item {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .accordion-trigger {
+                width: 100%;
+                background: none;
+                border: none;
+                text-align: left;
+                padding: 1rem 0;
+                font-weight: 600;
+                display: flex;
+                justify-content: space-between;
+                color: var(--text);
+                cursor: pointer;
+                font-family: inherit;
+                font-size: 1rem;
+            }
+
+            .accordion-body {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0 0.5rem;
+                color: var(--text-secondary);
+            }
+
+            .accordion-body.open {
+                max-height: 200px;
+                padding-bottom: 1rem;
+            }
+
+            .quiz-card {
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                padding: 1.5rem;
+                border-radius: var(--radius);
+            }
+
+            .quiz-header {
+                display: flex;
+                justify-content: space-between;
+                color: var(--text-secondary);
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+
+            .quiz-question {
+                font-weight: 600;
+                color: var(--fg0);
+                margin: 1rem 0;
+                font-size: 1.05rem;
+                line-height: 1.6;
+            }
+
+            .quiz-options label {
+                display: block;
+                margin: 0.5rem 0;
+                cursor: pointer;
+                padding: 0.75rem 1rem;
+                border-radius: var(--radius-sm);
+                border: 1px solid var(--border);
+                transition: 0.2s;
+                background: var(--surface);
+                color: var(--text);
+            }
+
+            .quiz-options label:hover {
+                border-color: var(--primary);
+                background: var(--bg2);
+            }
+
+            .quiz-options input[type="radio"] {
+                margin-right: 10px;
+                accent-color: var(--primary);
+                transform: scale(1.1);
+            }
+
+            .quiz-feedback {
+                background: var(--surface);
+                padding: 0.8rem 1rem;
+                border-radius: var(--radius-sm);
+                margin-top: 1rem;
+                border-left: 4px solid var(--primary);
+                color: var(--text);
+                line-height: 1.6;
+            }
+
+            .hidden {
+                display: none !important;
+            }
+
+            button {
+                cursor: pointer;
+            }
+
+            footer {
+                text-align: center;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                border-top: 1px solid var(--border);
+            }
+
+            #quiz-hint-btn,
+            #quiz-prev-btn {
+                background: var(--surface);
+                color: var(--text);
+                border: 1px solid var(--border);
+            }
+
+            #quiz-hint-btn:hover,
+            #quiz-prev-btn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--primary);
+            }
+
+            #quiz-next-btn,
+            #retry-btn {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+            }
+
+            .score-display {
+                color: var(--primary);
+                font-weight: 700;
+                font-size: 2rem;
+            }
+
+            /* ================================================================
+               MOBILE SIDEBAR TOGGLE
+               ================================================================ */
+            .sidebar-toggle {
+                display: none;
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                font-size: 1.2rem;
+                cursor: pointer;
+                box-shadow: var(--shadow);
+            }
+
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                body {
+                    flex-direction: column;
+                }
+
+                .sidebar {
+                    position: fixed;
+                    left: -100%;
+                    top: 0;
+                    height: 100vh;
+                    width: 280px;
+                    transition: left 0.3s ease;
+                    z-index: 15;
+                }
+
+                .sidebar.open {
+                    left: 0;
+                }
+
+                .toolbar-hamburger {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
+            /* Toolbar full width above sidebar */
+            .toolbar {
+                position: sticky;
+                top: 0;
+                z-index: 50;
+                width: 100vw;
+                left: 0;
+                right: 0;
+                background: rgba(251, 241, 199, 0.85);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border);
+                padding: 0.5rem calc((100vw - 1200px) / 2 + 1.5rem);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                margin-left: calc(-50vw + 600px);
+                margin-right: calc(-50vw + 600px);
+            }
+
+            [data-theme="dark"] .toolbar {
+                background: rgba(29, 32, 33, 0.9);
+            }
+
+            .toolbar-left,
+            .toolbar-right {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .toolbar-center {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-weight: 700;
+                font-size: 0.9rem;
+                color: var(--text);
+                background: var(--surface-alt);
+                padding: 0.4rem 1rem;
+                border-radius: 2rem;
+                border: 1px solid var(--border);
+            }
+
+            .toolbar-btn {
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                color: var(--text);
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 1rem;
+                transition: all 0.2s ease;
+            }
+
+            .toolbar-btn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--primary);
+            }
+
+            .toolbar-btn.disabled-btn {
+                opacity: 0.3;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                .toolbar {
+                    width: 100%;
+                    margin-left: 0;
+                    margin-right: 0;
+                    padding: 0.5rem 1rem;
+                    left: 0;
+                    right: 0;
+                }
+
+                .sidebar {
+                    top: 56px;
+                    height: calc(100vh - 56px);
+                }
+
+                .sidebar-toggle {
+                    display: flex !important;
+                    position: static !important;
+                    margin: 0;
+                }
+
+                html,
+                body {
+                    overflow-x: hidden;
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- ================================================================
+             SIDEBAR
+             ================================================================ -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">📑 SCI201</div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#objectives"
+                        ><span class="emoji">🎯</span> Learning Objectives</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept1"
+                        ><span class="emoji">1️⃣</span> Electric Potential
+                        Energy</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept2"
+                        ><span class="emoji">2️⃣</span> Electric Potential (V)</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept3"
+                        ><span class="emoji">3️⃣</span> Potential Difference</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept4"
+                        ><span class="emoji">4️⃣</span> Work & Electric
+                        Potential</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept5"
+                        ><span class="emoji">5️⃣</span> Energy Conservation</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept6"
+                        ><span class="emoji">6️⃣</span> Energy & Field
+                        Direction</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept7"
+                        ><span class="emoji">7️⃣</span> Electric Field &
+                        Potential</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept8"
+                        ><span class="emoji">8️⃣</span> Electric vs
+                        Gravitational</a
+                    >
+                </li>
+                <li>
+                    <a href="#formulas"
+                        ><span class="emoji"> 📐</span> Formulas Summary</a
+                    >
+                </li>
+                <hr class="sidebar-divider" />
+                <li>
+                    <a href="#narrative"
+                        ><span class="emoji">🎓</span> Professor's Narrative</a
+                    >
+                </li>
+                <li>
+                    <a href="#ask-professor"
+                        ><span class="emoji">❓</span> Ask the Professor</a
+                    >
+                </li>
+                <li>
+                    <a href="#exam-vault"
+                        ><span class="emoji">🔐</span> Exam Vault</a
+                    >
+                </li>
+                <li>
+                    <a href="#quiz"><span class="emoji">📝</span> Self Quiz</a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- ================================================================
+             MAIN CONTENT
+             ================================================================ -->
+        <div class="main-wrapper">
+            <header>
+                <h1>⚡ Electric Potential</h1>
+                <p style="color: var(--fg)">
+                    Electric potential energy, potential difference, voltage,
+                    and the relationship between electric field and potential
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Electric Potential</span>
+                    <span class="tag">Potential Energy</span>
+                    <span class="tag">Voltage</span>
+                    <span class="tag tag--accent"
+                        ><i class="fa-regular fa-clock"></i> 45 min</span
+                    >
+                </div>
+            </header>
+            <main>
+                <!-- Learning Objectives -->
+                <section id="objectives">
+                    <h2>🎯 Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>
+                            Define electric potential energy and understand its
+                            relationship to work done by electric forces.
+                        </li>
+                        <li>
+                            Understand electric potential as potential energy
+                            per unit charge.
+                        </li>
+                        <li>
+                            Calculate potential difference between two points in
+                            an electric field.
+                        </li>
+                        <li>Relate electric field to potential difference.</li>
+                        <li>
+                            Apply conservation of energy to charged particles in
+                            electric fields.
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- CONCEPT 1 -->
+                <div class="concept-card" id="concept1">
+                    <div class="concept-header">
+                        <span class="concept-number">1</span>
+                        <h2>Electric Potential Energy (U or PE)</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            When a charge <em>q</em> is placed in an electric
+                            field <strong>E</strong>, the electric force
+                            <strong>qE</strong> acts on the charge. The change
+                            in electric potential energy is the negative of the
+                            work done by this electric force.
+                        </p>
+                        <div class="formula">
+                            <span class="label"
+                                >Change in Electric Potential Energy</span
+                            >
+                            ΔU = -W
+                        </div>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Electrostatic force is conservative, which allows us
+                            to describe electrostatic phenomena in terms of
+                            electric potential energy. When a charge
+                            <em>q</em> is free to move in an electric field
+                            <strong>E</strong>, the electric field will do work
+                            on the charge, given as:
+                        </p>
+                        <div class="formula">
+                            <span class="label"
+                                >Work Done by Electric Force</span
+                            >
+                            W = qEd
+                        </div>
+                        <p>
+                            The change in electric potential energy of the
+                            charge-field system is the negative of the work done
+                            by the electric force:
+                        </p>
+                        <div class="formula">
+                            <span class="label"
+                                >Relationship Between Work and Potential
+                                Energy</span
+                            >
+                            ΔU = -W
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            For a finite displacement of a charge from a high
+                            potential point (a) to a low potential point (b),
+                            the change of potential energy is:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Potential Energy Change</span>
+                            U<sub>b</sub> - U<sub>a</sub> = -qEd
+                        </div>
+                        <p>
+                            where <em>d</em> is the distance between the
+                            charges. For a potential energy to exist, there must
+                            be a system of two or more charges. A positive
+                            charge naturally tends to move from a high potential
+                            to a low potential.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 2 -->
+                <div class="concept-card" id="concept2">
+                    <div class="concept-header">
+                        <span class="concept-number">2</span>
+                        <h2>Electric Potential (V)</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Electric potential is potential energy per unit
+                            charge.
+                        </p>
+                        <div class="formula">
+                            <span class="label">Electric Potential</span> V =
+                            U<sub>E</sub> / q
+                        </div>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Dividing the potential energy by the charge provides
+                            a physical quantity called the electric potential
+                            (or simply the potential), denoted as
+                            <strong>V</strong>. The formula is given as:
+                        </p>
+                        <div class="formula">
+                            <span class="label"
+                                >Definition of Electric Potential</span
+                            >
+                            V = U<sub>E</sub> / q
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Electric potential depends only on the source charge
+                            distribution and has a specific value at every point
+                            in an electric field. Because potential energy is a
+                            scalar quantity, electric potential is also a scalar
+                            quantity.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 3 -->
+                <div class="concept-card" id="concept3">
+                    <div class="concept-header">
+                        <span class="concept-number">3</span>
+                        <h2>Potential Difference (Voltage)</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Potential difference is the change in electric
+                            potential energy divided by the charge. The SI unit
+                            is the volt (V).
+                        </p>
+                        <div class="formula">
+                            <span class="label">Potential Difference</span>
+                            V<sub>ba</sub> = ΔU<sub>E</sub> / q
+                        </div>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            The potential difference ΔV = V<sub>ba</sub> = V<sub
+                                >b</sub
+                            >
+                            - V<sub>a</sub> between two points in an electric
+                            field is defined as the change in electric potential
+                            energy of the system when a charge <em>q</em> is
+                            moved between the points, divided by the charge:
+                        </p>
+                        <div class="formula">
+                            <span class="label"
+                                >Potential Difference Definition</span
+                            >
+                            V<sub>ba</sub> = (U<sub>b</sub> - U<sub>a</sub>) / q
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The difference in potential energy is equal to the
+                            negative of the work W<sub>ba</sub> done by the
+                            electric field to move the charge from a to b.
+                            Therefore, the potential difference is:
+                        </p>
+                        <div class="formula">
+                            <span class="label"
+                                >Potential Difference in Terms of Work</span
+                            >
+                            V<sub>ba</sub> = ΔV = -W<sub>ba</sub> / q
+                        </div>
+                        <p>
+                            The SI unit of both electric potential and potential
+                            difference is joules per coulomb, which is defined
+                            as a volt (V): 1 V = 1 J/C.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 4 -->
+                <div class="concept-card" id="concept4">
+                    <div class="concept-header">
+                        <span class="concept-number">4</span>
+                        <h2>Work Done in Terms of Electric Potential</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The work done by an external agent moving a charge
+                            <em>q</em> through an electric field at a constant
+                            velocity is:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Work by External Agent</span> W
+                            = qΔV
+                        </div>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            If an agent moves a charge from point a to point b
+                            without changing the kinetic energy of the charge,
+                            the agent performs work that changes the potential
+                            energy of the system.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            This relationship is expressed as W =
+                            ΔU<sub>E</sub>. Consequently, the work done by an
+                            external agent in moving a charge <em>q</em> through
+                            an electric field at a constant velocity is
+                            calculated as:
+                        </p>
+                        <div class="formula">
+                            <span class="label"
+                                >Work Done by External Agent</span
+                            >
+                            W = qΔV
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 5 -->
+                <div class="concept-card" id="concept5">
+                    <div class="concept-header">
+                        <span class="concept-number">5</span>
+                        <h2>Energy Conservation and Accelerated Charges</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            When a charge accelerates through a potential
+                            difference, its loss in potential energy becomes
+                            kinetic energy.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            By the conservation of energy, the potential energy
+                            lost by a charged particle becomes kinetic energy
+                            (KE). The equation is:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Conservation of Energy</span>
+                            ΔKE + ΔPE = 0 → ΔKE = -ΔPE
+                        </div>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            For an electron starting from rest, the initial
+                            kinetic energy is zero, so the final KE =
+                            -qV<sub>ba</sub>. While electric potential energy
+                            depends only on charge and voltage (not mass), the
+                            final speed of the particle does depend on its mass.
+                            Additionally, negative electrons are attracted
+                            toward a positive electrode and repelled from a
+                            negative electrode.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 6 -->
+                <div class="concept-card" id="concept6">
+                    <div class="concept-header">
+                        <span class="concept-number">6</span>
+                        <h2>Energy and the Direction of Electric Field</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Electric field lines point toward decreasing
+                            potential. Moving a positive charge in the field's
+                            direction loses potential energy.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Electric field lines always point in the direction
+                            of decreasing electric potential. A system
+                            consisting of a positive charge and an electric
+                            field loses electric potential energy when the
+                            charge moves in the direction of the field.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The electric field does work on a positive charge
+                            when it moves in the field's direction, causing it
+                            to gain kinetic energy while the system's potential
+                            energy decreases by an equal amount. Conversely, a
+                            system with a negative charge gains potential energy
+                            when moving in the direction of the field. For a
+                            negative charge to move in the direction of the
+                            field, an external agent must do positive work on
+                            the charge.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 7 -->
+                <div class="concept-card" id="concept7">
+                    <div class="concept-header">
+                        <span class="concept-number">7</span>
+                        <h2>Electric Field and Potential Difference</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The electric field is related to potential
+                            difference by:
+                        </p>
+                        <div class="formula">
+                            <span class="label"
+                                >Electric Field from Potential</span
+                            >
+                            E = -V<sub>ba</sub> / d
+                        </div>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            The relationship between a uniform electric field
+                            <strong>E</strong> and potential difference V<sub
+                                >ba</sub
+                            >
+                            is:
+                        </p>
+                        <div class="formula">
+                            <span class="label"
+                                >Uniform Field Relationship</span
+                            >
+                            E = -V<sub>ba</sub> / d = -(V<sub>b</sub> -
+                            V<sub>a</sub>) / d
+                        </div>
+                        <p>
+                            where <em>d</em> is the distance between the points.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The negative sign in the equation indicates that the
+                            electric field is directed from a higher potential
+                            to a lower potential. Because potential difference
+                            has the unit of electric field times distance, the
+                            SI unit of the electric field (N/C) can be expressed
+                            as volts per meter: 1 N/C = 1 V/m.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONCEPT 8 -->
+                <div class="concept-card" id="concept8">
+                    <div class="concept-header">
+                        <span class="concept-number">8</span>
+                        <h2>Electric Potential vs. Gravitational Potential</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            There is an analogy between gravitational and
+                            electrical potential energy.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            An analogy exists between gravitational and
+                            electrical potential energy; just as a more massive
+                            rock has more potential energy, so does a larger
+                            charge.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            If a charge <em>Q</em> in an electric field is
+                            replaced by a charge <em>2Q</em>, the electric
+                            potential stays the same, but the electric potential
+                            energy of the system doubles.
+                        </p>
+                    </div>
+                </div>
+                <section id="formulas">
+                    <h2>📐 Important Formulas Summary</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Formula</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Electric Force</td>
+                                        <td>F = qE</td>
+                                        <td>N</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Work Done</td>
+                                        <td>W = Fd = qEd</td>
+                                        <td>J</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potential Energy</td>
+                                        <td>ΔU = -W</td>
+                                        <td>J</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Electric Potential</td>
+                                        <td>V = U/q</td>
+                                        <td>V (J/C)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potential Difference</td>
+                                        <td>ΔV = -W/q</td>
+                                        <td>V</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Energy Conservation</td>
+                                        <td>ΔK + ΔU = 0</td>
+                                        <td>J</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kinetic Energy</td>
+                                        <td>K = -qΔV</td>
+                                        <td>J</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Speed</td>
+                                        <td>v = √(2qV/m)</td>
+                                        <td>m/s</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Field from Potential</td>
+                                        <td>E = -ΔV/d</td>
+                                        <td>V/m</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2>± Sign Conventions</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Quantity</th>
+                                        <th>Positive</th>
+                                        <th>Negative</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Work (W)</td>
+                                        <td>Done BY field</td>
+                                        <td>Done ON field</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ΔU</td>
+                                        <td>Energy INCREASES</td>
+                                        <td>Energy DECREASES</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ΔV</td>
+                                        <td>Vb > Va</td>
+                                        <td>Vb < Va</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Professor's Narrative -->
+                <section class="professor-card" id="narrative">
+                    <h2>🎓 Professor's Narrative</h2>
+                    <p>
+                        The study of electricity requires a solid grasp of
+                        energy and work. Electrostatic force is conservative,
+                        which allows us to describe electrostatic phenomena in
+                        terms of electric potential energy. You must master the
+                        distinction between potential energy (U) and electric
+                        potential (V); electric potential is simply the
+                        potential energy divided by the charge (V =
+                        U<sub>E</sub>/q). Always remember that electric field
+                        lines point in the direction of decreasing electric
+                        potential, and a positive charge naturally tends to move
+                        from high potential to low potential.
+                    </p>
+                </section>
+
+                <!-- Ask the Professor -->
+                <section class="ask-section" id="ask-professor">
+                    <h2>❓ Ask the Professor</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                What happens to the potential energy if a
+                                negative charge moves in the direction of the
+                                electric field?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    A system consisting of a negative charge and
+                                    an electric field gains potential energy
+                                    when the charge moves in the direction of
+                                    the field.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Does the speed of an accelerated electron depend
+                                on its mass?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Yes, while the electric potential energy
+                                    does not depend on mass, the final speed of
+                                    the electron does depend on its mass m.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Exam Vault -->
+                <section class="vault-section" id="exam-vault">
+                    <h2>🔐 Exam Vault</h2>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        The SI unit of both electric potential and potential
+                        difference is joules per coulomb, defined as a volt (V).
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Do not confuse electric potential with electric
+                        potential energy. If a charge is doubled, the electric
+                        potential stays the same, but the electric potential
+                        energy doubles.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--secret"
+                            >🤫 Secret</span
+                        >
+                        To find the work done by an external agent moving a
+                        charge at a constant velocity, simply use W = qΔV.
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="quiz-section" id="quiz">
+                    <h2>📝 Chapter 1: Electric Potential Quiz</h2>
+                    <div id="quiz-container"></div>
+                </section>
+            </main>
+
+            <footer>SCI201 · Chapter 1: Electric Potential</footer>
+        </div>
+
+        <script>
+            (function () {
+                // THEME TOGGLE
+                window.toggleTheme = function () {
+                    const html = document.documentElement;
+                    const cur = html.getAttribute("data-theme");
+                    const next = cur === "dark" ? "light" : "dark";
+                    html.setAttribute("data-theme", next);
+                    localStorage.setItem("garden_theme", next);
+                    const btn = document.getElementById("themeBtn");
+                    if (btn)
+                        btn.textContent =
+                            next === "dark" ? "🌙 Dark Mode" : "☀️ Light Mode";
+                };
+                const saved = localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", saved);
+                const btn = document.getElementById("themeBtn");
+                if (btn)
+                    btn.textContent =
+                        saved === "dark" ? "🌙 Dark Mode" : "☀️ Light Mode";
+
+                // DEPTH TABS
+                document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
+                    const card = tabGroup.closest(".concept-card");
+                    if (!card) return;
+                    const tabs = tabGroup.querySelectorAll(".depth-tab");
+                    const contents = card.querySelectorAll(".depth-content");
+                    tabs.forEach((tab) => {
+                        tab.addEventListener("click", function () {
+                            const layer = this.dataset.layer;
+                            tabs.forEach((t) => t.classList.remove("active"));
+                            this.classList.add("active");
+                            contents.forEach((c) => {
+                                c.classList.remove("active");
+                                if (c.dataset.layer === layer)
+                                    c.classList.add("active");
+                            });
+                        });
+                    });
+                });
+
+                // ACCORDION
+                document
+                    .querySelectorAll(".accordion-trigger")
+                    .forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            const body = this.nextElementSibling;
+                            const isOpen = body.classList.contains("open");
+                            const section = this.closest(".accordion");
+                            section
+                                .querySelectorAll(".accordion-body")
+                                .forEach((b) => b.classList.remove("open"));
+                            if (!isOpen) body.classList.add("open");
+                        });
+                    });
+
+                // Mark chapter as viewed
+                const currentStatus = localStorage.getItem("chapter_1_status");
+                if (!currentStatus || currentStatus === "not-started") {
+                    localStorage.setItem("chapter_1_status", "viewed");
+                }
+            })();
+        </script>
+
+        <script src="../js/quiz.js"></script>
+        <script>
+            initQuiz({
+                chapterNum: 1,
+                quizData: [
+                    {
+                        question:
+                            "1. What is the relationship between the work done by an electric force (W) and the change in electric potential energy (ΔU)?",
+                        options: ["ΔU = W", "ΔU = -W", "ΔU = W/q", "ΔU = qW"],
+                        correct: 1,
+                        explanation:
+                            "The electric field does work on the charge, and the potential energy of the system changes by the negative of that work.",
+                        hint: "The electric field does work on the charge, and the potential energy of the system changes by the negative of that work.",
+                    },
+                    {
+                        question: "2. Electric potential (V) is defined as:",
+                        options: [
+                            "Force per unit charge",
+                            "Work per unit charge",
+                            "Potential energy per unit charge",
+                            "Electric field per unit charge",
+                        ],
+                        correct: 2,
+                        explanation: "Look at the formula V = U/q.",
+                        hint: "Look at the formula V = U/q.",
+                    },
+                    {
+                        question:
+                            "3. Which of the following is true regarding electric potential?",
+                        options: [
+                            "It is a vector quantity.",
+                            "It is a scalar quantity.",
+                            "It only exists if a charge is moving.",
+                            "It is measured in Newtons.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Potential energy is a scalar; therefore, potential is also a scalar.",
+                        hint: "Potential energy is a scalar; therefore, potential is also a scalar.",
+                    },
+                    {
+                        question:
+                            "4. What is the SI unit for electric potential difference?",
+                        options: ["Joule", "Newton", "Coulomb", "Volt"],
+                        correct: 3,
+                        explanation: "It is defined as Joules per Coulomb.",
+                        hint: "It is defined as Joules per Coulomb.",
+                    },
+                    {
+                        question:
+                            "5. How does a positive charge move in an electric field naturally?",
+                        options: [
+                            "From low potential to high potential",
+                            "From high potential to low potential",
+                            "It stays at the same potential",
+                            "It moves perpendicular to the electric field",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Positive charges follow the direction of the electric field lines, which point toward decreasing potential.",
+                        hint: "Positive charges follow the direction of the electric field lines, which point toward decreasing potential.",
+                    },
+                    {
+                        question:
+                            "6. For a uniform electric field, what is the formula relating electric field (E), potential difference (Vba), and distance (d)?",
+                        options: [
+                            "E = Vba × d",
+                            "E = Vba / d",
+                            "E = -Vba / d",
+                            "E = d / Vba",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "The negative sign indicates the direction of the field relative to the potential drop.",
+                        hint: "The negative sign indicates the direction of the field relative to the potential drop.",
+                    },
+                    {
+                        question:
+                            "7. If you double the test charge q in a fixed electric field, what happens to the electric potential V?",
+                        options: [
+                            "It doubles.",
+                            "It is halved.",
+                            "It stays the same.",
+                            "It quadruples.",
+                        ],
+                        correct: 2,
+                        explanation:
+                            "V is a property of the field's position, not the charge placed in it.",
+                        hint: "V is a property of the field's position, not the charge placed in it.",
+                    },
+                    {
+                        question:
+                            "8. If an external agent moves a charge q through a potential difference ΔV at a constant velocity, the work done is:",
+                        options: [
+                            "W = q ΔV",
+                            "W = ΔV / q",
+                            "W = 0",
+                            "W = q² ΔV",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "Work is required to change the system's potential energy.",
+                        hint: "Work is required to change the system's potential energy.",
+                    },
+                    {
+                        question: "9. The unit 1 N/C is equivalent to:",
+                        options: ["1 J/m", "1 V/m", "1 C/m", "1 J/V"],
+                        correct: 1,
+                        explanation: "Use the relationship E = V/d.",
+                        hint: "Use the relationship E = V/d.",
+                    },
+                    {
+                        question:
+                            "10. When a charged particle is accelerated by an electric field, its change in kinetic energy (ΔK) is related to its change in potential energy (ΔU) by:",
+                        options: ["ΔK = ΔU", "ΔK = -ΔU", "ΔK = 1/ΔU", "ΔK = 0"],
+                        correct: 1,
+                        explanation:
+                            "Use the principle of conservation of energy: ΔK + ΔU = 0.",
+                        hint: "Use the principle of conservation of energy: ΔK + ΔU = 0.",
+                    },
+                ],
+            });
+        </script>
+        <script src="../js/toolbar.js"></script>
+    </body>
+</html>

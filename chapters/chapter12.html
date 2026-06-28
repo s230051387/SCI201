@@ -1,0 +1,1475 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=yes"
+        />
+        <title>
+            Chapter 12: The Nature of Light, Reflection and Refraction (Part 1)
+            · SCI201
+        </title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+        <style>
+            /* ================================================================
+               GRUVBOX COLOR PALETTE
+               ================================================================ */
+            :root {
+                --bg: #fbf1c7;
+                --bg0_h: #f9f5d7;
+                --bg0: #fbf1c7;
+                --bg1: #ebdbb2;
+                --bg2: #d5c4a1;
+                --bg3: #bdae93;
+                --bg4: #a89984;
+                --fg: #3c3836;
+                --fg0: #282828;
+                --fg1: #3c3836;
+                --fg2: #504945;
+                --fg3: #665c54;
+                --fg4: #7c6f64;
+                --gray: #928374;
+                --red: #9d0006;
+                --green: #79740e;
+                --yellow: #b57614;
+                --blue: #076678;
+                --purple: #8f3f71;
+                --aqua: #427b58;
+                --orange: #d65d0e;
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --accent: var(--yellow);
+                --success: var(--green);
+                --danger: var(--red);
+                --warning: var(--orange);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+                --shadow:
+                    0 4px 6px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+                --radius: 12px;
+                --radius-sm: 8px;
+                --transition: 0.2s ease;
+                --sidebar-width: 260px;
+            }
+
+            [data-theme="dark"] {
+                --bg: #282828;
+                --bg0_h: #1d2021;
+                --bg0: #282828;
+                --bg1: #3c3836;
+                --bg2: #504945;
+                --bg3: #665c54;
+                --bg4: #7c6f64;
+                --fg: #ebdbb2;
+                --fg0: #fbf1c7;
+                --fg1: #ebdbb2;
+                --fg2: #d5c4a1;
+                --fg3: #bdae93;
+                --fg4: #a89984;
+                --gray: #928374;
+                --red: #cc241d;
+                --green: #98971a;
+                --yellow: #d79921;
+                --blue: #458588;
+                --purple: #b16286;
+                --aqua: #689d6a;
+                --orange: #d65d0e;
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+                --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.6;
+                transition:
+                    background var(--transition),
+                    color var(--transition);
+                min-height: 100vh;
+                max-width: 1200px;
+                margin: 0 auto;
+                overflow-x: hidden;
+            }
+
+            .sidebar {
+                width: var(--sidebar-width);
+                flex-shrink: 0;
+                position: sticky;
+                top: 56px;
+                height: calc(100vh - 56px);
+                background: var(--surface);
+                border-inline-end: 1px solid var(--border);
+                padding: 1.5rem 1rem;
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                overflow-x: hidden;
+                z-index: 10;
+                transition:
+                    background var(--transition),
+                    border-color var(--transition);
+            }
+
+            .sidebar-header {
+                font-weight: 700;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--text-muted);
+                margin-bottom: 1rem;
+                padding-bottom: 0.75rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .sidebar-nav {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .sidebar-nav li a {
+                display: block;
+                padding: 0.5rem 0.75rem;
+                border-radius: 6px;
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: 500;
+                transition: all 0.15s ease;
+                border-left: 3px solid transparent;
+            }
+            .sidebar-nav li a:hover {
+                background: var(--surface-alt);
+                color: var(--text);
+                border-left-color: var(--border);
+            }
+            .sidebar-nav li a.active {
+                background: var(--primary-light);
+                color: var(--primary);
+                font-weight: 600;
+                border-left-color: var(--primary);
+            }
+            .sidebar-nav li a .emoji {
+                margin-right: 6px;
+                font-size: 0.9rem;
+            }
+            .sidebar-divider {
+                border: none;
+                border-top: 1px solid var(--border);
+                margin: 0.75rem 0;
+            }
+
+            .main-wrapper {
+                flex: 1;
+                min-width: 0;
+                padding: 1.5rem 2rem;
+            }
+
+            header,
+            section,
+            footer,
+            .concept-card,
+            .professor-card,
+            .ask-section,
+            .vault-section,
+            .quiz-section {
+                background: var(--surface);
+                border-radius: var(--radius);
+                padding: 1.8rem;
+                margin-bottom: 2rem;
+                box-shadow: var(--shadow);
+                border: 1px solid var(--border);
+            }
+
+            header {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+            }
+
+            h1,
+            h2,
+            h3 {
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                color: var(--fg0);
+                scroll-margin-top: 1rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin: 0.5rem 0 0.3rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+                margin: 1.2rem 0 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--primary);
+            }
+
+            .nav-btn {
+                background: var(--primary);
+                border: none;
+                color: var(--bg0_h);
+                padding: 0.5rem 1rem;
+                border-radius: 2rem;
+                font-weight: 500;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: 0.2s;
+                font-family: inherit;
+            }
+            .nav-btn:hover {
+                filter: brightness(1.1);
+                text-decoration: none;
+                color: var(--bg0_h);
+            }
+            .nav-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            .tag-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+            .tag {
+                background: rgba(255, 255, 255, 0.15);
+                color: var(--bg0_h);
+                padding: 0.25rem 0.9rem;
+                border-radius: 2rem;
+                font-size: 0.8rem;
+                font-weight: 500;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .tag--accent {
+                background: rgba(255, 255, 255, 0.25);
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .objectives-list {
+                list-style: none;
+                padding-left: 0;
+            }
+            .objectives-list li {
+                padding: 0.4rem 0;
+                display: flex;
+                align-items: baseline;
+                gap: 0.5rem;
+                color: var(--text);
+            }
+            .objectives-list li::before {
+                content: "●";
+                color: var(--primary);
+                font-weight: bold;
+            }
+
+            .concept-card {
+                border-left: 4px solid var(--primary);
+                padding: 1.5rem;
+                scroll-margin-top: 1rem;
+            }
+            .concept-header {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+            }
+            .concept-number {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+            }
+
+            .depth-tabs {
+                display: inline-flex;
+                gap: 4px;
+                margin-bottom: 20px;
+                background: var(--surface-alt);
+                padding: 4px;
+                border-radius: 10px;
+                border: 1px solid var(--border);
+            }
+            .depth-tab {
+                background: transparent;
+                border: none;
+                padding: 0.5rem 1.2rem;
+                font-weight: 600;
+                color: var(--text-secondary);
+                cursor: pointer;
+                border-radius: 2rem;
+                transition: 0.2s;
+                font-size: 0.9rem;
+                font-family: inherit;
+            }
+            .depth-tab.active {
+                background: var(--primary);
+                color: var(--bg0_h);
+            }
+
+            .depth-content {
+                display: none;
+                animation: fade 0.2s ease;
+                color: var(--text);
+            }
+            .depth-content.active {
+                display: block;
+            }
+            @keyframes fade {
+                from {
+                    opacity: 0.3;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .formula {
+                background: var(--surface-alt);
+                padding: 0.8rem 1.2rem;
+                border-radius: var(--radius-sm);
+                margin: 1rem 0;
+                font-family: "Courier New", monospace;
+                font-weight: 500;
+                border-left: 4px solid var(--primary);
+                color: var(--fg0);
+            }
+            .label {
+                display: block;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--primary);
+                margin-bottom: 0.2rem;
+                font-weight: 600;
+            }
+
+            .note-box {
+                background: var(--accent);
+                border-left: 4px solid var(--orange);
+                padding: 0.8rem 1rem;
+                border-radius: 0.5rem;
+                margin: 1.2rem 0;
+                color: var(--bg0_h);
+            }
+            [data-theme="light"] .note-box {
+                color: var(--fg0);
+                background: var(--bg2);
+            }
+
+            .comparison-table-wrap {
+                overflow-x: auto;
+                margin: 1rem 0;
+            }
+            .comparison-table {
+                width: 100%;
+                border-collapse: collapse;
+                background: var(--surface);
+                border-radius: 0.5rem;
+                overflow: hidden;
+                border: 1px solid var(--border);
+            }
+            .comparison-table th {
+                background: var(--surface-alt);
+                padding: 0.7rem;
+                text-align: left;
+                color: var(--fg0);
+                border-bottom: 2px solid var(--border);
+            }
+            .comparison-table td {
+                padding: 0.6rem;
+                border-bottom: 1px solid var(--border);
+                color: var(--text);
+            }
+
+            .professor-card {
+                border-left: 4px solid var(--purple);
+            }
+            .vault-entry {
+                margin-bottom: 1rem;
+                padding: 0.8rem;
+                border-radius: 0.6rem;
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                color: var(--text);
+            }
+            .vault-type {
+                font-weight: 700;
+                margin-bottom: 0.3rem;
+            }
+            .vault-type--key {
+                color: var(--accent);
+            }
+            .vault-type--trap {
+                color: var(--red);
+            }
+            .vault-type--secret {
+                color: var(--green);
+            }
+
+            .accordion-item {
+                border-bottom: 1px solid var(--border);
+            }
+            .accordion-trigger {
+                width: 100%;
+                background: none;
+                border: none;
+                text-align: left;
+                padding: 1rem 0;
+                font-weight: 600;
+                display: flex;
+                justify-content: space-between;
+                color: var(--text);
+                cursor: pointer;
+                font-family: inherit;
+                font-size: 1rem;
+            }
+            .accordion-body {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0 0.5rem;
+                color: var(--text-secondary);
+            }
+            .accordion-body.open {
+                max-height: 300px;
+                padding-bottom: 1rem;
+            }
+
+            .quiz-card {
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                padding: 1.5rem;
+                border-radius: var(--radius);
+            }
+            .quiz-header {
+                display: flex;
+                justify-content: space-between;
+                color: var(--text-secondary);
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+            .quiz-question {
+                font-weight: 600;
+                color: var(--fg0);
+                margin: 1rem 0;
+                font-size: 1.05rem;
+                line-height: 1.6;
+            }
+            .quiz-options label {
+                display: block;
+                margin: 0.5rem 0;
+                cursor: pointer;
+                padding: 0.75rem 1rem;
+                border-radius: var(--radius-sm);
+                border: 1px solid var(--border);
+                transition: 0.2s;
+                background: var(--surface);
+                color: var(--text);
+            }
+            .quiz-options label:hover {
+                border-color: var(--primary);
+                background: var(--bg2);
+            }
+            .quiz-options input[type="radio"] {
+                margin-right: 10px;
+                accent-color: var(--primary);
+                transform: scale(1.1);
+            }
+            .quiz-feedback {
+                background: var(--surface);
+                padding: 0.8rem 1rem;
+                border-radius: var(--radius-sm);
+                margin-top: 1rem;
+                border-left: 4px solid var(--primary);
+                color: var(--text);
+                line-height: 1.6;
+            }
+            .hidden {
+                display: none !important;
+            }
+            button {
+                cursor: pointer;
+            }
+            footer {
+                text-align: center;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                border-top: 1px solid var(--border);
+            }
+
+            #quiz-hint-btn,
+            #quiz-prev-btn {
+                background: var(--surface);
+                color: var(--text);
+                border: 1px solid var(--border);
+            }
+            #quiz-hint-btn:hover,
+            #quiz-prev-btn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--primary);
+            }
+            #quiz-next-btn,
+            #retry-btn {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+            }
+            .score-display {
+                color: var(--primary);
+                font-weight: 700;
+                font-size: 2rem;
+            }
+
+            .sidebar-toggle {
+                display: none;
+                background: var(--primary);
+                color: var(--bg0_h);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                font-size: 1.2rem;
+                cursor: pointer;
+                box-shadow: var(--shadow);
+            }
+
+            @media (max-width: 900px) {
+    .toolbar-hamburger {
+        display: none !important;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        left: 0;
+        right: 0;
+    }
+    .concept-number {
+        min-width: 32px;
+        min-height: 32px;
+        width: auto;
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        flex-shrink: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+                .sidebar {
+                    position: fixed;
+                    left: -100%;
+                    top: 56px;
+                    height: calc(100vh - 56px);
+                    width: 280px;
+                    transition: left 0.3s ease;
+                    z-index: 15;
+                }
+                .sidebar.open {
+                    left: 0;
+                }
+                .toolbar-hamburger {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .main-wrapper {
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
+
+            .toolbar {
+                position: sticky;
+                top: 0;
+                z-index: 50;
+                width: 100vw;
+                left: 0;
+                right: 0;
+                background: rgba(251, 241, 199, 0.85);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border);
+                padding: 0.5rem calc((100vw - 1200px) / 2 + 1.5rem);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                margin-left: calc(-50vw + 600px);
+                margin-right: calc(-50vw + 600px);
+            }
+            [data-theme="dark"] .toolbar {
+                background: rgba(29, 32, 33, 0.9);
+            }
+            .toolbar-left,
+            .toolbar-right {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .toolbar-center {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-weight: 700;
+                font-size: 0.9rem;
+                color: var(--text);
+                background: var(--surface-alt);
+                padding: 0.4rem 1rem;
+                border-radius: 2rem;
+                border: 1px solid var(--border);
+            }
+            .toolbar-btn {
+                background: var(--surface-alt);
+                border: 1px solid var(--border);
+                color: var(--text);
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 1rem;
+                transition: all 0.2s ease;
+            }
+            .toolbar-btn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--aqua);
+            }
+            .toolbar-btn.disabled-btn {
+                opacity: 0.3;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">📑 SCI201</div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#objectives"
+                        ><span class="emoji">🎯</span> Learning Objectives</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept1"
+                        ><span class="emoji">1️⃣</span> The Nature of Light</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept2"
+                        ><span class="emoji">2️⃣</span> Ray Propagation & Ray
+                        Approximation</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept3"
+                        ><span class="emoji">3️⃣</span> Reflection</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept4"
+                        ><span class="emoji">4️⃣</span> Refraction & Snell's
+                        Law</a
+                    >
+                </li>
+                <li>
+                    <a href="#concept5"
+                        ><span class="emoji">5️⃣</span> Index of Refraction</a
+                    >
+                </li>
+                <hr class="sidebar-divider" />
+                <li>
+                    <a href="#formulas"
+                        ><span class="emoji">📐</span> Equations</a
+                    >
+                </li>
+                <li>
+                    <a href="#narrative"
+                        ><span class="emoji">🎓</span> Professor's Narrative</a
+                    >
+                </li>
+                <li>
+                    <a href="#ask-professor"
+                        ><span class="emoji">❓</span> Ask the Professor</a
+                    >
+                </li>
+                <li>
+                    <a href="#exam-vault"
+                        ><span class="emoji">🔐</span> Exam Vault</a
+                    >
+                </li>
+                <li>
+                    <a href="#quiz"><span class="emoji">📝</span> Self Quiz</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <h1>
+                    💡 The Nature of Light, Reflection and Refraction (Part 1)
+                </h1>
+                <p style="color: var(--bg0_h); opacity: 0.9">
+                    History of light, electromagnetic waves, reflection, and
+                    Snell's law
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Light</span>
+                    <span class="tag">Reflection</span>
+                    <span class="tag">Refraction</span>
+                    <span class="tag tag--accent"
+                        ><i class="fa-regular fa-clock"></i> 45 min</span
+                    >
+                </div>
+            </header>
+
+            <main>
+                <section id="objectives">
+                    <h2>🎯 Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>
+                            Understand the nature of light as an electromagnetic
+                            wave.
+                        </li>
+                        <li>Apply the law of reflection.</li>
+                        <li>Apply Snell's law of refraction.</li>
+                        <li>Understand the concept of index of refraction.</li>
+                        <li>
+                            Calculate the speed of light in different media.
+                        </li>
+                    </ul>
+                </section>
+
+                <div class="concept-card" id="concept1">
+                    <div class="concept-header">
+                        <span class="concept-number">1</span>
+                        <h2>The Nature of Light</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Light is an electromagnetic wave that can propagate
+                            through vacuum. It exhibits both wave and particle
+                            properties. The wave nature explains interference
+                            and diffraction; the particle nature explains the
+                            photoelectric effect.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Historically, light was considered a stream of
+                            particles (Newton's corpuscular theory). In 1678,
+                            Huygens showed that a wave model could explain
+                            reflection and refraction. In 1801, Young
+                            demonstrated interference, providing clear evidence
+                            for the wave nature of light. In 1873, Maxwell
+                            showed that light is an electromagnetic wave. In the
+                            early 20th century, experiments showed that light
+                            also has a particle nature—the particles are called
+                            photons.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Light is both a wave and a particle (wave-particle
+                            duality). The wave nature is observed in
+                            interference and diffraction experiments. The
+                            particle nature is observed in the photoelectric
+                            effect and Compton scattering. The speed of light in
+                            vacuum is c = 3.00 × 10⁸ m/s.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept2">
+                    <div class="concept-header">
+                        <span class="concept-number">2</span>
+                        <h2>Ray Propagation and the Ray Approximation</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            In the ray approximation (geometric optics), light
+                            travels in straight lines in a uniform medium. This
+                            approximation is valid when the wavelength of light
+                            is much smaller than the size of the objects or
+                            openings it encounters.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            Ray optics (or geometric optics) assumes that light
+                            travels in straight lines called rays. This
+                            approximation is valid when the wavelength of light
+                            is much smaller than the size of the objects or
+                            openings it encounters. If the opening is comparable
+                            to the wavelength, diffraction occurs, and the ray
+                            approximation breaks down.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The ray approximation is very useful for
+                            understanding reflection, refraction, mirrors, and
+                            lenses. It assumes that light travels in a fixed
+                            direction in a straight line through a uniform
+                            medium and changes direction when it meets the
+                            surface of a different medium. This is a good
+                            approximation for many everyday situations,
+                            including vision, photography, and optical
+                            instruments.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept3">
+                    <div class="concept-header">
+                        <span class="concept-number">3</span>
+                        <h2>Reflection</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The law of reflection states that the incident ray,
+                            the reflected ray, and the normal to the surface all
+                            lie in the same plane, and the angle of reflection
+                            equals the angle of incidence: θ<sub>r</sub> =
+                            θ<sub>i</sub>.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            When a light ray strikes a smooth surface (like a
+                            mirror), it reflects according to the law of
+                            reflection:
+                        </p>
+                        <p>
+                            1. The incident ray, the reflected ray, and the
+                            normal to the surface are all in the same plane.
+                        </p>
+                        <p>
+                            2. The angle of reflection equals the angle of
+                            incidence: θ<sub>r</sub> = θ<sub>i</sub>.
+                        </p>
+                        <p>
+                            Specular reflection occurs from a smooth surface.
+                            Diffuse reflection occurs from a rough surface.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The law of reflection is a consequence of the wave
+                            nature of light—it's the same as the reflection of
+                            any wave. It's used in mirrors, periscopes, and many
+                            optical instruments. The angle is always measured
+                            from the normal (perpendicular) to the surface, not
+                            from the surface itself.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept4">
+                    <div class="concept-header">
+                        <span class="concept-number">4</span>
+                        <h2>Refraction and Snell's Law</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            Refraction is the bending of light when it passes
+                            from one medium to another. Snell's law relates the
+                            angles of incidence and refraction: n₁ sin θ₁ = n₂
+                            sin θ₂.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            When light passes from one transparent medium to
+                            another, part of it reflects and part of it
+                            transmits (refracts). The refracted ray bends
+                            according to Snell's law:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Snell's Law</span> n₁ sin θ₁ =
+                            n₂ sin θ₂
+                        </div>
+                        <p>
+                            where n₁ and n₂ are the indices of refraction, θ₁ is
+                            the angle of incidence, and θ₂ is the angle of
+                            refraction. When light enters a medium with higher
+                            index of refraction (n₂ > n₁), it bends toward the
+                            normal (θ₂ < θ₁).
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            Snell's law is derived from the wave nature of
+                            light—it's a consequence of the wavelength changing
+                            when light enters a different medium. The index of
+                            refraction is defined as n = c/v, where c is the
+                            speed of light in vacuum and v is the speed of light
+                            in the medium. All materials have n ≥ 1.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="concept5">
+                    <div class="concept-header">
+                        <span class="concept-number">5</span>
+                        <h2>Index of Refraction</h2>
+                    </div>
+                    <div class="depth-tabs">
+                        <button class="depth-tab active" data-layer="short">
+                            ⚡ Short
+                        </button>
+                        <button class="depth-tab" data-layer="full">
+                            📖 Full
+                        </button>
+                        <button class="depth-tab" data-layer="deep">
+                            🔬 Deep
+                        </button>
+                    </div>
+                    <div data-layer="short" class="depth-content active">
+                        <p>
+                            The index of refraction of a medium is n = c/v,
+                            where c is the speed of light in vacuum and v is the
+                            speed of light in the medium. Higher index means
+                            light travels slower in the medium.
+                        </p>
+                    </div>
+                    <div data-layer="full" class="depth-content">
+                        <p>
+                            The index of refraction n is a measure of how much
+                            light slows down in a material:
+                        </p>
+                        <div class="formula">
+                            <span class="label">Index of Refraction</span> n =
+                            c/v
+                        </div>
+                        <p>
+                            All materials have n ≥ 1. The index depends on the
+                            wavelength of light (dispersion), which is why a
+                            prism separates white light into its colors. Typical
+                            values: Air: 1.0003, Water: 1.33, Glass (crown):
+                            1.52, Glass (flint): 1.66, Diamond: 2.42.
+                        </p>
+                    </div>
+                    <div data-layer="deep" class="depth-content">
+                        <p>
+                            The index of refraction is a material property that
+                            depends on the atomic structure. In general, denser
+                            materials have higher indices. The speed of light is
+                            slower in materials because light interacts with
+                            atoms—it's absorbed and re-emitted, causing a delay.
+                            The index also depends on wavelength, which is why
+                            different colors are bent by different amounts
+                            (dispersion).
+                        </p>
+                    </div>
+                </div>
+
+                <section id="formulas">
+                    <h2>📐 Equations</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Formula</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Index of Refraction</td>
+                                        <td>n = c/v</td>
+                                        <td>(unitless)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Snell's Law</td>
+                                        <td>n₁ sinθ₁ = n₂ sinθ₂</td>
+                                        <td>(unitless)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Law of Reflection</td>
+                                        <td>θ<sub>r</sub> = θ<sub>i</sub></td>
+                                        <td>degrees/radians</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Speed of Light in Vacuum</td>
+                                        <td>c = 3.00 × 10⁸</td>
+                                        <td>m/s</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2>⚖️ Reflection vs Refraction</h2>
+                    <div class="concept-card">
+                        <div class="comparison-table-wrap">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Reflection</th>
+                                        <th>Refraction</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Definition</td>
+                                        <td>Light bounces off surface</td>
+                                        <td>Light passes into new medium</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Law</td>
+                                        <td>θ<sub>r</sub> = θ<sub>i</sub></td>
+                                        <td>n₁ sinθ₁ = n₂ sinθ₂</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Speed Change</td>
+                                        <td>No</td>
+                                        <td>Yes (changes in new medium)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Direction Change</td>
+                                        <td>Yes (bounces back)</td>
+                                        <td>Yes (bends)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Medium</td>
+                                        <td>Same medium</td>
+                                        <td>Different medium</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="professor-card" id="narrative">
+                    <h2>🎓 Professor's Narrative</h2>
+                    <p>
+                        Light is a fascinating phenomenon—it's both a wave and a
+                        particle. For most everyday optics (reflection,
+                        refraction, mirrors, and lenses), the wave nature is
+                        sufficient, and we can use the ray approximation.
+                    </p>
+                    <p>
+                        Reflection is straightforward—the angle of reflection
+                        equals the angle of incidence. This simple law governs
+                        how mirrors work, from bathroom mirrors to telescopes.
+                    </p>
+                    <p>
+                        Refraction is the bending of light when it enters a
+                        different medium. Snell's law n₁ sin θ₁ = n₂ sin θ₂ is
+                        the key to understanding refraction. When light enters a
+                        medium with a higher index (slower speed), it bends
+                        toward the normal. When it enters a medium with a lower
+                        index, it bends away from the normal.
+                    </p>
+                    <p>
+                        The index of refraction n = c/v is a measure of how much
+                        light slows down in a material. Diamond has a very high
+                        index (2.42) because light travels very slowly in it.
+                        This high index is responsible for diamond's brilliance.
+                    </p>
+                </section>
+
+                <section class="ask-section" id="ask-professor">
+                    <h2>❓ Ask the Professor</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why does light slow down in a material?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Light interacts with the atoms in the
+                                    material—it is absorbed and re-emitted by
+                                    the atoms, which causes a delay in the
+                                    propagation. The more atoms the light
+                                    interacts with (denser material), the more
+                                    it slows down.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why does a pencil look bent in a glass of water?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Light from the pencil travels from water
+                                    (higher index) to air (lower index), so it
+                                    bends away from the normal. This makes the
+                                    pencil appear to be bent or broken at the
+                                    water's surface. This is a classic example
+                                    of refraction.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">
+                                Why do diamonds sparkle?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>
+                                    Diamonds have a very high index of
+                                    refraction (2.42), which means light bends a
+                                    lot when it enters and leaves the diamond.
+                                    The critical angle for diamond is small, so
+                                    light that enters the diamond undergoes
+                                    total internal reflection many times before
+                                    it exits, creating the characteristic
+                                    sparkle.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="vault-section" id="exam-vault">
+                    <h2>🔐 Exam Vault</h2>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Law of reflection: θ<sub>r</sub> = θ<sub>i</sub>. The
+                        incident ray, reflected ray, and normal all lie in the
+                        same plane.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        Angles are measured from the normal, not from the
+                        surface. The angle of incidence is not the angle between
+                        the ray and the surface.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--secret"
+                            >🤫 Secret</span
+                        >
+                        Snell's law: n₁ sin θ₁ = n₂ sin θ₂. When light goes from
+                        lower index to higher index, it bends toward the normal.
+                        When going from higher to lower, it bends away from the
+                        normal.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--key"
+                            >🔑 Key Concept</span
+                        >
+                        Index of refraction: n = c/v. Higher index means slower
+                        speed and more bending.
+                    </div>
+                    <div class="vault-entry">
+                        <span class="vault-type vault-type--trap"
+                            >⚠️ Exam Trap</span
+                        >
+                        The index of refraction of air is approximately 1.00 for
+                        most calculations (actually 1.0003). Treat it as 1.00
+                        unless high precision is needed.
+                    </div>
+                </section>
+
+                <section class="quiz-section" id="quiz">
+                    <h2>
+                        📝 Chapter 12: The Nature of Light, Reflection and
+                        Refraction (Part 1) Quiz
+                    </h2>
+                    <div id="quiz-container"></div>
+                </section>
+            </main>
+
+            <footer>
+                SCI201 · Chapter 12: The Nature of Light, Reflection and
+                Refraction (Part 1)
+            </footer>
+        </div>
+
+        <script>
+            (function () {
+                window.toggleTheme = function () {
+                    const html = document.documentElement;
+                    const cur = html.getAttribute("data-theme");
+                    const next = cur === "dark" ? "light" : "dark";
+                    html.setAttribute("data-theme", next);
+                    localStorage.setItem("garden_theme", next);
+                };
+                const saved = localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", saved);
+
+                document.querySelectorAll(".depth-tabs").forEach((tabGroup) => {
+                    const card = tabGroup.closest(".concept-card");
+                    if (!card) return;
+                    const tabs = tabGroup.querySelectorAll(".depth-tab");
+                    const contents = card.querySelectorAll(".depth-content");
+                    tabs.forEach((tab) => {
+                        tab.addEventListener("click", function () {
+                            const layer = this.dataset.layer;
+                            tabs.forEach((t) => t.classList.remove("active"));
+                            this.classList.add("active");
+                            contents.forEach((c) => {
+                                c.classList.remove("active");
+                                if (c.dataset.layer === layer)
+                                    c.classList.add("active");
+                            });
+                        });
+                    });
+                });
+
+                document
+                    .querySelectorAll(".accordion-trigger")
+                    .forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            const body = this.nextElementSibling;
+                            const isOpen = body.classList.contains("open");
+                            const section = this.closest(".accordion");
+                            section
+                                .querySelectorAll(".accordion-body")
+                                .forEach((b) => b.classList.remove("open"));
+                            if (!isOpen) body.classList.add("open");
+                        });
+                    });
+
+                const currentStatus = localStorage.getItem("chapter_12_status");
+                if (!currentStatus || currentStatus === "not-started") {
+                    localStorage.setItem("chapter_12_status", "viewed");
+                }
+            })();
+        </script>
+
+        <script src="../js/quiz.js"></script>
+        <script>
+            initQuiz({
+                chapterNum: 12,
+                quizData: [
+                    {
+                        question: "1. The law of reflection states that:",
+                        options: [
+                            "θ_r > θ_i.",
+                            "θ_r = θ_i.",
+                            "θ_r < θ_i.",
+                            "θ_r = 90°.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "The angle of reflection equals the angle of incidence.",
+                        hint: "The angle of reflection equals the angle of incidence.",
+                    },
+                    {
+                        question: "2. Refraction is the bending of light when:",
+                        options: [
+                            "It reflects from a surface.",
+                            "It passes from one medium to another.",
+                            "It travels in a vacuum.",
+                            "It passes through a prism.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Refraction occurs when light passes between different media.",
+                        hint: "It's the transmission that bends.",
+                    },
+                    {
+                        question: "3. Snell's law is:",
+                        options: [
+                            "n₁ sin θ₁ = n₂ sin θ₂.",
+                            "n₁ sin θ₂ = n₂ sin θ₁.",
+                            "n₁ cos θ₁ = n₂ cos θ₂.",
+                            "n₁ sin θ₁ + n₂ sin θ₂ = 0.",
+                        ],
+                        correct: 0,
+                        explanation:
+                            "This is the fundamental law of refraction.",
+                        hint: "This is the fundamental law of refraction.",
+                    },
+                    {
+                        question: "4. The index of refraction is defined as:",
+                        options: [
+                            "n = v/c.",
+                            "n = c/v.",
+                            "n = c v.",
+                            "n = c²/v.",
+                        ],
+                        correct: 1,
+                        explanation: "n = c/v, and n is always ≥ 1.",
+                        hint: "n is always ≥ 1.",
+                    },
+                    {
+                        question: "5. Light travels fastest in:",
+                        options: ["Water.", "Glass.", "Vacuum.", "Diamond."],
+                        correct: 2,
+                        explanation:
+                            "The index of refraction is lowest in vacuum (n = 1).",
+                        hint: "The index of refraction is lowest in vacuum.",
+                    },
+                    {
+                        question:
+                            "6. When light enters a medium with higher index of refraction, it:",
+                        options: [
+                            "Bends toward the normal.",
+                            "Bends away from the normal.",
+                            "Does not bend.",
+                            "Reflects completely.",
+                        ],
+                        correct: 0,
+                        explanation: "Snell's law: n₂ > n₁ means θ₂ < θ₁.",
+                        hint: "Snell's law tells us the direction of bending.",
+                    },
+                    {
+                        question: "7. The speed of light in vacuum is:",
+                        options: [
+                            "3.00 × 10⁶ m/s.",
+                            "3.00 × 10⁸ m/s.",
+                            "3.00 × 10¹⁰ m/s.",
+                            "3.00 × 10⁵ m/s.",
+                        ],
+                        correct: 1,
+                        explanation: "c = 3.00 × 10⁸ m/s.",
+                        hint: "This is the speed of light constant.",
+                    },
+                    {
+                        question:
+                            "8. The index of refraction of diamond is approximately:",
+                        options: ["1.33.", "1.52.", "2.42.", "1.00."],
+                        correct: 2,
+                        explanation: "Diamond has a very high index of 2.42.",
+                        hint: "Diamond has a very high index.",
+                    },
+                    {
+                        question: "9. The ray approximation is valid when:",
+                        options: [
+                            "Light travels in a vacuum.",
+                            "The wavelength is much smaller than the objects it encounters.",
+                            "The wavelength is comparable to the objects it encounters.",
+                            "Light is reflected.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Geometric optics ignores diffraction, valid when λ << object size.",
+                        hint: "Geometric optics ignores diffraction.",
+                    },
+                    {
+                        question:
+                            "10. The angle of incidence is measured from:",
+                        options: [
+                            "The surface.",
+                            "The normal.",
+                            "The reflected ray.",
+                            "The horizontal.",
+                        ],
+                        correct: 1,
+                        explanation:
+                            "Always measure from the normal, not the surface.",
+                        hint: "Always measure from the normal.",
+                    },
+                ],
+            });
+        </script>
+        <script src="../js/toolbar.js"></script>
+    </body>
+</html>

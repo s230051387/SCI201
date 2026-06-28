@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SCI201 - General Physics II</title>
+        <style>
+            /* ================================================================
+               GRUVBOX COLOR PALETTE
+               ================================================================ */
+            :root {
+                /* Gruvbox Light */
+                --bg: #fbf1c7;
+                --bg0_h: #f9f5d7;
+                --bg0: #fbf1c7;
+                --bg1: #ebdbb2;
+                --bg2: #d5c4a1;
+                --bg3: #bdae93;
+                --bg4: #a89984;
+                --fg: #3c3836;
+                --fg0: #282828;
+                --fg1: #3c3836;
+                --fg2: #504945;
+                --fg3: #665c54;
+                --fg4: #7c6f64;
+                --gray: #928374;
+                --red: #9d0006;
+                --green: #79740e;
+                --yellow: #b57614;
+                --blue: #076678;
+                --purple: #8f3f71;
+                --aqua: #427b58;
+                --orange: #d65d0e;
+
+                /* Semantic mappings */
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --accent: var(--yellow);
+                --success: var(--green);
+                --danger: var(--red);
+                --warning: var(--orange);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+                --shadow:
+                    0 4px 6px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+                --radius: 12px;
+                --radius-sm: 8px;
+                --transition: 0.2s ease;
+            }
+
+            [data-theme="dark"] {
+                /* Gruvbox Dark */
+                --bg: #282828;
+                --bg0_h: #1d2021;
+                --bg0: #282828;
+                --bg1: #3c3836;
+                --bg2: #504945;
+                --bg3: #665c54;
+                --bg4: #7c6f64;
+                --fg: #ebdbb2;
+                --fg0: #fbf1c7;
+                --fg1: #ebdbb2;
+                --fg2: #d5c4a1;
+                --fg3: #bdae93;
+                --fg4: #a89984;
+                --gray: #928374;
+                --red: #cc241d;
+                --green: #98971a;
+                --yellow: #d79921;
+                --blue: #458588;
+                --purple: #b16286;
+                --aqua: #689d6a;
+                --orange: #d65d0e;
+
+                /* Semantic overrides */
+                --surface: var(--bg0_h);
+                --surface-alt: var(--bg1);
+                --text: var(--fg1);
+                --text-secondary: var(--fg3);
+                --text-muted: var(--fg4);
+                --border: var(--bg3);
+                --border-light: var(--bg2);
+                --primary: var(--blue);
+                --primary-light: var(--bg2);
+                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+                --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            }
+
+            /* ===== RESET & BASE ===== */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.6;
+                padding: 1.5rem;
+                max-width: 1000px;
+                margin: 0 auto;
+                transition:
+                    background var(--transition),
+                    color var(--transition);
+            }
+
+            /* ===== THEME TOGGLE ===== */
+            .theme-toggle {
+                text-align: right;
+                margin-bottom: 15px;
+            }
+
+            #themeBtn {
+                background: var(--surface-alt);
+                color: var(--text);
+                border: 1px solid var(--border);
+                padding: 8px 18px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                font-family: inherit;
+            }
+
+            #themeBtn:hover {
+                background: var(--primary);
+                color: var(--bg0_h);
+                border-color: var(--primary);
+                transform: scale(1.05);
+            }
+
+            /* ===== HEADER ===== */
+            header {
+                background: linear-gradient(135deg, var(--blue), var(--purple));
+                color: var(--bg0_h);
+                padding: 30px 35px;
+                border-radius: var(--radius);
+                margin-bottom: 30px;
+                text-align: center;
+                transition: background 0.3s ease;
+                box-shadow: var(--shadow);
+            }
+
+            header h1 {
+                font-size: 2.2em;
+                margin-bottom: 8px;
+                color: var(--bg0_h);
+            }
+
+            header p {
+                font-size: 1.1em;
+                opacity: 0.9;
+                color: var(--bg0_h);
+            }
+
+            /* ===== MAIN CONTENT ===== */
+            main {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            h2 {
+                color: var(--primary);
+                font-size: 1.5em;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid var(--border);
+            }
+
+            /* ===== PROGRESS SECTION ===== */
+            .progress-section {
+                background: var(--surface);
+                padding: 25px 30px;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                border: 1px solid var(--border);
+            }
+
+            .progress-bar-container {
+                background: var(--surface-alt);
+                border-radius: 20px;
+                height: 30px;
+                overflow: hidden;
+                margin: 15px 0;
+                border: 1px solid var(--border);
+            }
+
+            .progress-bar {
+                background: linear-gradient(135deg, var(--blue), var(--aqua));
+                height: 100%;
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--bg0_h);
+                font-weight: 700;
+                font-size: 0.9em;
+                transition: width 0.5s ease;
+                min-width: fit-content;
+                padding: 0 10px;
+            }
+
+            #progressText {
+                color: var(--text-secondary);
+                font-size: 0.9em;
+                text-align: center;
+            }
+
+            /* ===== CHAPTER LIST ===== */
+            .chapter-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 20px;
+            }
+
+            .chapter-card {
+                background: var(--surface);
+                padding: 25px;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                border: 1px solid var(--border);
+                border-left: 4px solid var(--primary);
+                transition: all 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .chapter-card:hover {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+                transform: translateY(-2px);
+                border-left-color: var(--purple);
+            }
+
+            .chapter-card h3 {
+                font-size: 1.1em;
+                margin: 0;
+            }
+
+            .chapter-card h3 a {
+                color: var(--primary);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .chapter-card h3 a:hover {
+                color: var(--purple);
+                text-decoration: underline;
+            }
+
+            .chapter-card p {
+                color: var(--text-secondary);
+                font-size: 0.9em;
+                line-height: 1.5;
+                flex-grow: 1;
+            }
+
+            .badge {
+                display: inline-block;
+                background: var(--surface-alt);
+                color: var(--text-secondary);
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.8em;
+                font-weight: 600;
+                border: 1px solid var(--border);
+                align-self: flex-start;
+            }
+
+            .status {
+                font-weight: 600;
+                font-size: 0.85em;
+                padding: 4px 12px;
+                border-radius: 20px;
+                align-self: flex-start;
+            }
+
+            .status:contains("✅") {
+                background: var(--green);
+                color: var(--bg0_h);
+            }
+
+            .status:contains("📖") {
+                background: var(--yellow);
+                color: var(--bg0_h);
+            }
+
+            /* Status colors based on text content (handled by JS) */
+            .status-completed {
+                background: var(--green);
+                color: var(--bg0_h);
+                padding: 4px 12px;
+                border-radius: 20px;
+            }
+
+            .status-viewed {
+                background: var(--yellow);
+                color: var(--bg0_h);
+                padding: 4px 12px;
+                border-radius: 20px;
+            }
+
+            .status-not-started {
+                background: var(--surface-alt);
+                color: var(--text-secondary);
+                padding: 4px 12px;
+                border-radius: 20px;
+                border: 1px solid var(--border);
+            }
+
+            /* ===== FOOTER ===== */
+            footer {
+                text-align: center;
+                padding: 25px;
+                color: var(--text-muted);
+                border-top: 1px solid var(--border);
+                margin-top: 30px;
+                font-size: 0.9em;
+            }
+
+            /* ===== RESPONSIVE ===== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 12px;
+                }
+
+                header {
+                    padding: 20px;
+                }
+
+                header h1 {
+                    font-size: 1.6em;
+                }
+
+                .chapter-list {
+                    grid-template-columns: 1fr;
+                }
+
+                .progress-section {
+                    padding: 18px 16px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Theme Toggle -->
+        <div class="theme-toggle">
+            <button onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
+        </div>
+
+        <header>
+            <h1>📚 SCI201 - General Physics II</h1>
+            <p>Complete Study Guide high Level of Explanation</p>
+        </header>
+
+        <main>
+            <!-- Progress Section -->
+            <section class="progress-section">
+                <h2>📊 Your Progress</h2>
+                <div class="progress-bar-container">
+                    <div
+                        class="progress-bar"
+                        id="progressBar"
+                        style="width: 0%"
+                    >
+                        0%
+                    </div>
+                </div>
+                <p id="progressText">
+                    Complete chapters and take quizzes to track your progress
+                </p>
+            </section>
+
+            <h2>📖 Chapters</h2>
+            <div class="chapter-list">
+                <div class="chapter-card" data-chapter="1">
+                    <h3>
+                        <a href="chapters/chapter1.html"
+                            >Chapter 1: Electric Potential</a
+                        >
+                    </h3>
+                    <p>
+                        Electric potential energy, potential difference, and
+                        voltage
+                    </p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status1">⬜ Not Started</span>
+                </div>
+
+                <div class="chapter-card" data-chapter="2">
+                    <h3>
+                        <a href="chapters/chapter2.html"
+                            >Chapter 2: Electric Potential Due to Continuous
+                            Charge Distribution</a
+                        >
+                    </h3>
+                    <p>
+                        Point charges, dipoles, and continuous charge
+                        distributions
+                    </p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status2">⬜ Not Started</span>
+                </div>
+
+                <div class="chapter-card" data-chapter="3">
+                    <h3>
+                        <a href="chapters/chapter3.html"
+                            >Chapter 3: Current and Resistance</a
+                        >
+                    </h3>
+                    <p>
+                        Electric current, Ohm's law, resistance, and resistivity
+                    </p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status3">⬜ Not Started</span>
+                </div>
+
+                <div class="chapter-card" data-chapter="4">
+                    <h3>
+                        <a href="chapters/chapter4.html"
+                            >Chapter 4: Direct Current Circuits</a
+                        >
+                    </h3>
+                    <p>
+                        EMF, internal resistance, resistors in series and
+                        parallel, Kirchhoff's rules
+                    </p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status4">⬜ Not Started</span>
+                </div>
+
+                <div class="chapter-card" data-chapter="5">
+                    <h3>
+                        <a href="chapters/chapter5.html"
+                            >Chapter 5: Magnetic Field</a
+                        >
+                    </h3>
+                    <p>
+                        Magnetic poles, force on moving charges,
+                        current-carrying conductors
+                    </p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status5">⬜ Not Started</span>
+                </div>
+
+                <div class="chapter-card" data-chapter="6">
+                    <h3>
+                        <a href="chapters/chapter6.html"
+                            >Chapter 6: Temperature and The Zeroth Law of
+                            Thermodynamics</a
+                        >
+                    </h3>
+                    <p>
+                        Temperature scales, thermal expansion, and thermal
+                        equilibrium
+                    </p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status6">⬜ Not Started</span>
+                </div>
+
+                <div class="chapter-card" data-chapter="7">
+                    <h3>
+                        <a href="chapters/chapter7.html"
+                            >Chapter 7: Heat and Internal Energy</a
+                        >
+                    </h3>
+                    <p>
+                        Heat capacity, specific heat, calorimetry, latent heat
+                    </p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status7">⬜ Not Started</span>
+                </div>
+
+                <div class="chapter-card" data-chapter="8">
+                    <h3>
+                        <a href="chapters/chapter8.html"
+                            >Chapter 8: The Second Law of Thermodynamics</a
+                        >
+                    </h3>
+                    <p>Heat engines, efficiency, Carnot cycle, entropy</p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status8">⬜ Not Started</span>
+                </div>
+
+                <div class="chapter-card" data-chapter="9">
+                    <h3>
+                        <a href="chapters/chapter9.html"
+                            >Chapter 9: Oscillatory Motion and Simple
+                            Pendulum</a
+                        >
+                    </h3>
+                    <p>
+                        Simple harmonic motion, spring-mass systems, pendulums
+                    </p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status9">⬜ Not Started</span>
+                </div>
+
+                <div class="chapter-card" data-chapter="10">
+                    <h3>
+                        <a href="chapters/chapter10.html"
+                            >Chapter 10: Wave Motion and Sound Waves (Part 1)</a
+                        >
+                    </h3>
+                    <p>Types of waves, wave speed, energy in waves</p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status10">⬜ Not Started</span>
+                </div>
+
+                <div class="chapter-card" data-chapter="11">
+                    <h3>
+                        <a href="chapters/chapter11.html"
+                            >Chapter 11: Wave Motion and Sound Waves (Part 2)</a
+                        >
+                    </h3>
+                    <p>Sound waves, intensity, Doppler effect</p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status11">⬜ Not Started</span>
+                </div>
+
+                <div class="chapter-card" data-chapter="12">
+                    <h3>
+                        <a href="chapters/chapter12.html"
+                            >Chapter 12: The Nature of Light, Reflection and
+                            Refraction (Part 1)</a
+                        >
+                    </h3>
+                    <p>History of light, electromagnetic waves, reflection</p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status12">⬜ Not Started</span>
+                </div>
+
+                <div class="chapter-card" data-chapter="13">
+                    <h3>
+                        <a href="chapters/chapter13.html"
+                            >Chapter 13: The Nature of Light, Reflection and
+                            Refraction (Part 2)</a
+                        >
+                    </h3>
+                    <p>
+                        Refraction, Snell's law, total internal reflection,
+                        optical fibers
+                    </p>
+                    <span class="badge">Short • Full • Deep</span>
+                    <span class="status" id="status13">⬜ Not Started</span>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>
+                SCI201 - General Physics II &bull; Created with ❤️ for students
+            </p>
+        </footer>
+
+        <script>
+            // ============================================================
+            // THEME TOGGLE
+            // ============================================================
+            function toggleTheme() {
+                const html = document.documentElement;
+                const current = html.getAttribute("data-theme");
+                const newTheme = current === "dark" ? "light" : "dark";
+                html.setAttribute("data-theme", newTheme);
+                localStorage.setItem("garden_theme", newTheme);
+                const btn = document.getElementById("themeBtn");
+                if (btn)
+                    btn.textContent =
+                        newTheme === "dark" ? "🌙 Dark Mode" : "☀️ Light Mode";
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const savedTheme =
+                    localStorage.getItem("garden_theme") || "dark";
+                document.documentElement.setAttribute("data-theme", savedTheme);
+                const btn = document.getElementById("themeBtn");
+                if (btn)
+                    btn.textContent =
+                        savedTheme === "dark"
+                            ? "🌙 Dark Mode"
+                            : "☀️ Light Mode";
+
+                // Load progress
+                loadProgress();
+            });
+
+            // ============================================================
+            // PROGRESS TRACKING
+            // ============================================================
+            function loadProgress() {
+                const totalChapters = 13;
+                let completedCount = 0;
+
+                for (let i = 1; i <= totalChapters; i++) {
+                    const status =
+                        localStorage.getItem(`chapter_${i}_status`) ||
+                        "not-started";
+                    const statusEl = document.getElementById(`status${i}`);
+
+                    if (statusEl) {
+                        // Remove old classes
+                        statusEl.classList.remove(
+                            "status-completed",
+                            "status-viewed",
+                            "status-not-started",
+                        );
+
+                        if (status === "completed") {
+                            statusEl.textContent = "✅ Completed";
+                            statusEl.classList.add("status-completed");
+                            completedCount++;
+                        } else if (status === "viewed") {
+                            statusEl.textContent = "📖 In Progress";
+                            statusEl.classList.add("status-viewed");
+                        } else {
+                            statusEl.textContent = "⬜ Not Started";
+                            statusEl.classList.add("status-not-started");
+                        }
+                    }
+                }
+
+                // Update progress bar
+                const percentage = Math.round(
+                    (completedCount / totalChapters) * 100,
+                );
+                const progressBar = document.getElementById("progressBar");
+                const progressText = document.getElementById("progressText");
+
+                if (progressBar) {
+                    progressBar.style.width = percentage + "%";
+                    progressBar.textContent = percentage + "%";
+                }
+
+                if (progressText) {
+                    if (percentage === 0) {
+                        progressText.textContent =
+                            "Complete chapters and take quizzes to track your progress";
+                    } else if (percentage === 100) {
+                        progressText.textContent =
+                            "🎉 Amazing! You've completed all chapters!";
+                    } else {
+                        progressText.textContent = `You've completed ${completedCount} of ${totalChapters} chapters. Keep going!`;
+                    }
+                }
+            }
+
+            // Refresh progress when page becomes visible (in case user went to a chapter and came back)
+            document.addEventListener("visibilitychange", function () {
+                if (!document.hidden) {
+                    loadProgress();
+                }
+            });
+        </script>
+    </body>
+</html>
